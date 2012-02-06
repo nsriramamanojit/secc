@@ -1,0 +1,47 @@
+<h3>Districts | Manage Districts</h3>
+<div class="help_text">
+  * List of All Districts.<br/>
+</div>
+<%= link_to 'New District', "#", :class=>'more', :title => "Create New District", :id=>'add_new' %>&nbsp;
+
+<div id="new_form">
+  <%= render 'form' %>
+</div>
+<div class="list">
+  <table class="tablesorter" cellspacing="1">
+    <thead>
+    <tr>
+      <th>SNo</th>
+      <th class="header">Name</th>
+      <th>State</th>
+      <th>Description</th>
+      <th>Reference No</th>
+      <th>Reference Name</th>
+      <th>Created By</th>
+      <th>Created On</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <% i=1 %>
+    <% @districts.each do |district| %>
+        <tr>
+          <td><%= i %></td>
+          <td><%= district.name %></td>
+          <td><%= district.state.name + " (" + district.state.reference_number.to_s + ")" %></td>
+
+          <td><%= district.description %></td>
+          <td><%= district.reference_number %></td>
+          <td><%= district.reference_name %></td>
+          <td></td>
+          <td><%= district.created_at.strftime('%d-%b-%Y') %></td>
+          <td>
+            <%= link_for_show(district) %>
+            <%= link_for_edit(edit_district_path(district)) %>
+
+          </td>
+        </tr>
+        <% i = i + 1 %>
+    <% end %>
+  </table>
+</div>
+

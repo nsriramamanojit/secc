@@ -1,0 +1,14 @@
+<%= render :partial=>'common/header' %>
+<%= render :partial=>'common/menu' %>
+<div id="page_content">
+    <div class="content">
+        <div id="flash_messages">
+            <%= render :partial=>'common/import_flash' %>
+        </div>
+        <%= yield %>
+    </div>
+</div>
+</div>
+<%= render :partial=>'common/footer' %>
+</body>
+</html>

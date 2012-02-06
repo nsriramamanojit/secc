@@ -13,6 +13,9 @@ gem 'will_paginate'
 gem 'pdfkit'
 gem "paperclip"
 gem "meta_where"
+gem "simple_form"
+gem 'client_side_validations'
+gem "nifty-generators", :group => :development
 
 # Use unicorn as the web server
 # gem 'unicorn'

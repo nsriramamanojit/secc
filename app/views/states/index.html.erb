@@ -1,0 +1,44 @@
+<h3>States | Manage States</h3>
+<div class="help_text">
+  * List of All States.<br/>
+</div>
+<%= link_to 'New State', "#", :class=>'more tipTip2', :title => "Create New State", :id=>'add_new' %>&nbsp;
+
+<div id="new_form">
+  <%= render 'form' %>
+</div>
+<div class="list">
+  <table class="tablesorter" cellspacing="1">
+    <thead>
+    <tr>
+      <th>SNo</th>
+      <th class="header">Name</th>
+      <th>Description</th>
+      <th>Reference No</th>
+      <th>Reference Name</th>
+      <th>Created By</th>
+      <th>Created On</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <% i=1 %>
+    <% @states.each do |state| %>
+        <tr>
+          <td><%= i %></td>
+          <td><%= state.name %></td>
+          <td><%= state.description %></td>
+          <td><%= state.reference_number %></td>
+          <td><%= state.reference_name %></td>
+          <td></td>
+          <td><%= state.created_at.strftime('%d-%b-%Y') %></td>
+          <td>
+            <%= link_for_show(state) %>
+            <%= link_for_edit(edit_state_path(state)) %>
+
+          </td>
+        </tr>
+        <% i = i + 1 %>
+    <% end %>
+  </table>
+</div>
+

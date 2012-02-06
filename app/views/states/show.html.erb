@@ -1,0 +1,21 @@
+<h3>States | View State Details</h3>
+<div class="formbox">
+<div class="desc">Name : <%= @state.name %></div>
+<div class="divider"></div>
+<div class="desc">Description : <%= @state.description %> </div>
+<div class="divider"></div>
+<div class="desc">Reference Number : <%= @state.reference_number %> </div>
+<div class="divider"></div>
+<div class="desc">Reference Name : <%= @state.reference_name %> </div>
+<div class="divider"></div>
+
+<div class="desc">Created By :  </div>
+<div class="divider"></div>
+<div class="desc">Created At : <%= @state.created_at.strftime('%d-%m-%Y') %> </div>
+<div class="divider"></div>
+</div>
+<div class="bottom_links" >
+<%= link_to 'Edit', edit_state_path(@state),:class=>"more tipTip2",:title => "Edit State Details" %> &nbsp;
+<%= link_to 'Back', states_path,:class=>"more tipTip1",:title => "Back to States" %>
+</div>
+

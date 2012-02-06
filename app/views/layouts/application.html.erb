@@ -1,14 +1,40 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Secc</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
-</head>
-<body>
-
-<%= yield %>
-
+<%= render :partial=>'common/header' %>
+<%= render :partial=>'common/menu' %>
+<div id="page_content">
+	<div class="content">
+		<div class="content_index">
+			<table cellpadding="0" cellspacing="0" width="100%">
+				<tbody>
+					<tr>
+						<td valign="top" width="160">
+						<%= render :partial=>'common/search' %>
+						<div class="resend_camp">
+							<div class="margin">
+								<h3>Recent Records (ताज़ा)</h3>
+								<div class="panel">
+								<%= render :partial=>'recent_items' %>
+								</div>
+							</div>
+						</div>
+						</td>
+						<td width="5"> &nbsp;</td>
+						<td valign="top">
+						<div class="statistic">
+							<div class="margin">
+								<div id="flash_messages">
+								<%= render :partial=>'common/import_flash' %>
+								</div>
+								<%= yield %>
+							</div>
+						</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+</div>
+<%= render :partial=>'common/footer' %>
 </body>
 </html>

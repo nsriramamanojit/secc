@@ -1,0 +1,48 @@
+<h3>Revenue | Manage Revenue Blocks</h3>
+<div class="help_text">
+  * List of All Revenue Blocks.<br/>
+</div>
+<%= link_to 'New Block', "#", :class=>'more', :title => "Create New Revenue Block", :id=>'add_new' %>&nbsp;
+
+<div id="new_form">
+  <%= render 'form' %>
+</div>
+<div class="list">
+  <table class="tablesorter" cellspacing="1">
+    <thead>
+    <tr>
+      <th>SNo</th>
+      <th>Name</th>
+      <th>State</th>
+      <th>District</th>
+      <th>Description</th>
+      <th>Reference No</th>
+      <th>Reference Name</th>
+      <th>Created By</th>
+      <th>Created On</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <% i=1 %>
+    <% @revenue_blocks.each do |rb| %>
+        <tr>
+          <td><%= i %></td>
+          <td><%= rb.name %></td>
+          <td><%= rb.state.name + " (" + rb.state.reference_number.to_s + ")" %></td>
+          <td><%= rb.district.name + " (" + rb.district.reference_number.to_s + ")" %></td>
+          <td><%= rb.description %></td>
+          <td><%= rb.reference_number %></td>
+          <td><%= rb.reference_name %></td>
+          <td></td>
+          <td><%= rb.created_at.strftime('%d-%b-%Y') %></td>
+          <td>
+            <%= link_for_show(rb) %>
+            <%= link_for_edit(edit_revenue_block_path(rb)) %>
+
+          </td>
+        </tr>
+        <% i = i + 1 %>
+    <% end %>
+  </table>
+</div>
+

@@ -1,0 +1,10 @@
+<% for state in  @recent %>
+<li class="" id="recent_state_<%= state.id%>">
+    <dt>
+        <%=link_to truncate(state.name,:length=>27),"#",:class=>"tipTip1",:title => "View District Details" %>
+    </dt>
+    <tt>
+        <br/>
+    </tt>
+</li>
+<% end %>

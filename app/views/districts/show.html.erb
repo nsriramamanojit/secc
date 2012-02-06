@@ -1,0 +1,21 @@
+<h3>Districts | View District Details</h3>
+<div class="formbox">
+<div class="desc">Name : <%= @district.name %></div>
+<div class="divider"></div>
+<div class="desc">Description : <%= @district.description %> </div>
+<div class="divider"></div>
+<div class="desc">State : <%= @district.state.name %> </div>
+<div class="divider"></div>
+<div class="desc">Reference Number : <%= @district.reference_number %> </div>
+<div class="divider"></div>
+<div class="desc">Reference Name : <%= @district.reference_name %> </div>
+<div class="divider"></div>
+<div class="desc">Created By :  </div>
+<div class="divider"></div>
+<div class="desc">Created At : <%= @district.created_at.strftime('%d-%m-%Y') %> </div>
+<div class="divider"></div>
+</div>
+<div class="bottom_links" >
+<%= link_to 'Edit', edit_district_path(@district),:class=>"more tipTip2",:title => "Edit District Details" %> &nbsp;
+<%= link_to 'Back', districts_path,:class=>"more tipTip1",:title => "Back to Districts" %>
+</div>

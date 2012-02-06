@@ -1,0 +1,10 @@
+<% for district in  @recent %>
+<li class="" id="recent_district_<%= district.id%>">
+    <dt>
+        <%=link_to truncate(district.name,:length=>27),"#",:class=>"tipTip1",:title => "View District Details" %>
+    </dt>
+    <tt>
+        <br/>
+    </tt>
+</li>
+<% end %>
