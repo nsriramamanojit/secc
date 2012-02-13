@@ -1,8 +1,5 @@
-<h3>States | Edit State Information</h3>
-<div class="list">
-  <div class="help_text">
-    * Fill the below form for State.<br/>* Please check all entries before Save.
-  </div>
-  <%= render 'form' %>
-  <%= link_to 'Back to States', states_path, :class=>'more tipTip1',:title => "Back to States" %>
-</div>
+<% title "SECC | Edit State" %>
+<% content_for :sub_heading do %>
+    <%= sub_heading('SECC | States ',"Edit #{@state.name}") %>
+<% end %>
+<%= render 'form' %>

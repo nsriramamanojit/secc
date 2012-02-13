@@ -1,37 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
-  <title>SECC</title>
-  <%= stylesheet_link_tag 'style','admin_screen','common' %>
-  <%= javascript_include_tag :defaults,'rails.validations.js' %>
-  <%= csrf_meta_tag %>
-</head>
-<body>
-<div id="page_container">
-  <div id="page_top">
-    <a href="/#"><h1>SECC</h1></a>
-
-    <div id="top_menu">
-      <div id="top_m">
-
-        <ul class="top_menu">
-          <li>
-            Welcome, !
-          </li>
-          <li>
-            <a href="#" class="tipTip2" title="Home">Home</a>
-          </li>
-          <li>
-            <%= link_to 'Profile', "#" %>
-          </li>
-
-          <li>
-
-            <%= link_to 'Logoff', "#", :id=>"logoff", :class=>"tipTip2", :title=>"Logoff" %>
-          </li>
-        </ul>
-
-      </div>
+<div id="page_top">
+  <%= link_to image_tag("logo.png", :border => 0), root_url %>
+  <div id="top_menu">
+    <div id="top_m">
+      <ul class="top_menu">
+        <li>Welcome-<%= current_user.name %></li>
+        <li><%= link_to 'Profile', "#" %></li>
+        <li>
+          <a href="?locale=hi">हिंदी</a> | <a href="?locale=en">English</a>
+        </li>
+        <li><%= link_to "Sign out", logout_path %></li>
+      </ul>
     </div>
   </div>
+</div>

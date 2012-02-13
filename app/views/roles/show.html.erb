@@ -1,0 +1,11 @@
+<% title "SECC | Role" %>
+<% content_for :sub_heading do %>
+    <%= sub_heading('SECC | Roles ', "Role Details") %>
+<% end %>
+<div class="formbox">
+  <div class="desc"><b>Name</b> :  <%= @role.name %></div>
+  <div class="divider"></div>
+  <div class="desc"><b>Reference Name</b> : <%= @role.short_name %> </div>
+  <div class="divider"></div>
+  <div class="desc"><b>Description</b> : <%= @role.description %> </div>
+</div>

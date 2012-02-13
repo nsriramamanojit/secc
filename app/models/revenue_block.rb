@@ -8,10 +8,10 @@ class RevenueBlock < ActiveRecord::Base
 
   #validations
   validates :name, :presence => true,  :length => { :maximum => 100}
-  validates :reference_number, :presence => true, :uniqueness => true, :length => { :maximum => 5}
   validates :state_id, :presence => true
   validates :district_id,:presence => true
-  validates :reference_name, :presence => true, :uniqueness => true, :length => { :maximum => 10}
+#  validates :reference_name, :presence => true, :uniqueness => true, :length => { :maximum => 10}
+#  validates :reference_number, :presence => true, :uniqueness => true, :length => { :maximum => 5}
 
   #search and recent
     class << self

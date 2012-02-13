@@ -1,0 +1,73 @@
+<% title "SECC | Users" %>
+<h3>Users | Manage | Users</h3>
+
+<% content_for :left_panel do %>
+    <td valign="top" width="250"> <%= render 'common/search' %>
+      <%= render 'recent' %> </td>
+<% end %>
+<div class="help_text">
+  Area for managing Users. <br/>
+  Along with creating, managing Users for Application.
+</div>
+<div>
+  <%= link_to "Create New User", new_user_path, :class=>'usuallink bold_text', :id=>'add_new' %>
+</div>
+
+<% if @users.blank? %>
+    <div class="error_msg">
+      OOPS!.. No Users are Found in the System..!
+    </div>
+<% else %>
+    <table width="100%">
+      <tr>
+        <td align="right">
+          <b><i>per page</i></b>
+          <%= per_page %>| <%= page_entries_info @users %>
+        </td>
+      </tr>
+    </table>
+    <table class="tablesorter">
+      <thead>
+      <tr>
+        <th>SNo</th>
+        <th>UserName</th>
+        <th>Name</th>
+        <th>State</th>
+        <th>District</th>
+        <th>Revenue</th>
+        <th>Mobile</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% i=1 %>
+      <% @users.each do |user| %>
+          <tr>
+            <td><%= i %></td>
+            <td><%= user.login %></td>
+            <td><%= user.name %></td>
+            <td><%= user.user_profile.state.name + " (" + user.user_profile.state.reference_number.to_s + ")" %></td>
+            <td><%= user.user_profile.district.name + " (" + user.user_profile.district.reference_number.to_s + ")" %></td>
+            <td><%= user.user_profile.revenue_block.name +  " (" + user.user_profile.revenue_block.reference_number.to_s + ")" %></td>
+            <td><%= user.mobile_number %></td>
+            <td>
+              <%= link_for_show_pop(user) %>
+              <%= link_for_edit(edit_user_path(user)) %>
+            </td>
+          </tr>
+          <% i = i + 1 %>
+      <% end %>
+      </tbody>
+    </table>
+    <div class="flickr_pagination">
+      <%= page_entries_info @users %> <%= will_paginate @users, :container => false %>
+    </div>
+<% end %>
+
+
+
+
+
+
+
+

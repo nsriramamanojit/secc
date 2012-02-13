@@ -1,31 +1,32 @@
-<div id="page_menu">
 <ul class="page_menu">
-        <li>
-          <a href="#">
-            <div class="menu-l">
-              &nbsp;
-            </div>
-            <div class="menu-c">
-              <span>&nbsp;&nbsp;GENERAL&nbsp;&nbsp;&nbsp;</span>
-            </div>
-            <div class="menu-r">
-              &nbsp;
-            </div>
-          </a>
-          <ul>
-            <li>
-              <%= link_to 'States', states_path,:class=>"tipTip1",:title=>"Manage States" %>
-            </li>
-            <li>
-              <%= link_to 'Divisions', divisions_path,:class=>"tipTip1",:title=>"Manage Divisions" %>
-            </li>
-            <li>
-              <%= link_to 'Districts', districts_path,:class=>"tipTip1",:title=>"Manage Districts" %>
-            </li>
-            <li>
-              <%= link_to 'Revenue Blocks', revenue_blocks_path,:class=>"tipTip1",:title=>"Manage Districts" %>
-            </li>
-          </ul>
-        </li>
+    <li><%= tab_heading 'Dashboard' %>
+    <ul>
+      <li>
+        <%= link_to 'States', states_path,:class=>"tipTip1",:title=>"Manage States" %>
+      </li>
+<!--
+      <li>
+        <%= link_to 'Divisions', divisions_path,:class=>"tipTip1",:title=>"Manage Divisions" %>
+      </li>
+-->
+      <li>
+        <%= link_to 'Districts', districts_path,:class=>"tipTip1",:title=>"Manage Districts" %>
+      </li>
+      <li>
+        <%= link_to 'Revenue Blocks', revenue_blocks_path,:class=>"tipTip1",:title=>"Manage Districts" %>
+      </li>
+      <li>
+        <%= link_to 'Roles', roles_path,:class=>"tipTip1",:title=>"Manage Districts" %>
+      </li>
+      <li>
+        <%= link_to 'Users', users_path,:class=>"tipTip1",:title=>"Manage Districts" %>
+      </li>
+      <% if has_role?(:district_coordinator) %>
+      <li>
+        <%= link_to 'Panchayat', panchayats_path,:class=>"tipTip1",:title=>"Manage Districts" %>
+      </li>
+      <%end%>
+    </ul>
+  </li>
 </ul>
-</div>
+

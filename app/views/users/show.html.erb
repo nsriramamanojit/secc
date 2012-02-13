@@ -1,0 +1,13 @@
+<% title "SECC | User" %>
+<% content_for :sub_heading do %>
+    <%= sub_heading('SECC | Users ', "User Details") %>
+<% end %>
+<div class="formbox">
+  <div class="desc"><b>Name</b> :  <%= @user.name %></div>
+  <div class="divider"></div>
+  <div class="desc"><b>Reference Code</b> : <%= @user.login %> </div>
+  <div class="divider"></div>
+  <div class="desc"><b>Reference Name</b> : <%= @user.father_name %> </div>
+  <div class="divider"></div>
+  <div class="desc"><b>Description</b> : <%= @user.mobile_number %> </div>
+</div>

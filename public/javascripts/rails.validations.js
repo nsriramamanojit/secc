@@ -1,5 +1,5 @@
 /*!
- * Rails 3 Client Side Validations - v3.1.4
+ * Rails 3 Client Side Validations - v3.0.5
  * https://github.com/bcardarlela/client_side_validations
  *
  * Copyright (c) 2011 Brian Cardarella
@@ -15,8 +15,8 @@
 
       // Set up the events for the form
       form
-        .submit(                      function()          { return form.isValid(settings.validators); })
-        .bind('ajax:beforeSend',      function(eventData) { if(eventData.target == this) return form.isValid(settings.validators); })
+        .submit(function() { return form.isValid(settings.validators); })
+        .bind('ajax:beforeSend',      function()          { return form.isValid(settings.validators); })
         // Callbacks
         .bind('form:validate:after',  function(eventData) { clientSideValidations.callbacks.form.after( form, eventData); })
         .bind('form:validate:before', function(eventData) { clientSideValidations.callbacks.form.before(form, eventData); })
@@ -24,7 +24,7 @@
         .bind('form:validate:pass',   function(eventData) { clientSideValidations.callbacks.form.pass(  form, eventData); })
 
         // Set up the events for each validatable form element
-        .find('[data-validate]:input:not(:radio)')
+        .find('[data-validate]:input')
           .live('focusout',                function()          { $(this).isValid(settings.validators); })
           .live('change',                  function()          { $(this).data('changed', true); })
           // Callbacks
@@ -161,11 +161,11 @@ var clientSideValidations = {
         }
       },
       numericality: function(element, options) {
-        if (!/^-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d*)?$/.test(element.val()) && element.val() != '') {
+        if (!/^-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d*)?$/.test(element.val())) {
           return options.messages.numericality;
         }
 
-        if (options.only_integer && !/^[+-]?\d+$/.test(element.val())) {
+        if (options.only_integer && !/^\d+$/.test(element.val())) {
           return options.messages.only_integer;
         }
 
@@ -263,54 +263,48 @@ var clientSideValidations = {
     },
     remote: {
       uniqueness: function(element, options) {
-        if ((message = clientSideValidations.validators.local.presence(element, options)) && options.allow_blank === true) {
-          return;
-        } else if (message) {
-          return message;
-        } else {
-          var data = {};
-          data['case_sensitive'] = !!options.case_sensitive;
-          if (options.id) {
-            data['id'] = options.id;
-          }
+        var data = {};
+        data['case_sensitive'] = !!options.case_sensitive;
+        if (options.id) {
+          data['id'] = options.id;
+        }
 
-          if (options.scope) {
-            data.scope = {}
-            for (key in options.scope) {
-              var scoped_element = jQuery('[name="' + element.attr('name').replace(/\[\w+]$/, '[' + key + ']' + '"]'));
-              if (scoped_element[0] && scoped_element.val() != options.scope[key]) {
-                data.scope[key] = scoped_element.val();
-                scoped_element.unbind('change.' + element.id).bind('change.' + element.id, function() { element.trigger('change'); element.trigger('focusout'); });
-              } else {
-                data.scope[key] = options.scope[key];
-              }
+        if (options.scope) {
+          data.scope = {}
+          for (key in options.scope) {
+            var scoped_element = jQuery('[name="' + element.attr('name').replace(/\[\w+]$/, '[' + key + ']' + '"]'));
+            if (scoped_element[0] && scoped_element.val() != options.scope[key]) {
+              data.scope[key] = scoped_element.val();
+              scoped_element.unbind('change.' + element.id).bind('change.' + element.id, function() { element.trigger('change'); element.trigger('focusout'); });
+            } else {
+              data.scope[key] = options.scope[key];
             }
           }
+        }
 
-          // Kind of a hack but this will isolate the resource name and attribute.
-          // e.g. user[records_attributes][0][title] => records[title]
-          // e.g. user[record_attributes][title] => record[title]
-          // Server side handles classifying the resource properly
-          if (/_attributes]/.test(element.attr('name'))) {
-            var name = element.attr('name').match(/\[\w+_attributes]/g).pop().match(/\[(\w+)_attributes]/).pop();
-            name += /(\[\w+])$/.exec(element.attr('name'))[1];
-          } else {
-            var name = element.attr('name');
-          }
+        // Kind of a hack but this will isolate the resource name and attribute.
+        // e.g. user[records_attributes][0][title] => records[title]
+        // e.g. user[record_attributes][title] => record[title]
+        // Server side handles classifying the resource properly
+        if (/_attributes]/.test(element.attr('name'))) {
+          var name = element.attr('name').match(/\[\w+_attributes]/g).pop().match(/\[(\w+)_attributes]/).pop();
+          name += /(\[\w+])$/.exec(element.attr('name'))[1];
+        } else {
+          var name = element.attr('name');
+        }
 
-          // Override the name if a nested module class is passed
-          if (options['class']) {
-            name = options['class'] + '[' + name.split('[')[1]
-          }
-          data[name] = element.val();
+        // Override the name if a nested module class is passed
+        if (options['class']) {
+          name = options['class'] + '[' + name.split('[')[1]
+        }
+        data[name] = element.val();
 
-          if (jQuery.ajax({
-            url: '/validators/uniqueness',
-            data: data,
-            async: false
-          }).status == 200) {
-            return options.message;
-          }
+        if (jQuery.ajax({
+          url: '/validators/uniqueness.json',
+          data: data,
+          async: false
+        }).status == 200) {
+          return options.message;
         }
       }
     }
@@ -318,7 +312,7 @@ var clientSideValidations = {
   formBuilders: {
     'ActionView::Helpers::FormBuilder': {
       add: function(element, settings, message) {
-        if (element.data('valid') !== false && jQuery('label.message[for="' + element.attr('id') + '"]')[0] == undefined) {
+        if (element.data('valid') !== false) {
           var inputErrorField = jQuery(settings.input_tag),
               labelErrorField = jQuery(settings.label_tag),
               label = jQuery('label[for="' + element.attr('id') + '"]:not(.message)');
@@ -366,7 +360,7 @@ var clientSideValidations = {
       }
 
     },
-    'Formtastic::FormBuilder': {
+    'Formtastic::SemanticFormBuilder': {
       add: function(element, settings, message) {
         if (element.data('valid') !== false) {
           var wrapper = element.closest('li');
@@ -407,4 +401,4 @@ var clientSideValidations = {
       pass:   function(form, eventData) { }
     }
   }
-};
+}

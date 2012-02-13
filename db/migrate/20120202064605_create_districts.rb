@@ -10,7 +10,7 @@ class CreateDistricts < ActiveRecord::Migration
       t.string  :description
       t.integer :reference_number       # To Refer District with other Format ex: 10
       t.string  :reference_name         # To Refer District with Reference Name ex: Bihar = BR
-      t.boolean :status
+      t.boolean :status,:default=>0
 
       t.integer :created_by
       t.integer :modified_by

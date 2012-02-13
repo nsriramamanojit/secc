@@ -1,48 +1,79 @@
-<h3>Revenue | Manage Revenue Blocks</h3>
-<div class="help_text">
-  * List of All Revenue Blocks.<br/>
-</div>
-<%= link_to 'New Block', "#", :class=>'more', :title => "Create New Revenue Block", :id=>'add_new' %>&nbsp;
+<% title "SECC | Revenue Blocks" %>
+<h3>Revenue | Manage | Revenue Blocks</h3>
 
+<% content_for :left_panel do %>
+    <td valign="top" width="250"> <%= render 'common/search' %>
+      <%= render 'recent' %> </td>
+<% end %>
+<div class="help_text">
+  Area for managing Revenue Block. <br/>
+  Along with creating, managing and removing Revenue Blocks for Application.
+</div>
+<div>
+  <%= link_to "Create New Revenue Block", "#", :class=>'usuallink bold_text', :id=>'add_new' %>
+</div>
 <div id="new_form">
   <%= render 'form' %>
 </div>
-<div class="list">
-  <table class="tablesorter" cellspacing="1">
-    <thead>
-    <tr>
-      <th>SNo</th>
-      <th>Name</th>
-      <th>State</th>
-      <th>District</th>
-      <th>Description</th>
-      <th>Reference No</th>
-      <th>Reference Name</th>
-      <th>Created By</th>
-      <th>Created On</th>
-      <th>Actions</th>
-    </tr>
-    </thead>
-    <% i=1 %>
-    <% @revenue_blocks.each do |rb| %>
-        <tr>
-          <td><%= i %></td>
-          <td><%= rb.name %></td>
-          <td><%= rb.state.name + " (" + rb.state.reference_number.to_s + ")" %></td>
-          <td><%= rb.district.name + " (" + rb.district.reference_number.to_s + ")" %></td>
-          <td><%= rb.description %></td>
-          <td><%= rb.reference_number %></td>
-          <td><%= rb.reference_name %></td>
-          <td></td>
-          <td><%= rb.created_at.strftime('%d-%b-%Y') %></td>
-          <td>
-            <%= link_for_show(rb) %>
-            <%= link_for_edit(edit_revenue_block_path(rb)) %>
+<% if @revenue_blocks.blank? %>
+    <div class="error_msg">
+      OOPS!.. No Revenue Blocks are Found in the System..!
+    </div>
+<% else %>
+    <table width="100%">
+      <tr>
+        <td align="right">
+          <b><i>per page</i></b>
+          <%= per_page %>| <%= page_entries_info @revenue_blocks %>
+        </td>
+      </tr>
+    </table>
+    <table class="tablesorter">
+      <thead>
+      <tr>
+        <th>SNo</th>
+        <th>Name</th>
+        <th>State</th>
+        <th>District</th>
+        <th>Description</th>
+        <th>Reference No</th>
+        <th>Reference Name</th>
+        <th>Created By</th>
+        <th>Created On</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% i=1 %>
+      <% @revenue_blocks.each do |rb| %>
+          <tr>
+            <td><%= i %></td>
+            <td><%= rb.name %></td>
+            <td><%= rb.state.name + " (" + rb.state.reference_number.to_s + ")" %></td>
+            <td><%= rb.district.name + " (" + rb.district.reference_number.to_s + ")" %></td>
+            <td><%= rb.description %></td>
+            <td><%= rb.reference_number %></td>
+            <td><%= rb.reference_name %></td>
+            <td></td>
+            <td><%= rb.created_at.strftime('%d-%b-%Y') %></td>
+            <td>
+              <%= link_for_show(rb) %>
+              <%= link_for_edit(edit_revenue_block_path(rb)) %>
+            </td>
+          </tr>
+          <% i = i + 1 %>
+      <% end %>
+      </tbody>
+    </table>
+    <div class="flickr_pagination">
+      <%= page_entries_info @revenue_blocks %> <%= will_paginate @revenue_blocks, :container => false %>
+    </div>
+<% end %>
 
-          </td>
-        </tr>
-        <% i = i + 1 %>
-    <% end %>
-  </table>
-</div>
+
+
+
+
+
+
 

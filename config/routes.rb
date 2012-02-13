@@ -1,4 +1,10 @@
 Secc::Application.routes.draw do
+  resources :panchayats
+
+  resources :users
+
+  resources :roles
+
   resources :revenue_blocks
 
   resources :divisions
@@ -7,6 +13,14 @@ Secc::Application.routes.draw do
 
   resources :states
 
+  resources :user_sessions
+  resources :homes
+
+  match 'login' => "user_sessions#new", :as => :login
+  match 'logout' => "user_sessions#destroy", :as => :logout
+
+#  root :to => "states#index"
+ root :to => "user_sessions#new"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -56,7 +70,6 @@ Secc::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   root :to => "states#index"
 
   # See how all your routes lay out with "rake routes"
 

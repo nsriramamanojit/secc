@@ -1,0 +1,82 @@
+<% title "SECC | Panchayats" %>
+<h3>SECC | Manage | Panchayats</h3>
+
+<% content_for :left_panel do %>
+    <td valign="top" width="250"> <%= render 'common/search' %>
+      <%= render 'recent' %> </td>
+<% end %>
+<div class="help_text">
+  Area for managing Panchayats. <br/>
+  Along with creating, managing and removing Panchayats for Application.
+</div>
+<div>
+  <%= link_to "Create New Panchayat", "#", :class=>'usuallink bold_text', :id=>'add_new' %>
+</div>
+<div id="new_form">
+  <%= render 'form' %>
+</div>
+<% if @panchayats.blank? %>
+    <div class="error_msg">
+      OOPS!.. No Panchayats are Found in the System..!
+    </div>
+<% else %>
+    <table width="100%">
+      <tr>
+        <td align="right">
+          <b><i>per page</i></b>
+          <%= per_page %>| <%= page_entries_info @panchayats %>
+        </td>
+      </tr>
+    </table>
+    <table class="tablesorter">
+      <thead>
+      <tr>
+        <th>SNo</th>
+        <th>Name</th>
+        <th>State</th>
+        <th>District</th>
+        <th>RBlock</th>
+        <th>Description</th>
+        <th>Reference No</th>
+        <th>Reference Name</th>
+        <th>Created By</th>
+        <th>Created On</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% i=1 %>
+      <% @panchayats.each do |panchayat| %>
+          <tr>
+            <td><%= i %></td>
+            <td><%= panchayat.name %></td>
+            <td><%= panchayat.state.name + " (" + panchayat.state.reference_number.to_s + ")" %></td>
+            <td><%= panchayat.district.name + " (" + panchayat.district.reference_number.to_s + ")" %></td>
+            <td><%= panchayat.revenue_block.name + " (" + panchayat.revenue_block.reference_number.to_s + ")" %></td>
+            <td><%= panchayat.description %></td>
+            <td><%= panchayat.reference_number %></td>
+            <td><%= panchayat.reference_name %></td>
+            <td></td>
+            <td><%= panchayat.created_at.strftime('%d-%b-%Y') %></td>
+            <td>
+              <%= link_for_show(panchayat) %>
+              <%= link_for_edit(edit_panchayat_path(panchayat)) %>
+            </td>
+          </tr>
+          <% i = i + 1 %>
+      <% end %>
+      </tbody>
+    </table>
+    <div class="flickr_pagination">
+      <%= page_entries_info @panchayats %> <%= will_paginate @panchayats, :container => false %>
+    </div>
+<% end %>
+
+
+
+
+
+
+
+
+

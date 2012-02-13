@@ -3,8 +3,10 @@
 # Controller: Revenue Block
 #######################################################
 class RevenueBlocksController < ApplicationController
+  before_filter :recent_items
+
   def index
-    @revenue_blocks = RevenueBlock.all
+    @revenue_blocks = RevenueBlock.paginate(:page =>page, :per_page=>per_page)
     @revenue_block = RevenueBlock.new
 
     respond_to do |format|
@@ -71,5 +73,11 @@ class RevenueBlocksController < ApplicationController
       format.html { redirect_to(revenue_blocks_url) }
       format.xml  { head :ok }
     end
+  end
+  ########################################################
+private
+
+  def recent_items
+    @recent = RevenueBlock.recent
   end
 end

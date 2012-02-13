@@ -1,8 +1,8 @@
-<h3>States | New State Creation</h3>
-<div class="list">
-  <div class="help_text">
-    * Fill the below form for District.<br/>* Please check all entries before Save.
-  </div>
-  <%= render 'form' %>
-  <%= link_to 'Back to Districts', districts_path, :class=>'more tipTip1',:title => "Back to Districts" %>
+<% title "SECC | Districts " %>
+<% content_for :sub_heading do %>
+  <%= sub_heading('SECC | Districts','Create District') %>
+<% end %>
+<%= render 'form',:heading => 'Create New District' %>
+<div class="link_buttons">
+ <%=link_to_all(districts_path)%>
 </div>
