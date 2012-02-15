@@ -11,6 +11,12 @@ class State < ActiveRecord::Base
   validates :reference_number, :presence => true, :uniqueness => true, :length => { :maximum => 5}
   validates :reference_name, :presence => true, :uniqueness => true, :length => { :maximum => 10}
 
+    #filters
+  before_create :created_user_id
+  def created_user_id
+      self.created_by = UserSession.find.user.id
+  end
+
   #search and recent
     class << self
     def recent

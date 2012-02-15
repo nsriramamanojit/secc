@@ -56,10 +56,10 @@
             <td><%= panchayat.description %></td>
             <td><%= panchayat.reference_number %></td>
             <td><%= panchayat.reference_name %></td>
-            <td></td>
+            <td><%= created_by(panchayat.created_by)%></td>
             <td><%= panchayat.created_at.strftime('%d-%b-%Y') %></td>
             <td>
-              <%= link_for_show(panchayat) %>
+              <%= link_for_show_pop(panchayat) %>
               <%= link_for_edit(edit_panchayat_path(panchayat)) %>
             </td>
           </tr>

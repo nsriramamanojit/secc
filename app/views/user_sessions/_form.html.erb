@@ -1,30 +1,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-  <title>CSC</title>
-  <%# javascript_include_tag 'jquery-1.6.1', 'facebox', 'jquery-ui-1.8.13.custom.min','jquery.tipTip','application' %>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+  <title>SECC</title>
   <%= stylesheet_link_tag 'login_screen' %>
   <%= csrf_meta_tag %>
 </head>
 <body>
 <div class="tabless">
-
   <div style="position: relative; left: 0px; top: 0px;" class="standalone" id="standalone">
     <%= render :partial=>'/import_flash' %>
-    <%= form_for @user_session, :url =>{:action => "create"}  do |f| %>
+    <%= form_for @user_session, :url =>{:action => "create"} do |f| %>
         <div class="title">
           Welcome to SECC
         </div>
         <div class="section">
           <div class="label">
-            User Name  :
+            User Name:
           </div>
-          <%= f.text_field :login,:class => "tipTip", :title=>"Enter Valid Email Id.Ex:user@sarkcsc.in/मान्य ईमेल दर्ज करें" %>
+          <%= f.text_field :login, :class => "tipTip", :title=>"Enter Valid User Name" %>
           <div class="label">
-            Password :
+            Password:
           </div>
-          <%= f.password_field :password, :class => "tipTip", :title=>"Enter Valid Password.Ex:12345/मान्य पासवर्ड दर्ज करें" %>
+          <%= f.password_field :password, :class => "tipTip", :title=>"Enter Valid Password." %>
         </div>
         <div style="margin-left: 12px;">
           <%= f.check_box :remember_me %><%= f.label :remember_me %>
@@ -40,7 +38,8 @@
 <center>
   <div id="footer">
     ©     <%= Time.now.strftime('%Y') %>
-<a href="http://vedavaag.com" target="_blank">Vedavaag</a> Systems Limited. This is site is optimized to Firefox, Google Chrome and IE8+ Versions.
+    <a href="http://vedavaag.com" target="_blank">Vedavaag</a> Systems Limited. This is site is optimized to Firefox,
+    Google Chrome and IE8+ Versions.
   </div>
 </center>
 </body>

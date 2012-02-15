@@ -46,9 +46,27 @@
             <td><%= i %></td>
             <td><%= user.login %></td>
             <td><%= user.name %></td>
-            <td><%= user.user_profile.state.name + " (" + user.user_profile.state.reference_number.to_s + ")" %></td>
-            <td><%= user.user_profile.district.name + " (" + user.user_profile.district.reference_number.to_s + ")" %></td>
-            <td><%= user.user_profile.revenue_block.name +  " (" + user.user_profile.revenue_block.reference_number.to_s + ")" %></td>
+            <td>
+              <% if user.user_profile.state_id? %>
+                  <%= user.user_profile.state.name + " (" + user.user_profile.state.reference_number.to_s + ")" %>
+              <% else %>
+                  N.A
+              <% end %>
+            </td>
+            <td>
+              <% if user.user_profile.district_id? %>
+                  <%= user.user_profile.district.name + " (" + user.user_profile.district.reference_number.to_s + ")" %>
+              <% else %>
+                  N.A
+              <% end %>
+            </td>
+            <td>
+              <% if user.user_profile.revenue_block_id? %>
+                  <%= user.user_profile.revenue_block.name + " (" + user.user_profile.revenue_block.reference_number.to_s + ")" %>
+              <% else %>
+                  N.A
+              <% end %>
+            </td>
             <td><%= user.mobile_number %></td>
             <td>
               <%= link_for_show_pop(user) %>

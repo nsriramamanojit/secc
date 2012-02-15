@@ -1,0 +1,13 @@
+<% title "SECC | Enumeration Block" %>
+<% content_for :sub_heading do %>
+    <%= sub_heading('SECC | Enumeration Blocks ', "Enumeration Block Details") %>
+<% end %>
+<div class="formbox">
+  <div class="desc"><b>Name</b> :  <%= @enumeration_block.name %></div>
+  <div class="divider"></div>
+  <div class="desc"><b>Reference Code</b> : <%= @enumeration_block.reference_number %> </div>
+  <div class="divider"></div>
+  <div class="desc"><b>Reference Name</b> : <%= @enumeration_block.reference_name %> </div>
+  <div class="divider"></div>
+  <div class="desc"><b>Description</b> : <%= @enumeration_block.description %> </div>
+</div>

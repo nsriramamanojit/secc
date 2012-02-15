@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :assignments
   has_many :roles, :through => :assignments
 
+  #Attributes for User Profile
   accepts_nested_attributes_for :user_profile, :allow_destroy => true
 
   #validations
@@ -23,7 +24,7 @@ class User < ActiveRecord::Base
   validates :mobile_number, :presence => true, :length => {:maximum => 10}
   validates :pin, :length => {:maximum => 6}
 
-  #Roles
+  #Roles -- Begin
   def role_symbols
     roles.map do |role|
       role.name.underscore.to_sym
@@ -42,6 +43,7 @@ class User < ActiveRecord::Base
     roles.map(&:name).each { |r| name << r }
     name
   end
+ #Roles -- End
 
 =begin
   before_create :create_user_name
@@ -52,11 +54,11 @@ class User < ActiveRecord::Base
 =end
 
 
+
   #Recent and Search
-  #search and recent
   class << self
     def recent
-      order('created_at DESC').limit(4)
+      order('id DESC').limit(4)
     end
   end
 

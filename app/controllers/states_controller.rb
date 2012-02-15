@@ -3,8 +3,9 @@
 # Date       : 02022012
 #########################################################
 class StatesController < ApplicationController
-
-  before_filter :recent_items
+  before_filter :recent_items, :require_user
+  filter_access_to :all
+  layout "application", :except => [:show, :edit]
 
   def index
     @states = State.all

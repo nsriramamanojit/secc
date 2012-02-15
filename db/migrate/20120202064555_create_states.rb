@@ -8,7 +8,8 @@ class CreateStates < ActiveRecord::Migration
       t.string  :description
       t.integer :reference_number       # To Refer State with other Format ex: 10
       t.string  :reference_name         # To Refer State with Reference Name ex: Bihar = BR
-      t.boolean :status,:default=>0
+      t.boolean :status,:default=>1
+
       t.integer :created_by
       t.integer :modified_by
       t.timestamps

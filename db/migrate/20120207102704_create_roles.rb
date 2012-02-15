@@ -4,7 +4,8 @@ class CreateRoles < ActiveRecord::Migration
       t.string :name
       t.string :description
       t.string :short_name
-      t.boolean :status,:default=>0
+      t.boolean :status,:default=>1
+
       t.integer :created_by
       t.integer :modified_by
 

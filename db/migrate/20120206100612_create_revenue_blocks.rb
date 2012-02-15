@@ -9,7 +9,7 @@ class CreateRevenueBlocks < ActiveRecord::Migration
       t.integer :reference_number
       t.string  :reference_name
       t.integer :user_count_flag, :default=>0
-      t.boolean :status,:default=>0
+      t.boolean :status,:default=>1
 
       t.integer :created_by
       t.integer :modified_by

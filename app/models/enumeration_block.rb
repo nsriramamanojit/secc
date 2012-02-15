@@ -1,19 +1,16 @@
-# Author: Chaitanya Ram
-# Date: 13022012
-#########################################################
-class Panchayat < ActiveRecord::Base
-  #Relations
-  belongs_to :state
-  belongs_to :district
-  belongs_to :revenue_block
+# Author :Chaitanya
+# Date: 15022012
+# ##################################################
+class EnumerationBlock < ActiveRecord::Base
+  #Relation
+  belongs_to :panchayat
 
   #validations
   validates :name, :presence => true,  :length => { :maximum => 100}
-
-  validates :reference_name, :presence => true, :uniqueness => true, :length => { :maximum => 10}
   validates :reference_number, :presence => true, :uniqueness => true, :length => { :maximum => 5}
+  validates :panchayat_id, :presence => true
 
-    #filters
+  #filters
   before_create :created_user_id
   def created_user_id
       self.created_by = UserSession.find.user.id

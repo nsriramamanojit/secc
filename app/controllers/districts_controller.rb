@@ -4,6 +4,8 @@
 #########################################################
 class DistrictsController < ApplicationController
   before_filter :recent_items
+  layout "application", :except => [:show, :edit]
+
 
   def index
     @districts = District.all

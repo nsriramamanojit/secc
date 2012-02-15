@@ -30,7 +30,7 @@ class CreateUsers < ActiveRecord::Migration
       t.datetime :current_login_at
       t.string :last_login_ip
       t.string :current_login_ip
-      t.boolean :status, :default=>0
+      t.boolean :status, :default=>1
 
       t.timestamps
     end

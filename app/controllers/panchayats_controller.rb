@@ -3,8 +3,10 @@
 # Controller: Panchayat
 #######################################################
 class PanchayatsController < ApplicationController
-  before_filter :require_user, :recent_items
+  before_filter :recent_items, :require_user
   filter_access_to :all
+  layout "application", :except => [:show, :edit]
+
 
   def index
     @panchayats = Panchayat.paginate(:page =>page, :per_page=>per_page)

@@ -4,6 +4,8 @@
 #######################################################
 class RevenueBlocksController < ApplicationController
   before_filter :recent_items
+  layout "application", :except => [:show, :edit]
+
 
   def index
     @revenue_blocks = RevenueBlock.paginate(:page =>page, :per_page=>per_page)

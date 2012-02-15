@@ -1,0 +1,20 @@
+<div class="form-container">
+  <p class="legend">
+    <strong>Note:</strong>
+    Required fields are marked with an asterisk (<em>*</em>)
+  </p>
+  <%= simple_form_for(@enumeration_block, :validate => true) do |f| %>
+      <fieldset>
+        <%= f.input :name %>
+        <%= f.association :panchayat,:prompt => "Select Panchayat",:label=>"Select Panchayat" %>
+        <%= f.input :number_of_houses, :label=>"Number of House Holds"%>
+        <%= f.input :number_of_citizens, :label=>"Citizens"%>
+        <%= f.input :description %>
+
+        <%= f.input :reference_number, :label => 'Reference Code' %>
+        <%= f.input :reference_name, :label => 'Reference Name' %>
+
+        <%= f.submit 'Save', :disable_with=>'Please wait...' %>
+      </fieldset>
+  <% end %>
+</div>

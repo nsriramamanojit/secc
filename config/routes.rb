@@ -1,26 +1,22 @@
 Secc::Application.routes.draw do
+
+  resources :enumeration_blocks
   resources :panchayats
-
   resources :users
-
   resources :roles
-
   resources :revenue_blocks
-
   resources :divisions
-
   resources :districts
-
   resources :states
-
   resources :user_sessions
   resources :homes
 
   match 'login' => "user_sessions#new", :as => :login
   match 'logout' => "user_sessions#destroy", :as => :logout
 
-#  root :to => "states#index"
- root :to => "user_sessions#new"
+  root :to => "user_sessions#new"
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

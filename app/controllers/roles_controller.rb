@@ -4,6 +4,8 @@
 class RolesController < ApplicationController
 
   before_filter :recent_items
+  layout "application", :except => [:show, :edit]
+
 
   def index
     @roles = Role.all

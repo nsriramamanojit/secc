@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120213091300) do
+ActiveRecord::Schema.define(:version => 20120215075753) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -23,13 +23,13 @@ ActiveRecord::Schema.define(:version => 20120213091300) do
   end
 
   create_table "districts", :force => true do |t|
-    t.string   "name",                                :null => false
+    t.string   "name",                               :null => false
     t.integer  "state_id"
     t.integer  "division_id"
     t.string   "description"
     t.integer  "reference_number"
     t.string   "reference_name"
-    t.boolean  "status",           :default => false
+    t.boolean  "status",           :default => true
     t.integer  "created_by"
     t.integer  "modified_by"
     t.datetime "created_at"
@@ -37,12 +37,31 @@ ActiveRecord::Schema.define(:version => 20120213091300) do
   end
 
   create_table "divisions", :force => true do |t|
-    t.string   "name",                                :null => false
+    t.string   "name",                               :null => false
     t.integer  "state_id"
     t.string   "description"
     t.integer  "reference_number"
     t.string   "reference_name"
-    t.boolean  "status",           :default => false
+    t.boolean  "status",           :default => true
+    t.integer  "created_by"
+    t.integer  "modified_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "enumeration_blocks", :force => true do |t|
+    t.string   "name",                                 :null => false
+    t.string   "description"
+    t.integer  "reference_number"
+    t.string   "reference_name"
+    t.integer  "number_of_houses"
+    t.integer  "number_of_citizens"
+    t.integer  "state_id"
+    t.integer  "division_id"
+    t.integer  "district_id"
+    t.integer  "revenue_block_id"
+    t.integer  "panchayat_id"
+    t.boolean  "status",             :default => true
     t.integer  "created_by"
     t.integer  "modified_by"
     t.datetime "created_at"
@@ -50,7 +69,7 @@ ActiveRecord::Schema.define(:version => 20120213091300) do
   end
 
   create_table "panchayats", :force => true do |t|
-    t.string   "name",                                :null => false
+    t.string   "name",                               :null => false
     t.integer  "state_id"
     t.integer  "division_id"
     t.integer  "district_id"
@@ -58,7 +77,7 @@ ActiveRecord::Schema.define(:version => 20120213091300) do
     t.string   "description"
     t.integer  "reference_number"
     t.string   "reference_name"
-    t.boolean  "status",           :default => false
+    t.boolean  "status",           :default => true
     t.integer  "created_by"
     t.integer  "modified_by"
     t.datetime "created_at"
@@ -66,7 +85,7 @@ ActiveRecord::Schema.define(:version => 20120213091300) do
   end
 
   create_table "revenue_blocks", :force => true do |t|
-    t.string   "name",                                :null => false
+    t.string   "name",                               :null => false
     t.integer  "state_id"
     t.integer  "division_id"
     t.integer  "district_id"
@@ -74,7 +93,7 @@ ActiveRecord::Schema.define(:version => 20120213091300) do
     t.integer  "reference_number"
     t.string   "reference_name"
     t.integer  "user_count_flag",  :default => 0
-    t.boolean  "status",           :default => false
+    t.boolean  "status",           :default => true
     t.integer  "created_by"
     t.integer  "modified_by"
     t.datetime "created_at"
@@ -85,7 +104,7 @@ ActiveRecord::Schema.define(:version => 20120213091300) do
     t.string   "name"
     t.string   "description"
     t.string   "short_name"
-    t.boolean  "status",      :default => false
+    t.boolean  "status",      :default => true
     t.integer  "created_by"
     t.integer  "modified_by"
     t.datetime "created_at"
@@ -93,11 +112,11 @@ ActiveRecord::Schema.define(:version => 20120213091300) do
   end
 
   create_table "states", :force => true do |t|
-    t.string   "name",                                :null => false
+    t.string   "name",                               :null => false
     t.string   "description"
     t.integer  "reference_number"
     t.string   "reference_name"
-    t.boolean  "status",           :default => false
+    t.boolean  "status",           :default => true
     t.integer  "created_by"
     t.integer  "modified_by"
     t.datetime "created_at"
@@ -140,9 +159,9 @@ ActiveRecord::Schema.define(:version => 20120213091300) do
     t.string   "phone_number"
     t.string   "crypted_password"
     t.string   "password_salt"
-    t.string   "persistence_token",                    :null => false
-    t.string   "perishable_token",  :default => "",    :null => false
-    t.integer  "login_count",       :default => 0,     :null => false
+    t.string   "persistence_token",                   :null => false
+    t.string   "perishable_token",  :default => "",   :null => false
+    t.integer  "login_count",       :default => 0,    :null => false
     t.integer  "created_by"
     t.integer  "updated_by"
     t.datetime "last_request_at"
@@ -150,7 +169,7 @@ ActiveRecord::Schema.define(:version => 20120213091300) do
     t.datetime "current_login_at"
     t.string   "last_login_ip"
     t.string   "current_login_ip"
-    t.boolean  "status",            :default => false
+    t.boolean  "status",            :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

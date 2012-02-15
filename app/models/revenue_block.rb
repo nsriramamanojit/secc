@@ -13,6 +13,12 @@ class RevenueBlock < ActiveRecord::Base
 #  validates :reference_name, :presence => true, :uniqueness => true, :length => { :maximum => 10}
 #  validates :reference_number, :presence => true, :uniqueness => true, :length => { :maximum => 5}
 
+    #filters
+  before_create :created_user_id
+  def created_user_id
+      self.created_by = UserSession.find.user.id
+  end
+
   #search and recent
     class << self
     def recent

@@ -1,27 +1,55 @@
 session = User.create do |u|
-  u.name = "Bihar State Coordinator"
-  u.login = '10'
+  u.name = "Super Admin"
+  u.login = 'superadmin'
   u.password =  'admin123'
-  u.address1= 'Bihar'
+  u.address1= 'Super Admin'
   u.mobile_number=9885976490
-  Assignment.create(:user_id=>1,:role_id=>2,:created_at=>Time.now,:updated_at=>Time.now)
+  Assignment.create(:user_id=>1,:role_id=>1,:created_at=>Time.now,:updated_at=>Time.now)
    c=UserProfile.new
-   c.state_id= 1
    c.user_id = 1
    c.save(:validate => false)
 end
 session.save
+
 session = User.create do |u|
-  u.name = "District Coordinator"
-  u.login = '1077'
+  u.name = "Bihar Coordinator"
+  u.login = '10'
   u.password =  'admin123'
   u.address1= 'Bihar'
   u.mobile_number=9885976490
-  Assignment.create(:user_id=>2,:role_id=>3,:created_at=>Time.now,:updated_at=>Time.now)
+  Assignment.create(:user_id=>2,:role_id=>2,:created_at=>Time.now,:updated_at=>Time.now)
+   c=UserProfile.new
+   c.state_id= 1
+   c.user_id = 2
+   c.save(:validate => false)
+end
+session.save
+session = User.create do |u|
+  u.name = "Jahanabad Coordinator"
+  u.login = '1077'
+  u.password =  'admin123'
+  u.address1= 'Jahanabad'
+  u.mobile_number=9885976490
+  Assignment.create(:user_id=>3,:role_id=>3,:created_at=>Time.now,:updated_at=>Time.now)
    c=UserProfile.new
    c.state_id= 1
    c.district_id = 1
-   c.user_id = 2
+   c.user_id = 3
+   c.save(:validate => false)
+end
+session.save
+session = User.create do |u|
+  u.name = "Jahanabad Block Admin"
+  u.login = '10770101'
+  u.password =  'admin123'
+  u.address1= 'Jahanabad'
+  u.mobile_number=9885976490
+  Assignment.create(:user_id=>4,:role_id=>4,:created_at=>Time.now,:updated_at=>Time.now)
+   c=UserProfile.new
+   c.state_id= 1
+   c.district_id = 1
+   c.revenue_block_id=1
+   c.user_id = 4
    c.save(:validate => false)
 end
 session.save
@@ -47,7 +75,8 @@ District.create(:name=>"Sivahur",:state_id=>1,:description=>"District-8",:refere
 =end
 District.create(:name=>"Jahanabad",:state_id=>1,:description=>"Jahanabad",:reference_number=>77,:reference_name=>"JBD",:created_at=>Time.now,:created_by=>1)
 ####################
-RevenueBlock.create(:name=>"RB1",:state_id=>1,:district_id=>1,:description=>"RB",:reference_number=>1,:reference_name=>"RB1",:created_at=>Time.now,:created_by=>1)
+RevenueBlock.create(:name=>"Jahanabad",:state_id=>1,:district_id=>1,:description=>"Jahanabad",:reference_number=>1,:reference_name=>"JHA",:created_at=>Time.now,:created_by=>4)
+Panchayat.create(:name=>"Surangapur",:state_id=>1,:district_id=>1,:revenue_block_id=>1,:description=>"Surangapur",:reference_number=>1,:reference_name=>"SUR",:created_at=>Time.now,:created_by=>4)
 =begin
 RevenueBlock.create(:name=>"RB2",:state_id=>1,:district_id=>1,:description=>"RB",:reference_number=>1,:reference_name=>"RB2",:created_at=>Time.now,:created_by=>1)
 RevenueBlock.create(:name=>"RB3",:state_id=>1,:district_id=>1,:description=>"RB",:reference_number=>1,:reference_name=>"RB3",:created_at=>Time.now,:created_by=>1)
