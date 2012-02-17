@@ -6,8 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :created_by_or_updated_by
   helper_method :current_user_session, :current_user
   before_filter { |c| Authorization.current_user = c.current_user }
-#  before_filter :set_locale
-=begin
+  before_filter :set_locale
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
   end
@@ -15,7 +14,7 @@ class ApplicationController < ActionController::Base
   def default_url_options(options = {})
     options.merge!({:locale => I18n.locale})
   end
-=end
+
   def created_by_or_updated_by
     if current_user
       @created_by = current_user.id

@@ -4,19 +4,19 @@ module ApplicationHelper
   end
 
   def link_for_edit(path)
-    link_to image_tag('/images/icons/edit.png'), path, :title =>'Edit', :class=>'tipTip', :border=>0
+    link_to image_tag('/images/icons/edit.png'), path, :title => 'Edit', :class => 'tipTip', :border => 0
   end
 
   def link_for_show(path)
-    link_to image_tag('/images/icons/show.png'), path, :title =>'View', :class=>'tipTipTop', :border=>0
+    link_to image_tag('/images/icons/show.png'), path, :title => 'View', :class => 'tipTipTop', :border => 0
   end
 
   def link_for_show_pop(path)
-    link_to image_tag('/images/icons/show.png'), path, :title =>'View', :class=>'tipTipTop', :rel=>"facebox", :border=>0
+    link_to image_tag('/images/icons/show.png'), path, :title => 'View', :class => 'tipTipTop', :rel => "facebox", :border => 0
   end
 
   def link_for_destroy(path)
-    link_to image_tag('/images/icons/delete.png'), path, :confirm => 'Are you sure?', :method => :delete, :title =>'Delete', :class=>'tipTip'
+    link_to image_tag('/images/icons/delete.png'), path, :confirm => 'Are you sure?', :method => :delete, :title => 'Delete', :class => 'tipTip'
   end
 
   def tab_heading(heading)
@@ -32,10 +32,12 @@ module ApplicationHelper
   end
 
   def link_to_all(path)
-    link_to content_tag(:span, "Back To List &rarr;".html_safe), path, :class=>'btn-gray'
+    link_to content_tag(:span, "Back To List &rarr;".html_safe), path, :class => 'btn-gray'
   end
 
-def created_by(created_by)
-  User.where(:id=>created_by).first.name
-end
+  def created_by(created_by)
+    User.where(:id => created_by).first.name
+  end
+
+
 end

@@ -32,16 +32,11 @@
       <thead>
       <tr>
         <th>SNo</th>
-        <th>Name</th>
-        <th>Sub EB's</th>
+        <th>Reference No</th>
+        <th>Sub EB</th>
         <th>Houses</th>
         <th>Citizens</th>
         <th>Panchayat</th>
-        <th>Description</th>
-        <th>Reference No</th>
-        <th>Reference Name</th>
-        <th>Created By</th>
-        <th>Created On</th>
         <th>Actions</th>
       </tr>
       </thead>
@@ -50,19 +45,14 @@
       <% @enumeration_blocks.each do |eb| %>
           <tr>
             <td><%= i %></td>
-            <td><%= eb.name %></td>
-            <td></td>
+            <td><%= eb.reference_number %></td>
+            <td><%= eb.sub_enumeration_number %></td>
             <td><%= eb.number_of_houses %></td>
             <td><%= eb.number_of_citizens %></td>
             <td><%= eb.panchayat.name + " (" + eb.panchayat.reference_number.to_s + ")" %></td>
-            <td><%= eb.description %></td>
-            <td><%= eb.reference_number %></td>
-            <td><%= eb.reference_name %></td>
-            <td><%= created_by(eb.created_by)%></td>
-            <td><%= eb.created_at.strftime('%d-%b-%Y') %></td>
             <td>
               <%= link_for_show_pop(eb) %>
-              <%= link_for_edit(edit_enumeration_block_path(eb)) %>
+              <%# link_for_edit(edit_enumeration_block_path(eb)) %>
             </td>
           </tr>
           <% i = i + 1 %>

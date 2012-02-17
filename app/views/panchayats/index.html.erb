@@ -33,14 +33,11 @@
       <tr>
         <th>SNo</th>
         <th>Name</th>
+        <th>Reference No</th>
+        <th>Reference Name</th>
         <th>State</th>
         <th>District</th>
         <th>RBlock</th>
-        <th>Description</th>
-        <th>Reference No</th>
-        <th>Reference Name</th>
-        <th>Created By</th>
-        <th>Created On</th>
         <th>Actions</th>
       </tr>
       </thead>
@@ -50,17 +47,15 @@
           <tr>
             <td><%= i %></td>
             <td><%= panchayat.name %></td>
+            <td><%= panchayat.reference_number %></td>
+            <td><%= panchayat.reference_name %></td>
+
             <td><%= panchayat.state.name + " (" + panchayat.state.reference_number.to_s + ")" %></td>
             <td><%= panchayat.district.name + " (" + panchayat.district.reference_number.to_s + ")" %></td>
             <td><%= panchayat.revenue_block.name + " (" + panchayat.revenue_block.reference_number.to_s + ")" %></td>
-            <td><%= panchayat.description %></td>
-            <td><%= panchayat.reference_number %></td>
-            <td><%= panchayat.reference_name %></td>
-            <td><%= created_by(panchayat.created_by)%></td>
-            <td><%= panchayat.created_at.strftime('%d-%b-%Y') %></td>
             <td>
               <%= link_for_show_pop(panchayat) %>
-              <%= link_for_edit(edit_panchayat_path(panchayat)) %>
+              <%# link_for_edit(edit_panchayat_path(panchayat)) %>
             </td>
           </tr>
           <% i = i + 1 %>

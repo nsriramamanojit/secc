@@ -4,7 +4,7 @@
 class EnumerationBlocksController < ApplicationController
   before_filter :recent_items, :require_user
   filter_access_to :all
-  layout "application", :except => [:show, :edit]
+  layout "application", :except => [:show, :edit,:update_status,:status_report]
   def index
     @enumeration_blocks = EnumerationBlock.paginate(:page =>page, :per_page=>per_page)
     @enumeration_block = EnumerationBlock.new
@@ -74,9 +74,36 @@ class EnumerationBlocksController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def list_all
+    @enumeration_blocks = EnumerationBlock.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @enumeration_blocks }
+    end
+  end
+  def update_status
+    @enumeration_block = EnumerationBlock.find(params[:id])
+
+  end
+  def status_update
+    @enumeration_block = EnumerationBlock.find(params[:id])
+    respond_to do |format|
+      if @enumeration_block.update_attributes(params[:enumeration_block])
+        format.html { redirect_to(list_all_enumeration_blocks_url, :notice => 'Enumeration Block Status Successfully updated.') }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "update_status" }
+        format.xml  { render :xml => @enumeration_block.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  def status_report
+
+  end
   ########################################################
   private
-
   def recent_items
     @recent = EnumerationBlock.recent
   end

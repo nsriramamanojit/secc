@@ -1,0 +1,77 @@
+<% title "SECC | Enumeration Block" %>
+<% content_for :sub_heading do %>
+    <%= sub_heading('SECC | Enumeration Block ', "Update Enumeration Work Status") %>
+<% end %>
+<div class="form-container">
+  <p class="legend">
+    <strong>Note:</strong>
+    Update the Status of Enumeration Block
+  </p>
+
+  <table class="tablesorter">
+    <thead>
+    <tr>
+      <th>Panchayat</th>
+      <th>Reference No</th>
+      <th>Sub EB</th>
+      <th>Houses</th>
+      <th>Citizens</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><%= @enumeration_block.panchayat.name + " (" + @enumeration_block.panchayat.reference_number.to_s + ")" %></td>
+      <td><%= @enumeration_block.reference_number %></td>
+      <td><%= @enumeration_block.sub_enumeration_number %></td>
+      <td><%= @enumeration_block.number_of_houses %></td>
+      <td><%= @enumeration_block.number_of_citizens %></td>
+    </tr>
+    </tbody>
+  </table>
+  <%= simple_form_for(@enumeration_block, :url => status_update_enumeration_block_path, :validate => true) do |f| %>
+      <fieldset>
+        <%= f.input :catalog_status,
+                    :collection => [['NYS', 'NYS'], ['Going', 'Going'], ['Pending', 'Pending'], ['Completed', 'Completed'], ['No Data', 'No Data']],
+                    :label_method => :last,
+                    :value_method => :first, :include_blank => false, :label=>"Catalog Status" %>
+
+        <%= f.input :enumeration_status,
+                    :collection => [['NYS', 'NYS'], ['Going', 'Going'], ['Pending', 'Pending'], ['Completed', 'Completed'], ['No Data', 'No Data']],
+                    :label_method => :last,
+                    :value_method => :first, :include_blank => false, :label=>"Enumeration Status" %>
+
+        <%= f.input :enu_nic_upload_status,
+                    :collection => [['NYS', 'NYS'], ['Pending', 'Pending'], ['Completed', 'Completed'], ['No Data', 'No Data']],
+                    :label_method => :last,
+                    :value_method => :first, :include_blank => false, :label=>"Enumeration NIC Upload Status" %>
+        <%= f.input :supervising_status,
+                    :collection => [['NYS', 'NYS'], ['Going', 'Going'], ['Pending', 'Pending'], ['Completed', 'Completed'], ['No Data', 'No Data']],
+                    :label_method => :last,
+                    :value_method => :first, :include_blank => false, :label=>"Supervising Status" %>
+
+        <%= f.input :super_nic_upload_status,
+                    :collection => [['NYS', 'NYS'], ['Pending', 'Pending'], ['Completed', 'Completed'], ['No Data', 'No Data']],
+                    :label_method => :last,
+                    :value_method => :first, :include_blank => false, :label=>"Supervising NIC Upload Status" %>
+
+        <%= f.input :draft_list_status,
+                    :collection => [['NYS', 'NYS'], ['Going', 'Going'], ['Pending', 'Pending'], ['Completed', 'Completed'], ['No Data', 'No Data']],
+                    :label_method => :last,
+                    :value_method => :first, :include_blank => false, :label=>"Draft List Print Status" %>
+
+        <%= f.input :draft_list_edit_status,
+                    :collection => [['NYS', 'NYS'], ['Going', 'Going'], ['Pending', 'Pending'], ['Completed', 'Completed'], ['No Data', 'No Data']],
+                    :label_method => :last,
+                    :value_method => :first, :include_blank => false, :label=>"Draft List Edit Status" %>
+
+        <%= f.input :final_list_status,
+                    :collection => [['NYS', 'NYS'], ['Going', 'Going'], ['Pending', 'Pending'], ['Completed', 'Completed'], ['No Data', 'No Data']],
+                    :label_method => :last,
+                    :value_method => :first, :include_blank => false, :label=>"Final List Status" %>
+
+        <%= f.input :remarks, :as => :text, :input_html => {:rows => 5, :cols => 25} %>
+
+        <%= f.submit 'Update', :disable_with=>'Please wait...' %>
+      </fieldset>
+  <% end %>
+</div>

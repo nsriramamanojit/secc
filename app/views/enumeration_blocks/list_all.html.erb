@@ -1,0 +1,74 @@
+<% title "SECC | Enumeration Blocks" %>
+<h3>SECC | Status Report | Enumeration Blocks</h3>
+
+<div class="help_text">
+  * Area for managing Enumeration Blocks Status. <br/>
+  * Codes: <b>E-NIC</b> - Enumeration NIC Upload, <b>S-NIC</b> - Supervising NIC Upload Status, <b>Draft</b> - Draft
+  Print List,
+  <b>Edit</b> - Draft List Modification Status and <b>Final</b> - Final List
+</div>
+<%= link_to "View Status Report", status_report_enumeration_blocks_path,:class=>'usuallink bold_text',:rel=>'facebox'%>
+<% if @enumeration_blocks.blank? %>
+    <div class="error_msg">
+      OOPS!.. No Enumeration Blocks are Found in the System..!
+    </div>
+<% else %>
+    <table class="tablesorter">
+      <thead>
+      <tr>
+        <th>SNo</th>
+        <th>Panchayat</th>
+        <th>EB#</th>
+        <th>Sub EB</th>
+        <th>Houses</th>
+        <th>Citizens</th>
+        <th>Catalog</th>
+        <th>Enumeration</th>
+        <th>E-NIC</th>
+        <th>Supervising</th>
+        <th>S-NIC</th>
+        <th>Draft</th>
+        <th>Edit</th>
+        <th>Final</th>
+        <th>Remarks</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% i=1 %>
+      <% @enumeration_blocks.each do |eb| %>
+          <tr>
+            <td><%= i %></td>
+            <td><%= eb.panchayat.name + " (" + eb.panchayat.reference_number.to_s + ")" %></td>
+            <td><%= eb.reference_number %></td>
+            <td><%= eb.sub_enumeration_number %></td>
+            <td><%= eb.number_of_houses %></td>
+            <td><%= eb.number_of_citizens %></td>
+            <td><%= eb.catalog_status %></td>
+            <td><%= eb.enumeration_status %></td>
+            <td><%= eb.enu_nic_upload_status %></td>
+            <td><%= eb.supervising_status %></td>
+            <td><%= eb.super_nic_upload_status %></td>
+            <td><%= eb.draft_list_status %></td>
+            <td><%= eb.draft_list_edit_status %></td>
+            <td><%= eb.final_list_status %></td>
+            <td><%= eb.remarks %></td>
+            <td>
+              <%= link_to "Update", update_status_enumeration_block_path(eb), :class=>'usuallink bold_text', :rel=>"facebox" %>
+            </td>
+          </tr>
+          <% i = i + 1 %>
+      <% end %>
+      </tbody>
+    </table>
+<% end %>
+
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,11 @@
 Secc::Application.routes.draw do
 
-  resources :enumeration_blocks
+  resources :enumeration_blocks do
+    get :list_all, :on=>:collection
+    get :update_status, :on=>:member
+    put :status_update, :on=>:member
+    get :status_report, :on=>:collection
+  end
   resources :panchayats
   resources :users
   resources :roles

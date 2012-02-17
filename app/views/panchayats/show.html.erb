@@ -1,5 +1,18 @@
-<p id="notice"><%= notice %></p>
+<% title "SECC | Panchayats" %>
+<% content_for :sub_heading do %>
+    <%= sub_heading('SECC | Panchayat ', "Panchayat Details") %>
+<% end %>
+<div class="formbox">
+  <div class="desc"><b>Name</b> :  <%= @panchayat.name %></div>
+  <div class="divider"></div>
+  <div class="desc"><b>Reference Code</b> : <%= @panchayat.reference_number %> </div>
+  <div class="divider"></div>
+  <div class="desc"><b>Reference Name</b> : <%= @panchayat.reference_name %> </div>
+  <div class="divider"></div>
+  <div class="desc"><b>State Name</b> :  <%= @panchayat.state.name %></div>
+  <div class="divider"></div>
+  <div class="desc"><b>District Name</b> :  <%= @panchayat.district.name %></div>
+  <div class="divider"></div>
+  <div class="desc"><b>Revenue Block Name</b> :  <%= @panchayat.revenue_block.name %></div>
+</div>
 
-
-<%= link_to 'Edit', edit_panchayat_path(@panchayat) %> |
-<%= link_to 'Back', panchayats_path %>
