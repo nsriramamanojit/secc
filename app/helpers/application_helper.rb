@@ -38,6 +38,10 @@ module ApplicationHelper
   def created_by(created_by)
     User.where(:id => created_by).first.name
   end
-
+  def link_to_active(model, path)
+    content = ''
+    content << link_to(model.report_status? ? image_tag('tick.gif') : image_tag('cros.gif'), path)
+    content.html_safe
+  end
 
 end

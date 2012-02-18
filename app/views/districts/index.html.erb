@@ -36,7 +36,7 @@
       <% @districts.each do |district| %>
           <tr>
             <td><%= i %></td>
-            <td><%= district.name %></td>
+            <td><%= highlight(district.name,params[:search]) %></td>
             <td><%= district.state.name %></td>
             <td><%= district.reference_number %></td>
             <td><%= district.reference_name %></td>

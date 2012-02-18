@@ -8,7 +8,7 @@ class StatesController < ApplicationController
   layout "application", :except => [:show, :edit]
 
   def index
-    @states = State.all
+    @states = State.search(params[:search])
     @state = State.new
 
   end
@@ -74,7 +74,6 @@ class StatesController < ApplicationController
   end
 ########################################################
 private
-
   def recent_items
     @recent = State.recent
   end

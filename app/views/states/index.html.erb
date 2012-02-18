@@ -39,7 +39,7 @@
       <% @states.each do |state| %>
           <tr>
             <td><%= i %></td>
-            <td><%= state.name %></td>
+            <td><%= highlight(state.name,params[:search]) %></td>
             <td><%= state.reference_number %></td>
             <td><%= state.reference_name %></td>
             <td><%= state.description %></td>

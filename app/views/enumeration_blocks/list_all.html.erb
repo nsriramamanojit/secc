@@ -17,6 +17,7 @@
       <thead>
       <tr>
         <th>SNo</th>
+        <th>Status</th>
         <th>Panchayat</th>
         <th>EB#</th>
         <th>Sub EB</th>
@@ -39,6 +40,7 @@
       <% @enumeration_blocks.each do |eb| %>
           <tr>
             <td><%= i %></td>
+            <td><%= link_to_active(eb,active_enumeration_block_path(eb))%></td>
             <td><%= eb.panchayat.name + " (" + eb.panchayat.reference_number.to_s + ")" %></td>
             <td><%= eb.reference_number %></td>
             <td><%= eb.sub_enumeration_number %></td>
@@ -52,7 +54,7 @@
             <td><%= eb.draft_list_status %></td>
             <td><%= eb.draft_list_edit_status %></td>
             <td><%= eb.final_list_status %></td>
-            <td><%= eb.remarks %></td>
+            <td><%= truncate(eb.remarks,:length=>8) %></td>
             <td>
               <%= link_to "Update", update_status_enumeration_block_path(eb), :class=>'usuallink bold_text', :rel=>"facebox" %>
             </td>

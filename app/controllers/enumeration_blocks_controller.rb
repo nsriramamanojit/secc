@@ -79,7 +79,7 @@ class EnumerationBlocksController < ApplicationController
     @enumeration_blocks = EnumerationBlock.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.xml  { render :xml => @enumeration_blocks }
     end
   end
@@ -100,7 +100,16 @@ class EnumerationBlocksController < ApplicationController
     end
   end
   def status_report
+  ## Check Model for Code
+  end
 
+  def active
+    eb = EnumerationBlock.find(params[:id])
+    eb.update_attribute('report_status', eb.report_status ? false : true)
+    respond_to do |format|
+      format.html { redirect_to :back}
+      format.xml  { head :ok }
+    end
   end
   ########################################################
   private

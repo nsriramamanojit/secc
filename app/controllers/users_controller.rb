@@ -2,12 +2,14 @@
 # Date: 09022012
 ##############################################
 class UsersController < ApplicationController
-  before_filter :recent_items
   layout "application", :except => [:show, :edit]
-
+  before_filter :recent_items, :require_user
+  filter_access_to :all
 
   def index
-    @users = User.paginate(:page =>page, :per_page=>per_page)
+    @users = User.paginate(:page => page, :per_page => per_page) if has_role?(:super_admin)
+    @users = User.revenue_block_users.paginate(:page => page, :per_page => per_page) if has_role?(:block_admin)
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -43,7 +45,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to(@user, :notice => 'User was successfully created.') }
+        format.html { redirect_to(users_url, :notice => 'User was successfully created.') }
         format.xml { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }
@@ -78,8 +80,8 @@ class UsersController < ApplicationController
 
   ########################################################
   private
-
   def recent_items
     @recent = User.recent
   end
+
 end

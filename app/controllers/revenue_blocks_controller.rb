@@ -3,7 +3,9 @@
 # Controller: Revenue Block
 #######################################################
 class RevenueBlocksController < ApplicationController
-  before_filter :recent_items
+  before_filter :recent_items, :require_user
+  filter_access_to :all
+
   layout "application", :except => [:show, :edit]
 
 

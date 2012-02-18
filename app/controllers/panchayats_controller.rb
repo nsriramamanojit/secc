@@ -7,9 +7,8 @@ class PanchayatsController < ApplicationController
   filter_access_to :all
   layout "application", :except => [:show, :edit]
 
-
   def index
-    @panchayats = Panchayat.paginate(:page =>page, :per_page=>per_page)
+    @panchayats = Panchayat.search(params[:search]).paginate(:page =>page, :per_page=>per_page)
     @panchayat = Panchayat.new
 
     respond_to do |format|

@@ -3,7 +3,7 @@
 
 <% content_for :left_panel do %>
     <td valign="top" width="250"> <%= render 'common/search' %>
-      <%= render 'recent' %> </td>
+      <%# render 'recent' %> </td>
 <% end %>
 <div class="help_text">
   Area for managing Enumeration Blocks. <br/>
@@ -52,7 +52,6 @@
             <td><%= eb.panchayat.name + " (" + eb.panchayat.reference_number.to_s + ")" %></td>
             <td>
               <%= link_for_show_pop(eb) %>
-              <%# link_for_edit(edit_enumeration_block_path(eb)) %>
             </td>
           </tr>
           <% i = i + 1 %>

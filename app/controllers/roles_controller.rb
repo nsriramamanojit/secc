@@ -2,8 +2,9 @@
 # Date: 07022012
 ###############################################
 class RolesController < ApplicationController
+  before_filter :recent_items, :require_user
+  filter_access_to :all
 
-  before_filter :recent_items
   layout "application", :except => [:show, :edit]
 
 

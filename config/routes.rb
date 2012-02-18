@@ -5,6 +5,8 @@ Secc::Application.routes.draw do
     get :update_status, :on=>:member
     put :status_update, :on=>:member
     get :status_report, :on=>:collection
+    get :active, :on=>:member
+
   end
   resources :panchayats
   resources :users

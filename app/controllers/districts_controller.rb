@@ -3,12 +3,14 @@
 # Date       : 06022012
 #########################################################
 class DistrictsController < ApplicationController
-  before_filter :recent_items
+  before_filter :recent_items, :require_user
+  filter_access_to :all
+
   layout "application", :except => [:show, :edit]
 
 
   def index
-    @districts = District.all
+    @districts = District.search(params[:search])
     @district = District.new
     respond_to do |format|
       format.html # index.html.erb

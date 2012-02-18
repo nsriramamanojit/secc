@@ -5,9 +5,17 @@
 <div class="formbox">
   <div class="desc"><b>Name</b> :  <%= @user.name %></div>
   <div class="divider"></div>
-  <div class="desc"><b>Reference Code</b> : <%= @user.login %> </div>
+  <div class="desc"><b>Login</b> : <%= @user.login %> </div>
   <div class="divider"></div>
-  <div class="desc"><b>Reference Name</b> : <%= @user.father_name %> </div>
+  <div class="desc"><b>Father Name</b> : <%= @user.father_name %> </div>
   <div class="divider"></div>
-  <div class="desc"><b>Description</b> : <%= @user.mobile_number %> </div>
+  <div class="desc"><b>Mobile</b> : <%= @user.mobile_number %> </div>
+  <div class="divider"></div>
+  <div class="desc"><b>State</b> : <%= @user.user_profile.state_id? ? @user.user_profile.state.name : 'N.A' %> </div>
+  <div class="divider"></div>
+  <div class="desc"><b>District</b> : <%= @user.user_profile.district_id? ? @user.user_profile.district.name : 'N.A' %>
+  </div>
+  <div class="divider"></div>
+  <div class="desc"><b>Revenue Block</b>
+    : <%= @user.user_profile.revenue_block_id? ? @user.user_profile.revenue_block.name : 'N.A' %> </div>
 </div>

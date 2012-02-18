@@ -71,7 +71,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def permission_denied
-    flash[:error] = "Sorry, You have NO Permission to access this Content."
+    flash[:error] = "Sorry, You have NO Permission to access the Content."
     redirect_to :back
     rescue ActionController::RedirectBackError
     redirect_to homes_path
