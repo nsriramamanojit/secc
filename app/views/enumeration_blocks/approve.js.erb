@@ -1,0 +1,3 @@
+$("#report_status_<%=@enumeration_block.id%>").html("<%=escape_javascript(link_to @enumeration_block.report_status? ? image_tag('tick.gif') : image_tag('cros.gif'),approve_enumeration_block_path,:remote=>true)%>");
+
+

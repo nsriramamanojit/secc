@@ -103,12 +103,11 @@ class EnumerationBlocksController < ApplicationController
   ## Check Model for Code
   end
 
-  def active
-    eb = EnumerationBlock.find(params[:id])
-    eb.update_attribute('report_status', eb.report_status ? false : true)
+  def approve
+    @enumeration_block = EnumerationBlock.find(params[:id])
+    @enumeration_block.update_attribute('report_status', @enumeration_block.report_status ? false : true)
     respond_to do |format|
-      format.html { redirect_to :back}
-      format.xml  { head :ok }
+      format.js
     end
   end
   ########################################################

@@ -11,12 +11,10 @@ class EnumerationBlock < ActiveRecord::Base
   validates :reference_number, :presence => true, :length => {:maximum => 5 } #:uniqueness => true,}
 
   #filters
-=begin
   before_create :created_user_id
   def created_user_id
       self.created_by = UserSession.find.user.id
   end
-=end
 
   #search and recent
   class << self

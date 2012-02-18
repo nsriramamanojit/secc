@@ -7,7 +7,15 @@
   Print List,
   <b>Edit</b> - Draft List Modification Status and <b>Final</b> - Final List
 </div>
-<%= link_to "View Status Report", status_report_enumeration_blocks_path,:class=>'usuallink bold_text',:rel=>'facebox'%>
+<div id="container">
+  <%= link_to "View Consolidated Report", status_report_enumeration_blocks_path, :class => 'usuallink bold_text', :rel => 'facebox' %>
+  |
+  <%= link_to "Download Consolidate Report", "#", :class => "usuallink bold_text" %> |
+  <%= link_to "Download Status Report", "#", :class => "usuallink bold_text" %>
+
+  <%= collection_select(:enumeration_block, :panchayat_id, Panchayat.order(:name), :id, :name, {:prompt => "Select Panchayat"}, :class => "width_auto position_right") %>
+</div>
+<br/>
 <% if @enumeration_blocks.blank? %>
     <div class="error_msg">
       OOPS!.. No Enumeration Blocks are Found in the System..!
@@ -40,7 +48,12 @@
       <% @enumeration_blocks.each do |eb| %>
           <tr>
             <td><%= i %></td>
-            <td><%= link_to_active(eb,active_enumeration_block_path(eb))%></td>
+            <td>
+              <div id="report_status_<%= eb.id %>">
+                <%= link_to eb.report_status? ? image_tag('tick.gif') : image_tag('cros.gif'), approve_enumeration_block_path(eb), :remote => true %>
+              </div>
+
+            </td>
             <td><%= eb.panchayat.name + " (" + eb.panchayat.reference_number.to_s + ")" %></td>
             <td><%= eb.reference_number %></td>
             <td><%= eb.sub_enumeration_number %></td>
@@ -54,9 +67,9 @@
             <td><%= eb.draft_list_status %></td>
             <td><%= eb.draft_list_edit_status %></td>
             <td><%= eb.final_list_status %></td>
-            <td><%= truncate(eb.remarks,:length=>8) %></td>
+            <td><%= truncate(eb.remarks, :length => 8) %></td>
             <td>
-              <%= link_to "Update", update_status_enumeration_block_path(eb), :class=>'usuallink bold_text', :rel=>"facebox" %>
+              <%= link_to "Update", update_status_enumeration_block_path(eb), :class => 'usuallink bold_text', :rel => "facebox" %>
             </td>
           </tr>
           <% i = i + 1 %>

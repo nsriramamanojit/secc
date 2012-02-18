@@ -13,7 +13,7 @@ authorization do
   role :block_admin do
     has_permission_on [:panchayats], :to => [:index, :show, :new, :create, :edit, :update,:destroy]
     has_permission_on [:users], :to=>[:index,:show]
-    has_permission_on [:enumeration_blocks], :to => [:index, :show, :new, :create, :edit, :update,:destroy,:list_all,:update_status,:status_update,:status_report,:active]
+    has_permission_on [:enumeration_blocks], :to => [:index, :show, :new, :create, :edit, :update,:destroy,:list_all,:update_status,:status_update,:status_report,:approve]
   end
 
   role :block_incharge do
