@@ -1,23 +1,18 @@
 <% title "SECC | Enumeration Blocks" %>
 <h3>SECC | Manage | Enumeration Blocks</h3>
 
-<% content_for :left_panel do %>
-    <td valign="top" width="250"> <%= render 'common/search' %>
-      <%# render 'recent' %> </td>
-<% end %>
+
 <div class="help_text">
   Area for managing Enumeration Blocks. <br/>
   Along with creating, managing and removing Enumeration Blocks for Application.
 </div>
-<div>
-  <%= link_to "Create New Enumeration Block", "#", :class=>'usuallink bold_text', :id=>'add_new' %>
+<div class="link_buttons">
+  <%= link_to content_tag(:span, 'New Enumeration Block'), new_enumeration_block_path, :class => 'btn-blue' %>
 </div>
-<div id="new_form">
-  <%= render 'form' %>
-</div>
+
 <% if @enumeration_blocks.blank? %>
     <div class="error_msg">
-      OOPS!.. No Enumeration Blocks are Found in the System..!
+      OOPS!.. No Enumeration Blocks are Found for Revenue Block ...!
     </div>
 <% else %>
     <table width="100%">
@@ -32,8 +27,8 @@
       <thead>
       <tr>
         <th>SNo</th>
-        <th>Reference No</th>
-        <th>Sub EB</th>
+        <th>Enumeration No</th>
+        <th>Sub EB No</th>
         <th>Houses</th>
         <th>Citizens</th>
         <th>Panchayat</th>

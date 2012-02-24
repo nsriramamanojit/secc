@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <title><%= content_for?(:title) ? yield(:title) : "SECC" %></title>
-  <%= stylesheet_link_tag "application","common",'facebox' %>
-  <%= javascript_include_tag :defaults,'rails.validations.js','facebox' %>
+  <%= stylesheet_link_tag "application","common",'facebox','tipTip' %>
+  <%= javascript_include_tag :defaults,'rails.validations.js','facebox','jquery.tipTip.minified' %>
   <%= csrf_meta_tag %>
   <%= yield(:head) %>
 </head>
@@ -12,7 +12,7 @@
   <%= render 'common/header'%>
   <div id="page_menu">
     <%= render 'common/menu' if  has_role?(:super_admin) %>
-    <%= render 'common/block_menu' if  has_role?(:block_admin) || has_role?(:block_incharge) %>
+    <%= render 'common/block_menu' if  has_role?(:block_admin) || has_role?(:block_incharge) || has_role?(:district_coordinator) %>
 
   </div>
   <div id="page_content">

@@ -32,15 +32,35 @@ module ApplicationHelper
   end
 
   def link_to_all(path)
-    link_to content_tag(:span, "Back To List &rarr;".html_safe), path, :class => 'btn-gray'
+    link_to content_tag(:span, "Back To List &rarr;".html_safe), path, :class => 'btn-yellow'
   end
-
   def created_by(created_by)
     User.where(:id => created_by).first.name
   end
   def link_to_active(model, path)
     content = ''
     content << link_to(model.report_status? ? image_tag('tick.gif') : image_tag('cros.gif'), path)
+    content.html_safe
+  end
+  def associated_names(records)
+    return 'No Records found' if records.blank?
+    content = ''
+    i = 1
+    for record in records
+      content << "#{i}. " + record.name + "<br/>"
+      i += 1
+    end
+    content.html_safe
+  end
+  def enumeration_block_list(enumeration_blocks)
+    return 'No EB found' if enumeration_blocks.blank?
+    content = ''
+    i = 1
+    for eb in enumeration_blocks[0..15]
+      content << "#{i}. " + eb.reference_number.to_s + "- " + eb.number_of_houses.to_s + "-" + eb.number_of_citizens.to_s + "<br/>"
+      i += 1
+    end
+    content << 'and more' if enumeration_blocks.size > 16
     content.html_safe
   end
 

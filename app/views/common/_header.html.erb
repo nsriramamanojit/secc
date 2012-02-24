@@ -3,7 +3,13 @@
   <div id="top_menu">
     <div id="top_m">
       <ul class="top_menu">
-        <li>Welcome-<%= current_user.name %></li>
+        <li>Welcome-
+          <% if current_user.user_profile.revenue_block_id? %>
+              <%= current_user.user_profile.revenue_block.name %> - RBlock -
+          <% else %>
+          <% end %>
+          <%= current_user.name %>
+        </li>
         <li><%= link_to 'Profile', "#" %></li>
         <li>
           <a href="?locale=hi">हिंदी</a> | <a href="?locale=en">English</a>

@@ -8,11 +8,11 @@
   <b>Edit</b> - Draft List Modification Status and <b>Final</b> - Final List
 </div>
 <div id="container">
-  <%= link_to "View Consolidated Report", status_report_enumeration_blocks_path, :class => 'usuallink bold_text', :rel => 'facebox' %>
-  |
-  <%= link_to "Download Consolidate Report", "#", :class => "usuallink bold_text" %> |
-  <%= link_to "Download Status Report", "#", :class => "usuallink bold_text" %>
-
+  <div class="link_buttons">
+    <%= link_to content_tag(:span, 'View Consolidated Report'), status_report_enumeration_blocks_path, :class => 'btn-yellow',:rel => "facebox" %>
+    <%= link_to content_tag(:span, 'Download Consolidated Report'), status_report_export_enumeration_blocks_path, :class => 'btn-yellow' %>
+    <%= link_to content_tag(:span, 'Download Status Report'), "#", :class => 'btn-yellow' %>
+  </div>
   <%= collection_select(:enumeration_block, :panchayat_id, Panchayat.order(:name), :id, :name, {:prompt => "Select Panchayat"}, :class => "width_auto position_right") %>
 </div>
 <br/>

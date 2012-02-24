@@ -4,22 +4,33 @@
 class EnumerationBlock < ActiveRecord::Base
   #Relation
   belongs_to :panchayat
+  belongs_to :user_profile
+  belongs_to :revenue_block
+
 
   #validations
   #validates :name, :presence => true,  :length => { :maximum => 100
   validates :panchayat_id, :presence => true
   validates :reference_number, :presence => true, :length => {:maximum => 5 } #:uniqueness => true,}
 
+=begin
   #filters
   before_create :created_user_id
   def created_user_id
       self.created_by = UserSession.find.user.id
   end
+=end
 
   #search and recent
   class << self
     def recent
       order('created_at DESC').limit(4)
+    end
+    def search(id,query)
+      if query
+      else
+        scoped
+      end
     end
 
     def total_houses

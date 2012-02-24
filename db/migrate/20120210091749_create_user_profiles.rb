@@ -6,7 +6,6 @@ class CreateUserProfiles < ActiveRecord::Migration
       t.integer :division_id
       t.integer :district_id
       t.integer :revenue_block_id
-      t.string :panchayat
 
       t.string :employee_number
 

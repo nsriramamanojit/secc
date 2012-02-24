@@ -1,0 +1,47 @@
+<h5 align="center"> List of Panchayats </h5>
+<table class="tablesorter1" align="center">
+  <thead>
+  <tr>
+    <th>SNo</th>
+    <th>Name</th>
+    <th>Reference No</th>
+    <th>Reference Name</th>
+    <th>State</th>
+    <th>District</th>
+    <th>Revenue Block</th>
+  </tr>
+  </thead>
+  <% i=1 %>
+  <% @panchayats.each do |panchayat| %>
+      <tr align="left">
+        <td><%= i %></td>
+        <td><%= panchayat.name %></td>
+        <td><%= panchayat.reference_number %></td>
+        <td><%= panchayat.reference_name %></td>
+        <td><%= panchayat.state.name + " (" + panchayat.state.reference_number.to_s + ")" %></td>
+        <td><%= panchayat.district.name + " (" + panchayat.district.reference_number.to_s + ")" %></td>
+        <td><%= panchayat.revenue_block.name + " (" +  "%03d"%panchayat.revenue_block.reference_number.to_s + ")" %></td>
+      </tr>
+      <% i = i + 1 %>
+  <% end %>
+
+</table>
+
+<style type="text/css">
+    table.tablesorter1 {
+        border-collapse: collapse;
+        border: 1px solid #000000;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+    }
+
+    table.tablesorter1 td, table.tablesorter1 th {
+        border-collapse: collapse;
+        border: 1px solid #000000;
+    }
+    h5
+    {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+</style>

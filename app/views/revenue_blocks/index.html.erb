@@ -38,8 +38,6 @@
         <th>Description</th>
         <th>Reference No</th>
         <th>Reference Name</th>
-        <th>Created By</th>
-        <th>Created On</th>
         <th>Actions</th>
       </tr>
       </thead>
@@ -50,15 +48,13 @@
             <td><%= i %></td>
             <td><%= rb.name %></td>
             <td><%= rb.state.name + " (" + rb.state.reference_number.to_s + ")" %></td>
-            <td><%= rb.district.name + " (" + rb.district.reference_number.to_s + ")" %></td>
+            <td><%= rb.district.name + " (" + "%02d"%rb.district.reference_number.to_s + ")" %></td>
             <td><%= rb.description %></td>
-            <td><%= rb.reference_number %></td>
+            <td><%= "%03d"%rb.reference_number.to_s %></td>
             <td><%= rb.reference_name %></td>
-            <td></td>
-            <td><%= rb.created_at.strftime('%d-%b-%Y') %></td>
             <td>
               <%= link_for_show_pop(rb) %>
-              <%= link_for_edit(edit_revenue_block_path(rb)) %>
+              <%# link_for_edit(edit_revenue_block_path(rb)) %>
             </td>
           </tr>
           <% i = i + 1 %>

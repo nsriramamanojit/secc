@@ -26,8 +26,9 @@
         <th>Name</th>
         <th>State</th>
         <th>Reference Number</th>
-        <th>Reference Name</th>
-        <th>Description</th>
+        <th>Revenue Blocks</th>
+        <th>Panchayats</th>
+        <th>Enumeration Blocks</th>
         <th>Actions</th>
       </tr>
       </thead>
@@ -38,12 +39,13 @@
             <td><%= i %></td>
             <td><%= highlight(district.name,params[:search]) %></td>
             <td><%= district.state.name %></td>
-            <td><%= district.reference_number %></td>
-            <td><%= district.reference_name %></td>
-            <td><%= district.description %></td>
+            <td><%=  "%02d"%district.reference_number.to_s%></td>
+            <td><%= link_to district.revenue_blocks.size,"#",:class=>'tipTipRight',:title=>associated_names(district.revenue_blocks) %></td>
+            <td><%= link_to district.panchayats.size,"#",:class=>'tipTipRight',:title=>associated_names(district.panchayats) %></td>
+            <td><%= link_to district.enumeration_blocks.size,"#",:class=>'tipTipRight',:title=>enumeration_block_list(district.enumeration_blocks) %></td>
             <td>
               <%= link_for_show_pop(district) %>
-              <%= link_for_edit(edit_district_path(district)) %>
+              <%# link_for_edit(edit_district_path(district)) %>
 
             </td>
           </tr>

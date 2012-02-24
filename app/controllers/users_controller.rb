@@ -8,8 +8,8 @@ class UsersController < ApplicationController
 
   def index
     @users = User.paginate(:page => page, :per_page => per_page) if has_role?(:super_admin)
-    @users = User.revenue_block_users.paginate(:page => page, :per_page => per_page) if has_role?(:block_admin)
-
+    @users = User.revenue_block_users.joins(:user_profile).where(:user_profile => {:revenue_block_id => current_user.user_profile.revenue_block_id}).paginate(:page => page, :per_page => per_page) if has_role?(:block_admin)
+    @users = User.revenue_block_users.joins(:user_profile).where(:user_profile => {:district_id => current_user.user_profile.district_id}).paginate(:page => page, :per_page => per_page) if has_role?(:district_coordinator)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -78,10 +78,49 @@ class UsersController < ApplicationController
     end
   end
 
+  def upload
+
+  end
+
+  def csv_import
+    require 'csv'
+    csv_file = params[:file]
+    n=0
+    CSV.new(csv_file.tempfile, :col_sep => ",").each do |row|
+      user = User.create do |u|
+        u.name =row[0]
+        u.login = row[1]
+        u.password = row[1]
+        u.mobile_number = row[2]
+        u.status = true
+      end
+      if user.save(:validate => false)
+        Assignment.create(:user_id => user.id, :role_id => row[6], :created_at => Time.now, :updated_at => Time.now)
+        c=UserProfile.new
+        c.user_id = user.id
+        c.state_id= row[3]
+        c.district_id =row[4]
+        c.revenue_block_id = row[5]
+        c.save(:validate => false)
+
+      end
+      n = n + 1
+    end
+    flash[:notice]= "#{n} Users are imported successfully"
+    respond_to do |format|
+      format.html { redirect_to(users_path) }
+      format.xml { head :ok }
+    end
+
+  end
+
+
   ########################################################
   private
   def recent_items
-    @recent = User.recent
+    @recent = User.revenue_block_users.joins(:user_profile).where(:user_profile => {:revenue_block_id => current_user.user_profile.revenue_block_id}).paginate(:page => page, :per_page => per_page).recent if has_role?(:block_admin)
+    @recent = User.revenue_block_users.joins(:user_profile).where(:user_profile => {:district_id => current_user.user_profile.district_id}).paginate(:page => page, :per_page => per_page).recent if has_role?(:district_coordinator)
+    @recent = User.recent if has_role?(:super_admin)
   end
 
 end

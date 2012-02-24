@@ -8,7 +8,7 @@ class PanchayatsController < ApplicationController
   layout "application", :except => [:show, :edit]
 
   def index
-    @panchayats = Panchayat.search(params[:search]).paginate(:page =>page, :per_page=>per_page)
+    @panchayats = Panchayat.where(:revenue_block_id => current_user.user_profile.revenue_block_id).search(params[:search]).paginate(:page => page, :per_page => per_page)
     @panchayat = Panchayat.new
 
     respond_to do |format|
@@ -77,10 +77,17 @@ class PanchayatsController < ApplicationController
     end
   end
 
+  def export
+    @panchayats = Panchayat.where(:revenue_block_id => current_user.user_profile.revenue_block_id)
+    html = render_to_string :layout => false
+    kit = PDFKit.new(html, :orientation => 'Landscape', :page_size => 'A4')
+    send_data(kit.to_pdf, :filename => "Panchayats_List"+".pdf", :type => 'application/pdf')
+  end
+
   ########################################################
   private
 
   def recent_items
-    @recent = Panchayat.recent
+    @recent = Panchayat.where(:revenue_block_id => current_user.user_profile.revenue_block_id).recent if has_role?(:block_admin)
   end
 end

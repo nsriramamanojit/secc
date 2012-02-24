@@ -3,11 +3,11 @@
     <%= sub_heading('SECC | Enumeration Blocks ', "Enumeration Block Details") %>
 <% end %>
 <div class="formbox">
-  <div class="desc"><b>Name</b> :  <%= @enumeration_block.name %></div>
+  <div class="desc"><b>Enumeration Block number</b> : <%= @enumeration_block.reference_number %> </div>
   <div class="divider"></div>
-  <div class="desc"><b>Reference Code</b> : <%= @enumeration_block.reference_number %> </div>
+  <div class="desc"><b>Sub EB Number</b> : <%= @enumeration_block.sub_enumeration_number %> </div>
   <div class="divider"></div>
-  <div class="desc"><b>Reference Name</b> : <%= @enumeration_block.reference_name %> </div>
+  <div class="desc"><b>Number of House Holds</b> : <%= @enumeration_block.number_of_houses %> </div>
   <div class="divider"></div>
-  <div class="desc"><b>Description</b> : <%= @enumeration_block.description %> </div>
+  <div class="desc"><b>Number of Citizens</b> : <%= @enumeration_block.number_of_citizens %> </div>
 </div>

@@ -1,5 +1,8 @@
-<h1>New enumeration_block</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', enumeration_blocks_path %>
+<% title "SECC | Enumeration Blocks " %>
+<% content_for :sub_heading do %>
+  <%= sub_heading('SECC | Enumeration Blocks','Create Enumeration Block') %>
+<% end %>
+<%= render 'form',:heading => 'Create New Enumeration Block' %>
+<div class="link_buttons">
+ <%=link_to_all(enumeration_blocks_path)%>
+</div>

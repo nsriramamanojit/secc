@@ -1,5 +1,8 @@
-<h1>New panchayat</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', panchayats_path %>
+<% title "SECC | Panchayats " %>
+<% content_for :sub_heading do %>
+  <%= sub_heading('SECC | Panchayats','Create Panchayat') %>
+<% end %>
+<%= render 'form',:heading => 'Create New Panchayat' %>
+<div class="link_buttons">
+ <%=link_to_all(panchayats_path)%>
+</div>

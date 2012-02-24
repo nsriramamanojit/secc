@@ -844,13 +844,11 @@ input.btn_upload {
 #tip {
     border: 1px solid #DFDFDF;
     background: #c4def5;
-    font-family: 'Ubuntu';
     display: none;
 }
 #common_text {
     border: 1px solid #DFDFDF;
     background: #FEFED6;
-    font-family: 'Ubuntu';
     display: none;
 }
 

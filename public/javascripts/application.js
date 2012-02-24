@@ -27,3 +27,11 @@ $(document).bind('reveal.facebox', function() {
     $('#facebox').draggable();
 });
 
+// tipTip functions
+$(document).ready(function() {
+    $(".tipTip").tipTip({maxWidth: '250px', edgeOffset: 10,delay: 0});
+    $(".tipTipRight").tipTip({maxWidth: '300px', edgeOffset: 10,defaultPosition: 'right',delay: 0});
+    $(".tipTipLeft").tipTip({maxWidth: '250px', edgeOffset: 10,defaultPosition: 'left',delay: 0});
+    $(".tipTipTop").tipTip({maxWidth: '250px', edgeOffset: 10,defaultPosition: 'top',delay: 0});
+});
+

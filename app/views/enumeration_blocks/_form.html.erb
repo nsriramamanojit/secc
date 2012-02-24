@@ -5,8 +5,8 @@
   </p>
   <%= simple_form_for(@enumeration_block, :validate => true) do |f| %>
       <fieldset>
-        <%= f.association :panchayat,:prompt => "Select Panchayat",:label=>"Select Panchayat" %>
-        <%= f.input :reference_number, :label => 'Reference Code' %>
+        <%=  f.association :panchayat, :collection => Panchayat.where(:revenue_block_id => current_user.user_profile.revenue_block_id), :prompt => "Select Panchayat" %>
+        <%= f.input :reference_number, :label => 'Enumeration Block Code' %>
         <%= f.input :sub_enumeration_number,:label=>"Sub Enumeration Number"%>
         <%= f.input :number_of_houses, :label=>"Number of House Holds"%>
         <%= f.input :number_of_citizens, :label=>"Citizens"%>

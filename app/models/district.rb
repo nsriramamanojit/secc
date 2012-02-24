@@ -2,6 +2,9 @@ class District < ActiveRecord::Base
 
   #Relations
   belongs_to :state
+  has_many :revenue_blocks
+  has_many :panchayats
+  has_many :enumeration_blocks
 
   #validations
   validates :name, :presence => true, :uniqueness => true, :length => { :maximum => 100}
@@ -10,10 +13,12 @@ class District < ActiveRecord::Base
   validates :reference_name, :presence => true, :uniqueness => true, :length => { :maximum => 10}
 
   #filters
+=begin
   before_create :created_user_id
   def created_user_id
       self.created_by = UserSession.find.user.id
   end
+=end
 
   #search and recent
     class << self

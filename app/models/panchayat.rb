@@ -6,14 +6,14 @@ class Panchayat < ActiveRecord::Base
   belongs_to :state
   belongs_to :district
   belongs_to :revenue_block
+  belongs_to :user_profile
 
   has_many   :enumeration_blocks, :dependent => :destroy
 
   #validations
   validates :name, :presence => true,  :length => { :maximum => 100}
-
-  validates :reference_name, :presence => true, :uniqueness => true, :length => { :maximum => 10}
   validates :reference_number, :presence => true, :uniqueness => true, :length => { :maximum => 5}
+  #validates :reference_name, :presence => true, :uniqueness => true, :length => { :maximum => 10}
 
     #filters
 =begin

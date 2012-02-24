@@ -165,7 +165,7 @@ div.link_buttons {
     margin-bottom: 4px;
     height: 21px;
     margin-top: 10px;
-    padding-left: 50px;
+    /*padding-left: 50px;*/
 }
 
 .btn-blue, .btn-yellow, .btn-gray, .btn-ltgray, .btn-red {

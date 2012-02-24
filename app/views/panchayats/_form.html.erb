@@ -6,13 +6,13 @@
   <%= simple_form_for(@panchayat, :validate => true) do |f| %>
       <fieldset>
         <%= f.input :name %>
-        <%= f.input :reference_number, :label => 'Reference Code' %>
+        <%= f.input :reference_number, :label => 'Panchayat Reference Code' %>
         <%= f.input :reference_name, :label => 'Reference Name' %>
 
         <%# f.input :description %>
-        <%= f.association :state,:prompt => "Select State",:label=>"Select State" %>
-        <%= f.association :district,:prompt => "Select District",:label=>"Select District" %>
-        <%= f.association :revenue_block,:prompt => "Select Revenue Block",:label=>"Select Revenue Block" %>
+        <%=  f.association :state, :collection => State.where(:id => current_user.user_profile.state_id), :prompt => "Select State",:label=>"Select State" %>
+        <%=  f.association :district, :collection => District.where(:id => current_user.user_profile.district_id), :prompt => "Select District",:label=>"Select District" %>
+        <%=  f.association :revenue_block, :collection => RevenueBlock.where(:id => current_user.user_profile.revenue_block_id), :prompt => "Select Revenue Block",:label=>"Select Revenue Block" %>
         <%= f.submit 'Save', :disable_with=>'Please wait...' %>
       </fieldset>
   <% end %>

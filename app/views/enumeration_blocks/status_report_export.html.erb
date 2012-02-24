@@ -1,4 +1,4 @@
-<h3>Status Report</h3>
+<h3>Status Report - <%= Date.today.strftime("%d-%m-%Y") %></h3>
 <table class="tablesorter">
   <thead>
   <tr>
@@ -93,5 +93,6 @@
     <td id="complete_8"><%= EnumerationBlock.final_list_completed.size %></td>
     <td id="no_data_8"><%= EnumerationBlock.final_list_no_data.size %></td>
   </tr>
+
   </tbody>
 </table>

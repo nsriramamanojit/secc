@@ -6,18 +6,17 @@
       <%= render 'recent' %> </td>
 <% end %>
 <div class="help_text">
-  Area for managing Panchayats. <br/>
-  Along with creating, managing and removing Panchayats for Application.
+* Area for managing Panchayats. <br/>
+* Along with creating, managing and removing Panchayats for Application.
 </div>
-<div>
-  <%= link_to "Create New Panchayat", "#", :class => 'usuallink bold_text', :id => 'add_new' %>
+<div class="link_buttons">
+  <%= link_to content_tag(:span, 'New Panchayat'), new_panchayat_path, :class => 'btn-blue' %>
+  <%= link_to content_tag(:span, 'Export'), export_panchayats_path, :class => 'btn-yellow' %>
 </div>
-<div id="new_form">
-  <%= render 'form' %>
-</div>
+
 <% if @panchayats.blank? %>
     <div class="error_msg">
-      OOPS!.. No Panchayats are Found in the System..!
+      OOPS!.. No Panchayats are Found for this Revenue Block ....!
     </div>
 <% else %>
     <table width="100%">
@@ -51,7 +50,7 @@
             <td><%= panchayat.reference_name %></td>
             <td><%= panchayat.state.name + " (" + panchayat.state.reference_number.to_s + ")" %></td>
             <td><%= panchayat.district.name + " (" + panchayat.district.reference_number.to_s + ")" %></td>
-            <td><%= panchayat.revenue_block.name + " (" + panchayat.revenue_block.reference_number.to_s + ")" %></td>
+            <td><%= panchayat.revenue_block.name + " (" +  "%03d"%panchayat.revenue_block.reference_number.to_s + ")" %></td>
             <td>
               <%= link_for_show_pop(panchayat) %>
             </td>

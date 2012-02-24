@@ -25,10 +25,10 @@ class User < ActiveRecord::Base
   validates :pin, :length => {:maximum => 6}
 
   #users
-  scope :revenue_block_users, includes([:roles]).where(:roles => {:name => %w(block_admin block_supervisor block_incharge)})
-  scope :district_users, includes([:roles]).where(:roles => {:name => %w(district_coordinator block_admin block_supervisor block_incharge)})
+  scope :revenue_block_users, joins([:roles]).where(:roles => {:name => %w(block_admin block_supervisor block_incharge)})
   scope :state_users, includes([:roles]).where(:roles => {:name => %w(state_coordinator district_coordinator block_admin block_supervisor block_incharge)})
   scope :super_admin_users, includes([:roles]).where(:roles => {:name => %w(super_admin)})
+
 
   #Roles
   def role_symbols
@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
   before_create :create_user_name
   def create_user_name
       user_profile.revenue_block.increment!(:user_count_flag)
-      user = user_profile.state.reference_number.to_s + user_profile.district.reference_number.to_s+ "%02d" %user_profile.revenue_block.reference_number.to_s+"%02d" % user_profile.revenue_block.user_count_flag
+      user = user_profile.state.reference_number.to_s + "%02d" %user_profile.district.reference_number.to_s+ "%03d" %user_profile.revenue_block.reference_number.to_s+"%02d" % user_profile.revenue_block.user_count_flag
       self.login = self.password = user
   end
 
@@ -50,6 +50,7 @@ class User < ActiveRecord::Base
     def recent
       order('id DESC').limit(4)
     end
+
   end
 
 

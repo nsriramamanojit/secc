@@ -1,0 +1,17 @@
+<ul class="page_menu">
+    <li><%= tab_heading 'Dashboard' %>
+    <ul>
+      <li>
+        <%= link_to 'Users', users_path,:class=>"tipTip1",:title=>"Manage Panchayats" %>
+      </li>
+    </ul>
+  </li>
+    <li><%= tab_heading 'Work' %>
+    <ul>
+      <li>
+        <%= link_to 'Status Report', list_all_enumeration_blocks_path ,:class=>"tipTip1",:title=>"Status Report of Enumeration Blocks" %>
+      </li>
+    </ul>
+  </li>
+</ul>
+

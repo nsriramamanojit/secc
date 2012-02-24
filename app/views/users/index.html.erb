@@ -10,7 +10,7 @@
   Along with creating, managing Users for Application.
 </div>
 <div>
-  <%= link_to "Create New User", new_user_path, :class=>'usuallink bold_text', :id=>'add_new' %>
+  <%= link_to "Create New User", new_user_path, :class => 'usuallink bold_text' %>
 </div>
 
 <% if @users.blank? %>
@@ -47,30 +47,17 @@
             <td><%= user.login %></td>
             <td><%= user.name %></td>
             <td>
-              <% if user.user_profile.state_id? %>
-                  <%= user.user_profile.state.name + " (" + user.user_profile.state.reference_number.to_s + ")" %>
-              <% else %>
-                  N.A
-              <% end %>
+              <%= user.user_profile.state_id? ? user.user_profile.state.name + " (" + user.user_profile.state.reference_number.to_s + ")" : 'N.A' %>
             </td>
             <td>
-              <% if user.user_profile.district_id? %>
-                  <%= user.user_profile.district.name + " (" + user.user_profile.district.reference_number.to_s + ")" %>
-              <% else %>
-                  N.A
-              <% end %>
+              <%= user.user_profile.district_id? ? user.user_profile.district.name + " (" + "%02d"%user.user_profile.district.reference_number.to_s + ")" : 'N.A' %>
             </td>
             <td>
-              <% if user.user_profile.revenue_block_id? %>
-                  <%= user.user_profile.revenue_block.name + " (" + user.user_profile.revenue_block.reference_number.to_s + ")" %>
-              <% else %>
-                  N.A
-              <% end %>
+              <%= user.user_profile.revenue_block_id? ? user.user_profile.revenue_block.name+ " (" + "%03d"%user.user_profile.revenue_block.reference_number.to_s + ")" : 'N.A' %>
             </td>
             <td><%= user.mobile_number %></td>
             <td>
               <%= link_for_show_pop(user) %>
-              <%# link_for_edit(edit_user_path(user)) %>
             </td>
           </tr>
           <% i = i + 1 %>

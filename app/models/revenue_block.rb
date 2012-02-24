@@ -5,6 +5,7 @@ class RevenueBlock < ActiveRecord::Base
   #Relations
   belongs_to :state
   belongs_to :district
+  has_many :panchayats
 
   #validations
   validates :name, :presence => true,  :length => { :maximum => 100}

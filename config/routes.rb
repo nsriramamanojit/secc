@@ -5,11 +5,18 @@ Secc::Application.routes.draw do
     get :update_status, :on=>:member
     put :status_update, :on=>:member
     get :status_report, :on=>:collection
+    get :status_report_export,:on=>:collection
     get :approve, :on=>:member
 
   end
-  resources :panchayats
-  resources :users
+  resources :panchayats do
+    get :export, :on=>:collection
+  end
+  resources :users do
+    put :csv_import,:on=>:collection
+    get :upload,:on=>:collection
+  end
+
   resources :roles
   resources :revenue_blocks
   resources :divisions
@@ -78,5 +85,5 @@ Secc::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
+  match ':controller(/:action(/:id(.:format)))'
 end

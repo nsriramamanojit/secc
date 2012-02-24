@@ -45,7 +45,7 @@ class DistrictsController < ApplicationController
 
     respond_to do |format|
       if @district.save
-        format.html { redirect_to(@district, :notice => 'District was successfully created.') }
+        format.html { redirect_to(districts_url, :notice => 'District was successfully created.') }
         format.xml  { render :xml => @district, :status => :created, :location => @district }
       else
         format.html { render :action => "new" }

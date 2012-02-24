@@ -6,7 +6,7 @@ class EnumerationBlocksController < ApplicationController
   filter_access_to :all
   layout "application", :except => [:show, :edit,:update_status,:status_report]
   def index
-    @enumeration_blocks = EnumerationBlock.paginate(:page =>page, :per_page=>per_page)
+    @enumeration_blocks = EnumerationBlock.where(:revenue_block_id => current_user.user_profile.revenue_block_id).paginate(:page =>page, :per_page=>per_page)
     @enumeration_block = EnumerationBlock.new
 
     respond_to do |format|
@@ -39,6 +39,7 @@ class EnumerationBlocksController < ApplicationController
 
   def create
     @enumeration_block = EnumerationBlock.new(params[:enumeration_block])
+    @enumeration_block.revenue_block_id = current_user.user_profile.revenue_block_id
 
     respond_to do |format|
       if @enumeration_block.save
@@ -76,7 +77,7 @@ class EnumerationBlocksController < ApplicationController
   end
 
   def list_all
-    @enumeration_blocks = EnumerationBlock.all
+    @enumeration_blocks = EnumerationBlock.search(params[:id],params[:search])
 
     respond_to do |format|
       format.html
@@ -109,6 +110,13 @@ class EnumerationBlocksController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+  def status_report_export
+    html = render_to_string :layout => false
+    kit = PDFKit.new(html)
+    kit.stylesheets << "#{Rails.root}/public/stylesheets/pdf_print.css"
+    send_data(kit.to_pdf, :filename => "Status_Report"+".pdf", :type => 'application/pdf')
+
   end
   ########################################################
   private

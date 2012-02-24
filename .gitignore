@@ -6,4 +6,5 @@ tmp/
 .idea/
 Gemfile.lock
 config/database.yml
+Gemfile
 
