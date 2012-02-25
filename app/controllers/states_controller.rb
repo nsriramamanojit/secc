@@ -40,7 +40,7 @@ class StatesController < ApplicationController
 
     respond_to do |format|
       if @state.save
-        format.html { redirect_to(@state, :notice => 'State was successfully created.') }
+        format.html { redirect_to(states_url, :notice => 'State was successfully created.') }
         format.xml  { render :xml => @state, :status => :created, :location => @state }
       else
         format.html { render :action => "new" }
@@ -71,6 +71,13 @@ class StatesController < ApplicationController
       format.html { redirect_to(states_url) }
       format.xml  { head :ok }
     end
+  end
+  def export
+    @states = State.all
+    html = render_to_string :layout => false
+    kit = PDFKit.new(html,  :page_size => 'A4',:orientation => 'Landscape')
+    send_data(kit.to_pdf, :filename => "States_List"+".pdf", :type => 'application/pdf')
+
   end
 ########################################################
 private

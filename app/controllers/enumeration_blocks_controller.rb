@@ -4,7 +4,7 @@
 class EnumerationBlocksController < ApplicationController
   before_filter :recent_items, :require_user
   filter_access_to :all
-  layout "application", :except => [:show, :edit,:update_status,:status_report]
+  layout "application", :except => [:show, :edit,:update_status,:status_report,:remarks]
   def index
     @enumeration_blocks = EnumerationBlock.where(:revenue_block_id => current_user.user_profile.revenue_block_id).paginate(:page =>page, :per_page=>per_page)
     @enumeration_block = EnumerationBlock.new
@@ -117,6 +117,9 @@ class EnumerationBlocksController < ApplicationController
     kit.stylesheets << "#{Rails.root}/public/stylesheets/pdf_print.css"
     send_data(kit.to_pdf, :filename => "Status_Report"+".pdf", :type => 'application/pdf')
 
+  end
+  def remarks
+    @enumeration_block = EnumerationBlock.find(params[:id])
   end
   ########################################################
   private

@@ -5,12 +5,9 @@
 class RevenueBlocksController < ApplicationController
   before_filter :recent_items, :require_user
   filter_access_to :all
-
-  layout "application", :except => [:show, :edit]
-
-
+  layout "application", :except => [:show]
   def index
-    @revenue_blocks = RevenueBlock.paginate(:page =>page, :per_page=>per_page)
+    @revenue_blocks = RevenueBlock.search(params[:search]).paginate(:page =>page, :per_page=>per_page)
     @revenue_block = RevenueBlock.new
 
     respond_to do |format|
@@ -46,7 +43,7 @@ class RevenueBlocksController < ApplicationController
 
     respond_to do |format|
       if @revenue_block.save
-        format.html { redirect_to(@revenue_block, :notice => 'Revenue block was successfully created.') }
+        format.html { redirect_to(revenue_blocks_url, :notice => 'Revenue Block was successfully created.') }
         format.xml  { render :xml => @revenue_block, :status => :created, :location => @revenue_block }
       else
         format.html { render :action => "new" }
@@ -78,9 +75,15 @@ class RevenueBlocksController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  def export
+    @revenue_blocks = RevenueBlock.all
+    html = render_to_string :layout => false
+    kit = PDFKit.new(html,  :page_size => 'A4')
+    send_data(kit.to_pdf, :filename => "RevenueBlock_List"+".pdf", :type => 'application/pdf')
+
+  end
   ########################################################
 private
-
   def recent_items
     @recent = RevenueBlock.recent
   end

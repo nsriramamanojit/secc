@@ -1,0 +1,50 @@
+<h5 align="center"> List of States</h5>
+<table class="tablesorter1" align="center">
+  <thead>
+  <tr>
+    <th>SNo</th>
+    <th>Name</th>
+    <th>Reference No</th>
+    <th>Reference Name</th>
+    <th>Districts</th>
+    <th>R-Blocks</th>
+    <th>Panchayats</th>
+    <th>E-Blocks</th>
+  </tr>
+  </thead>
+  <% i=1 %>
+  <% @states.each do |state| %>
+      <tr>
+        <td><%= i %></td>
+        <td><%= state.name.titleize %></td>
+        <td><%= "%02d" %state.reference_number %></td>
+        <td><%= state.reference_name %></td>
+        <td><%= state.districts.size %></td>
+        <td><%= state.revenue_blocks.size %></td>
+        <td><%= state.panchayats.size %></td>
+        <td><%= state.enumeration_blocks.size %></td>
+      </tr>
+      <% i = i + 1 %>
+  <% end %>
+
+</table>
+
+<style type="text/css">
+    table.tablesorter1 {
+        border-collapse: collapse;
+        border: 1px solid #000000;
+        font-family: Tahoma, verdana, helvetica, sans-serif;
+        font-size: 14px;
+    }
+
+    table.tablesorter1 td, table.tablesorter1 th {
+        border-collapse: collapse;
+        border: 1px solid #000000;
+        text-align: center;
+    }
+    h5
+    {
+        font-family: Tahoma, verdana, helvetica, sans-serif;
+    }
+
+</style>

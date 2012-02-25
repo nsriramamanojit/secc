@@ -1,18 +1,36 @@
 <% title "SECC | Revenue Blocks" %>
-<% content_for :sub_heading do %>
-    <%= sub_heading('SECC | Revenue Block ', "Revenue Block Details") %>
-<% end %>
-<div class="formbox">
-  <div class="desc"><b>Name</b> :  <%= @revenue_block.name %></div>
-  <div class="divider"></div>
-  <div class="desc"><b>State Name</b> :  <%= @revenue_block.state.name %></div>
-  <div class="divider"></div>
-  <div class="desc"><b>District Name</b> :  <%= @revenue_block.district.name %></div>
-  <div class="divider"></div>
-  <div class="desc"><b>Reference Code</b> : <%= @revenue_block.reference_number %> </div>
-  <div class="divider"></div>
-  <div class="desc"><b>Reference Name</b> : <%= @revenue_block.reference_name %> </div>
-  <div class="divider"></div>
-  <div class="desc"><b>Description</b> : <%= @revenue_block.description %> </div>
-</div>
+<% title "SECC | Districts" %>
+<div id="page_container">
+  <div id="page_content">
+    <div class="content">
+      <h3>Revenue Blocks | View Revenue Block Details</h3>
 
+      <table width="100%" border=0 cellspacing=1 cellpadding=3 class="listTable">
+        <tr>
+          <th width="20%">Name</th>
+          <td><%= @revenue_block.name %></td>
+        </tr>
+        <tr>
+          <th width="20%">Reference Code</th>
+          <td><%= "%03d"% @revenue_block.reference_number %></td>
+        </tr>
+        <tr>
+          <th width="20%">Reference Name</th>
+          <td><%= @revenue_block.reference_name %></td>
+        </tr>
+        <tr>
+          <th width="20%">State Name</th>
+          <td><%= @revenue_block.state.name %></td>
+        </tr>
+        <tr>
+          <th width="20%">District Name</th>
+          <td><%= @revenue_block.district.name %></td>
+        </tr>
+        <tr>
+          <th width="20%">Description</th>
+          <td><%= @revenue_block.description %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

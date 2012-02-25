@@ -11,7 +11,7 @@
               <div class="left-to-right">
                 <div class="pen">&nbsp;</div>
                 <div class="text">
-                  <%= link_to rb.name, revenue_block_path(rb), :class=>'usuallink',:rel=>"facebox" %>
+                  <%= link_to rb.name, revenue_block_path(rb), :class=>'usuallink tipTipRight',:rel=>"facebox",:title => "View Details" %>
                   <div style="margin: 8px 0px;">&nbsp;</div>
                 </div>
               </div>
@@ -20,7 +20,7 @@
     <% end %>
     <div class="see_all">
       <a href="/revenue_blocks">
-        View all Blocks
+        View all Revenue Blocks
         <img hspace="2" border="0" alt="" src="/images/blue^.gif">
       </a>
     </div>

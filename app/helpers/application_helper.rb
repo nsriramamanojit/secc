@@ -63,5 +63,15 @@ module ApplicationHelper
     content << 'and more' if enumeration_blocks.size > 16
     content.html_safe
   end
-
+  def users_list(users)
+    return 'No Users found' if users.blank?
+    content = ''
+    i = 1
+    for user in users[0..15]
+      content << "#{i}. " + user.login + "<br/>"
+      i += 1
+    end
+    content << 'and more' if users.size > 16
+    content.html_safe
+  end
 end

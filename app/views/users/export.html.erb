@@ -1,0 +1,42 @@
+<h5 align="center"> List of Users</h5>
+<table class="tablesorter1" align="center">
+  <thead>
+  <tr>
+    <th>SNo</th>
+    <th>Login</th>
+    <th>Name</th>
+    <th>Mobile</th>
+  </tr>
+  </thead>
+  <% i=1 %>
+  <% @users.each do |user| %>
+      <tr>
+        <td><%= i %></td>
+        <td><%= user.login %></td>
+        <td><%= user.name.titleize %></td>
+        <td><%= user.mobile_number %></td>
+      </tr>
+      <% i = i + 1 %>
+  <% end %>
+
+</table>
+
+<style type="text/css">
+    table.tablesorter1 {
+        border-collapse: collapse;
+        border: 1px solid #000000;
+        font-family: Tahoma, verdana, helvetica, sans-serif;
+        font-size: 14px;
+    }
+
+    table.tablesorter1 td, table.tablesorter1 th {
+        border-collapse: collapse;
+        border: 1px solid #000000;
+        text-align: center;
+    }
+    h5
+    {
+        font-family: Tahoma, verdana, helvetica, sans-serif;
+    }
+
+</style>

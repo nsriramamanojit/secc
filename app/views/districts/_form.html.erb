@@ -6,10 +6,10 @@
   <%= simple_form_for(@district, :validate => true) do |f| %>
       <fieldset>
         <%= f.input :name %>
-        <%= f.input :description %>
         <%= f.association :state,:prompt => "Select State",:label=>"Select State" %>
         <%= f.input :reference_number, :label => 'Reference Code' %>
         <%= f.input :reference_name, :label => 'Reference Name' %>
+        <%= f.input :description %>
         <%= f.submit 'Save', :disable_with=>'Please wait...' %>
       </fieldset>
   <% end %>

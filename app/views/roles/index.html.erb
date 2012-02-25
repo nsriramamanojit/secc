@@ -11,8 +11,9 @@
   Area for managing Roles. <br/>
   Along with creating, managing and removing Roles for Application.
 </div>
-<div>
-  <%= link_to "Create New Role", "#", :class=>'usuallink bold_text', :id=>'add_new' %>
+<div class="link_buttons">
+  <%= link_to content_tag(:span, 'New Role'), new_role_path, :class => 'btn-blue' if permitted_to? :create %>
+  <%= link_to content_tag(:span, 'Export'), "#", :class => 'btn-yellow' %>
 </div>
 <div id="new_form">
   <%= render 'form' %>
@@ -39,13 +40,12 @@
       <% @roles.each do |role| %>
           <tr>
             <td><%= i %></td>
-            <td><%= role.name %></td>
+            <td><%= highlight(role.name.titleize,params[:search]) %></td>
             <td><%= role.short_name %></td>
             <td><%= role.description %></td>
-            <td></td>
+            <td><%= link_to role.users.size,"#",:class=>'tipTipRight',:title=>users_list(role.users) %></td>
             <td>
               <%= link_for_show_pop(role) %>
-              <%= link_for_edit(edit_role_path(role)) %>
             </td>
           </tr>
           <% i = i + 1 %>

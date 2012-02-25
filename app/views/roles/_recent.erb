@@ -11,11 +11,11 @@
 			<div class="left-to-right">
 				<div class="pen">&nbsp;</div>
 				<div class="text">
-                     <%=link_to role.name ,"#",:class=>'usuallink',:rel=>"facebox"%>
+                     <%=link_to role.name.titleize ,role_path(role),:class=>'usuallink tipTipRight',:rel=>"facebox", :title => "View Details"%>
 					<div style="margin: 8px 0px;">&nbsp;</div>
 				</div>
 				<div class="date">
-                    (<b><%#role.users.size %>users</b>)
+                    (<b><%=role.users.size %></b>)
                 </div>
 			</div>
 		</div>

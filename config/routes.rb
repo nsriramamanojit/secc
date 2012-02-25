@@ -7,6 +7,7 @@ Secc::Application.routes.draw do
     get :status_report, :on=>:collection
     get :status_report_export,:on=>:collection
     get :approve, :on=>:member
+    get :remarks, :on=>:member
 
   end
   resources :panchayats do
@@ -15,13 +16,20 @@ Secc::Application.routes.draw do
   resources :users do
     put :csv_import,:on=>:collection
     get :upload,:on=>:collection
+    get :export,:on=>:collection
   end
 
   resources :roles
-  resources :revenue_blocks
+  resources :revenue_blocks do
+    get :export, :on=>:collection
+  end
   resources :divisions
-  resources :districts
-  resources :states
+  resources :districts do
+    get :export, :on=>:collection
+  end
+  resources :states do
+    get :export, :on=>:collection
+  end
   resources :user_sessions
   resources :homes
 

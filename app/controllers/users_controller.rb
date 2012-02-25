@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   filter_access_to :all
 
   def index
-    @users = User.paginate(:page => page, :per_page => per_page) if has_role?(:super_admin)
+    @users = User.paginate(:page => page, :per_page => per_page) if permitted_to? :index
     @users = User.revenue_block_users.joins(:user_profile).where(:user_profile => {:revenue_block_id => current_user.user_profile.revenue_block_id}).paginate(:page => page, :per_page => per_page) if has_role?(:block_admin)
     @users = User.revenue_block_users.joins(:user_profile).where(:user_profile => {:district_id => current_user.user_profile.district_id}).paginate(:page => page, :per_page => per_page) if has_role?(:district_coordinator)
 
@@ -113,7 +113,13 @@ class UsersController < ApplicationController
     end
 
   end
+  def export
+    @users = User.all
+    html = render_to_string :layout => false
+    kit = PDFKit.new(html, :orientation => 'Landscape', :page_size => 'A4')
+    send_data(kit.to_pdf, :filename => "Users_List"+".pdf", :type => 'application/pdf')
 
+  end
 
   ########################################################
   private

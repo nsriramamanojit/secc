@@ -9,7 +9,7 @@
 </div>
 <div id="container">
   <div class="link_buttons">
-    <%= link_to content_tag(:span, 'View Consolidated Report'), status_report_enumeration_blocks_path, :class => 'btn-yellow',:rel => "facebox" %>
+    <%= link_to content_tag(:span, 'View Consolidated Report'), status_report_enumeration_blocks_path, :class => 'btn-yellow', :rel => "facebox" %>
     <%= link_to content_tag(:span, 'Download Consolidated Report'), status_report_export_enumeration_blocks_path, :class => 'btn-yellow' %>
     <%= link_to content_tag(:span, 'Download Status Report'), "#", :class => 'btn-yellow' %>
   </div>
@@ -40,7 +40,9 @@
         <th>Edit</th>
         <th>Final</th>
         <th>Remarks</th>
-        <th>Actions</th>
+        <% if permitted_to? :update_status %>
+            <th>Actions</th>
+        <% end %>
       </tr>
       </thead>
       <tbody>
@@ -67,10 +69,12 @@
             <td><%= eb.draft_list_status %></td>
             <td><%= eb.draft_list_edit_status %></td>
             <td><%= eb.final_list_status %></td>
-            <td><%= truncate(eb.remarks, :length => 8) %></td>
-            <td>
-              <%= link_to "Update", update_status_enumeration_block_path(eb), :class => 'usuallink bold_text', :rel => "facebox" %>
-            </td>
+            <td><%= eb.remarks? ? (link_to "View",remarks_enumeration_block_path(eb),:rel=>"facebox",:class => "usuallink") : '' %></td>
+            <% if permitted_to? :update_status %>
+                <td>
+                  <%= link_to "Update", update_status_enumeration_block_path(eb), :class => 'usuallink bold_text', :rel => "facebox" %>
+                </td>
+            <% end %>
           </tr>
           <% i = i + 1 %>
       <% end %>

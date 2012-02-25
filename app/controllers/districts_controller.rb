@@ -10,7 +10,7 @@ class DistrictsController < ApplicationController
 
 
   def index
-    @districts = District.search(params[:search])
+    @districts = District.search(params[:search]).paginate(:page => page, :per_page => per_page)
     @district = District.new
     respond_to do |format|
       format.html # index.html.erb
@@ -77,6 +77,14 @@ class DistrictsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  def export
+    @districts = District.all
+    html = render_to_string :layout => false
+    kit = PDFKit.new(html,  :page_size => 'A4',:orientation => 'Landscape')
+    send_data(kit.to_pdf, :filename => "Districts_List"+".pdf", :type => 'application/pdf')
+
+  end
+
 ########################################################
 private
 

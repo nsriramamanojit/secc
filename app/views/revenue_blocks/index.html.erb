@@ -9,12 +9,11 @@
   Area for managing Revenue Block. <br/>
   Along with creating, managing and removing Revenue Blocks for Application.
 </div>
-<div>
-  <%= link_to "Create New Revenue Block", "#", :class=>'usuallink bold_text', :id=>'add_new' %>
+<div class="link_buttons">
+  <%= link_to content_tag(:span, 'New Revenue Block'), new_revenue_block_path, :class => 'btn-blue' if permitted_to? :create %>
+  <%= link_to content_tag(:span, 'Export'), export_revenue_blocks_path, :class => 'btn-yellow' %>
 </div>
-<div id="new_form">
-  <%= render 'form' %>
-</div>
+
 <% if @revenue_blocks.blank? %>
     <div class="error_msg">
       OOPS!.. No Revenue Blocks are Found in the System..!
@@ -35,9 +34,10 @@
         <th>Name</th>
         <th>State</th>
         <th>District</th>
-        <th>Description</th>
         <th>Reference No</th>
         <th>Reference Name</th>
+        <th>Panchayats</th>
+        <th>E-Blocks</th>
         <th>Actions</th>
       </tr>
       </thead>
@@ -46,12 +46,13 @@
       <% @revenue_blocks.each do |rb| %>
           <tr>
             <td><%= i %></td>
-            <td><%= rb.name %></td>
+            <td><%= highlight(rb.name, params[:search]) %></td>
             <td><%= rb.state.name + " (" + rb.state.reference_number.to_s + ")" %></td>
             <td><%= rb.district.name + " (" + "%02d"%rb.district.reference_number.to_s + ")" %></td>
-            <td><%= rb.description %></td>
             <td><%= "%03d"%rb.reference_number.to_s %></td>
             <td><%= rb.reference_name %></td>
+            <td><%= link_to rb.panchayats.size, "#", :class => 'tipTipRight', :title => associated_names(rb.panchayats) %></td>
+            <td><%= link_to rb.enumeration_blocks.size, "#", :class => 'tipTipRight', :title => enumeration_block_list(rb.enumeration_blocks) %></td>
             <td>
               <%= link_for_show_pop(rb) %>
               <%# link_for_edit(edit_revenue_block_path(rb)) %>

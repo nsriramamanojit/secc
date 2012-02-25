@@ -1,13 +1,26 @@
-<% title "SECC | State" %>
-<% content_for :sub_heading do %>
-    <%= sub_heading('SECC | States ', "State Details") %>
-<% end %>
-<div class="formbox">
-  <div class="desc"><b>Name</b> :  <%= @state.name %></div>
-  <div class="divider"></div>
-  <div class="desc"><b>Reference Code</b> : <%= @state.reference_number %> </div>
-  <div class="divider"></div>
-  <div class="desc"><b>Reference Name</b> : <%= @state.reference_name %> </div>
-  <div class="divider"></div>
-  <div class="desc"><b>Description</b> : <%= @state.description %> </div>
+<div id="page_container">
+	<div id="page_content">
+		<div class="content">
+			<h3>States | View State Details</h3>
+
+<table width="100%" border=0 cellspacing=1 cellpadding=3 class="listTable">
+			<tr>
+				<th width="20%">Name</th>
+				<td><%= @state.name %></td>
+			</tr>
+			<tr>
+				<th width="20%">Reference Code</th>
+				<td><%= "%02d"% @state.reference_number %></td>
+			</tr>
+			<tr>
+				<th width="20%">Reference Name</th>
+				<td><%= @state.reference_name %></td>
+			</tr>
+			<tr>
+				<th width="20%">Description</th>
+				<td><%= @state.description %></td>
+			</tr>
+</table>
+		</div>
+	</div>
 </div>

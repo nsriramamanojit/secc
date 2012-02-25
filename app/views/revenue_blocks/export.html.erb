@@ -1,0 +1,42 @@
+<h5 align="center"> List of Revenue Blocks</h5>
+<table class="tablesorter1" align="center">
+  <thead>
+  <tr>
+    <th>SNo</th>
+    <th>Name</th>
+    <th>Reference No</th>
+    <th>Reference Name</th>
+  </tr>
+  </thead>
+  <% i=1 %>
+  <% @revenue_blocks.each do |rb| %>
+      <tr>
+        <td><%= i %></td>
+        <td><%= rb.name.titleize %></td>
+        <td><%= "%03d" %rb.reference_number %></td>
+        <td><%= rb.reference_name %></td>
+      </tr>
+      <% i = i + 1 %>
+  <% end %>
+
+</table>
+
+<style type="text/css">
+    table.tablesorter1 {
+        border-collapse: collapse;
+        border: 1px solid #000000;
+        font-family: Tahoma, verdana, helvetica, sans-serif;
+        font-size: 14px;
+    }
+
+    table.tablesorter1 td, table.tablesorter1 th {
+        border-collapse: collapse;
+        border: 1px solid #000000;
+        text-align: center;
+    }
+    h5
+    {
+        font-family: Tahoma, verdana, helvetica, sans-serif;
+    }
+
+</style>

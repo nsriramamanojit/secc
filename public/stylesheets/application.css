@@ -3,17 +3,10 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f2f2f2;
-    font-family:  verdana, helvetica, sans-serif;
+    font-family: Tahoma, verdana, helvetica, sans-serif;
     font-size: 12px;
     color: #000;
     font-weight: normal;
-    /* Added from LSSSP Phase-1 */
-/*
-    background-color:#037db0;
-	background-image:url("/images/page_bg.jpg");
-	background-position:top;
-	background-repeat:repeat-x;
-*/
 }
 
 html > body #ajax-indicator {
@@ -68,14 +61,14 @@ h1 { font-family: 'Bigshot One', arial, serif;
 h3 {
     padding:0 0 10px 0;
     margin: 10px 0;
-    font-family: verdana, helvetica, sans-serif;
+    font-family: Tahoma, verdana, helvetica, sans-serif;
     font-size: 14px;
     font-weight: bold;
     color: #5a5a5a;
     border-bottom: solid 1px #e5eaef;
 }
 h3 span {
-    font-family:  verdana, helvetica, sans-serif;
+    font-family: Tahoma, verdana, helvetica, sans-serif;
     font-size: 13px;
     font-weight: bold;
     color: #5a5a5a;
@@ -92,7 +85,7 @@ div.doted {
 }
 textarea {
     font-size: 12px;
-    font-family:  verdana, helvetica, sans-serif;
+    font-family: Tahoma, verdana, helvetica, sans-serif;
     padding: 1px 4px 1px 4px;
 }
 
@@ -133,9 +126,6 @@ span.inactive_section {
 }
 .section {
     height: 100%;
-    /*	background-color: #f8faff;
-        border: 1px #e5eaef solid;
-    */
 }
 .handle {
     font-weight: bold;
@@ -196,8 +186,6 @@ h4.header_stat2 {
 
 #page_container {
     margin: 20px 5px;
-
-    /*background-color: #fff;*/
     padding: 0 5px;
 }
 #page_container div#page_top {
@@ -715,6 +703,13 @@ span.space {
     color: #414141;
     border-radius: 5px 5px 5px 5px;
 }
+.help_text_caution {
+    padding: 10px;
+    margin: 0 0 20px 0;
+    background-color: #c4def5;
+    color: #ff0000;
+    border-radius: 5px 5px 5px 5px;
+}
 .help_title {
     font-weight: bold;
     padding: 0 5px 0 0;
@@ -791,8 +786,6 @@ input.btn_upload {
 .inline {
     display: inline;
 }
-
-
 
 .padding_left {
     padding-left: 5px;
@@ -904,16 +897,7 @@ table.tablesorter tbody tr:hover {
     border-collapse: collapse;
     border: 1px solid #cdcdcd;
 }
-/*
-.not_approved {
-	background: url(/images/cros.gif) center no-repeat;
-	cursor: pointer;
-}
-.approved	{
-	background: url(/images/tick.gif) center no-repeat;
-	cursor: pointer;
-}
-*/
+
 .page_navigate {
     cursor: pointer;
 }
@@ -976,7 +960,6 @@ table.tablesorter tbody tr:hover {
     padding-left: 26%;
     width: 70%;
 }
-
 
 #membership_end {margin-left: 10px; float: right; position: relative; top: 3px; cursor: pointer;}
 #membership_end div {float: left; height: 27px; color: #fff;}
@@ -1204,7 +1187,6 @@ div.logotype div.child:first-child {
     font-weight: bold;
     text-decoration: underline;
     font-size: 12px;
-    background:url() no-repeat;
 }
 #top_m li select {
     margin: 0 0px 0px 4px;
@@ -1312,15 +1294,8 @@ div.logotype div.child:first-child {
 
 
 .formTextBox{
-    /*      background-image: url("/images/stripe.png");
-   background-repeat: repeat;*/
-
-    font-family: 'Ubuntu', arial, serif;
-    /*      -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px; */
+    font-family: Tahoma, verdana, helvetica, sans-serif;
     height:1.5em; line-height:1.5em; font-size:100%; padding:0;
-
 }
 
 /*EXTRAS */

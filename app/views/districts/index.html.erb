@@ -1,5 +1,5 @@
 <% title "SECC | Districts" %>
-<h3><%= t :secc%> | <%= t :districts %> | </h3>
+<h3><%= t :secc %> | <%= t :districts %> |  <%= t :manage %></h3>
 <% content_for :left_panel do %>
     <td valign="top" width="250"> <%= render 'common/search' %>
       <%= render 'recent' %> </td>
@@ -8,17 +8,23 @@
   Area for managing <%= t :districts %>. <br/>
   Along with creating, managing and removing Districts for Application.
 </div>
-<div>
-  <%= link_to "Create New District", "#", :class=>'usuallink bold_text', :id=>'add_new' %>
-</div>
-<div id="new_form">
-  <%= render 'form' %>
+<div class="link_buttons">
+  <%= link_to content_tag(:span, 'New District'), new_district_path, :class => 'btn-blue' if permitted_to? :create %>
+  <%= link_to content_tag(:span, 'Export'), export_districts_path, :class => 'btn-yellow' %>
 </div>
 <% if @districts.blank? %>
     <div class="error_msg">
       OOPS!.. No Districts are Found in the System..!
     </div>
 <% else %>
+    <table width="100%">
+      <tr>
+        <td align="right">
+          <b><i>per page</i></b>
+          <%= per_page %>| <%= page_entries_info @districts %>
+        </td>
+      </tr>
+    </table>
     <table class="tablesorter">
       <thead>
       <tr>
@@ -26,6 +32,7 @@
         <th>Name</th>
         <th>State</th>
         <th>Reference Number</th>
+        <th>Reference Name</th>
         <th>Revenue Blocks</th>
         <th>Panchayats</th>
         <th>Enumeration Blocks</th>
@@ -37,22 +44,24 @@
       <% @districts.each do |district| %>
           <tr>
             <td><%= i %></td>
-            <td><%= highlight(district.name,params[:search]) %></td>
-            <td><%= district.state.name %></td>
-            <td><%=  "%02d"%district.reference_number.to_s%></td>
-            <td><%= link_to district.revenue_blocks.size,"#",:class=>'tipTipRight',:title=>associated_names(district.revenue_blocks) %></td>
-            <td><%= link_to district.panchayats.size,"#",:class=>'tipTipRight',:title=>associated_names(district.panchayats) %></td>
-            <td><%= link_to district.enumeration_blocks.size,"#",:class=>'tipTipRight',:title=>enumeration_block_list(district.enumeration_blocks) %></td>
+            <td><%= highlight(district.name, params[:search]) %></td>
+            <td><%= highlight(district.state.name,params[:search]) %></td>
+            <td><%= "%02d"%district.reference_number.to_s %></td>
+            <td><%= district.reference_name %></td>
+            <td><%= link_to district.revenue_blocks.size, "#", :class => 'tipTipRight', :title => associated_names(district.revenue_blocks) %></td>
+            <td><%= link_to district.panchayats.size, "#", :class => 'tipTipRight', :title => associated_names(district.panchayats) %></td>
+            <td><%= link_to district.enumeration_blocks.size, "#", :class => 'tipTipRight', :title => enumeration_block_list(district.enumeration_blocks) %></td>
             <td>
               <%= link_for_show_pop(district) %>
-              <%# link_for_edit(edit_district_path(district)) %>
-
             </td>
           </tr>
           <% i = i + 1 %>
       <% end %>
       </tbody>
     </table>
+    <div class="flickr_pagination">
+      <%= page_entries_info @districts %> <%= will_paginate @districts, :container => false %>
+    </div>
 <% end %>
 
 

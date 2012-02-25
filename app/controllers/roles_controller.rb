@@ -9,7 +9,7 @@ class RolesController < ApplicationController
 
 
   def index
-    @roles = Role.all
+    @roles = Role.search(params[:search])
     @role = Role.new
 
     respond_to do |format|

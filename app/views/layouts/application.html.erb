@@ -12,6 +12,7 @@
   <%= render 'common/header'%>
   <div id="page_menu">
     <%= render 'common/menu' if  has_role?(:super_admin) %>
+    <%= render 'common/manager_menu' if  has_role?(:manager) %>
     <%= render 'common/block_menu' if  has_role?(:block_admin) || has_role?(:block_incharge) || has_role?(:district_coordinator) %>
 
   </div>

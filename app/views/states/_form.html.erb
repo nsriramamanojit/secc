@@ -5,7 +5,7 @@
   </p>
   <%= simple_form_for(@state, :validate => true) do |f| %>
       <fieldset>
-        <%= f.input :name %>
+        <%= f.input :name,:placeholder=>"Enter State Name" %>
         <%= f.input :description %>
         <%= f.input :reference_number, :label => 'Reference Code' %>
         <%= f.input :reference_name, :label => 'Reference Name' %>

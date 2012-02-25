@@ -27,7 +27,9 @@ class District < ActiveRecord::Base
     end
     def search(query)
       if query
-        where(:name.matches => "%#{query}%") #from meta_where gem
+        #where(:name.matches => "%#{query}%") #from meta_where gem
+        joins(:state).where({:name.matches =>"%#{query}%"}|{:states=>[:name.matches=>"%#{query}%"]})
+
       else
         scoped
       end

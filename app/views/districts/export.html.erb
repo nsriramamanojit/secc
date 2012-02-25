@@ -1,0 +1,48 @@
+<h5 align="center"> List of Districts</h5>
+<table class="tablesorter1" align="center">
+  <thead>
+  <tr>
+    <th>SNo</th>
+    <th>Name</th>
+    <th>Reference No</th>
+    <th>Reference Name</th>
+    <th>State</th>
+    <th>Revenue Blocks</th>
+    <th>Panchayats</th>
+    <th>Enumeration Blocks</th>
+  </tr>
+  </thead>
+  <% i=1 %>
+  <% @districts.each do |district| %>
+      <tr>
+        <td><%= i %></td>
+        <td><%= district.name.titleize %></td>
+        <td><%= "%02d" %district.reference_number %></td>
+        <td><%= district.reference_name %></td>
+        <td><%= district.state.name %></td>
+        <td><%= district.revenue_blocks.size %></td>
+        <td><%= district.panchayats.size %></td>
+        <td><%= district.enumeration_blocks.size %></td>
+      </tr>
+      <% i = i + 1 %>
+  <% end %>
+
+</table>
+
+<style type="text/css">
+    table.tablesorter1 {
+        border-collapse: collapse;
+        border: 1px solid #000000;
+        font-family: Tahoma, verdana, helvetica, sans-serif;
+        font-size: 14px;
+    }
+    table.tablesorter1 td, table.tablesorter1 th {
+        border-collapse: collapse;
+        border: 1px solid #000000;
+        text-align: center;
+    }
+    h5
+    {
+        font-family: Tahoma, verdana, helvetica, sans-serif;
+    }
+</style>
