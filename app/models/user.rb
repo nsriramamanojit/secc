@@ -50,6 +50,14 @@ class User < ActiveRecord::Base
     def recent
       order('id DESC').limit(4)
     end
+    def search(query,roleid)
+      if query
+        where(:name.matches => "%#{query}%") #from meta_where gem
+      else
+        scoped
+      end
+    end
+
 
   end
 

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   filter_access_to :all
 
   def index
-    @users = User.paginate(:page => page, :per_page => per_page) if permitted_to? :index
+    @users = User.search(params[:search],params[:id]).paginate(:page => page, :per_page => per_page) if permitted_to? :index
     @users = User.revenue_block_users.joins(:user_profile).where(:user_profile => {:revenue_block_id => current_user.user_profile.revenue_block_id}).paginate(:page => page, :per_page => per_page) if has_role?(:block_admin)
     @users = User.revenue_block_users.joins(:user_profile).where(:user_profile => {:district_id => current_user.user_profile.district_id}).paginate(:page => page, :per_page => per_page) if has_role?(:district_coordinator)
 

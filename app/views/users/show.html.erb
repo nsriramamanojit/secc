@@ -1,21 +1,36 @@
 <% title "SECC | User" %>
-<% content_for :sub_heading do %>
-    <%= sub_heading('SECC | Users ', "User Details") %>
-<% end %>
-<div class="formbox">
-  <div class="desc"><b>Name</b> :  <%= @user.name %></div>
-  <div class="divider"></div>
-  <div class="desc"><b>Login</b> : <%= @user.login %> </div>
-  <div class="divider"></div>
-  <div class="desc"><b>Father Name</b> : <%= @user.father_name %> </div>
-  <div class="divider"></div>
-  <div class="desc"><b>Mobile</b> : <%= @user.mobile_number %> </div>
-  <div class="divider"></div>
-  <div class="desc"><b>State</b> : <%= @user.user_profile.state_id? ? @user.user_profile.state.name : 'N.A' %> </div>
-  <div class="divider"></div>
-  <div class="desc"><b>District</b> : <%= @user.user_profile.district_id? ? @user.user_profile.district.name : 'N.A' %>
+<% title "SECC | Districts" %>
+<div id="page_container">
+  <div id="page_content">
+    <div class="content">
+      <h3>Users | View User Details</h3>
+
+      <table width="100%" border=0 cellspacing=1 cellpadding=3 class="listTable">
+        <tr>
+          <th width="20%">Login</th>
+          <td><%= @user.login %></td>
+        </tr>
+        <tr>
+          <th width="20%">Name</th>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <th width="20%">Mobile</th>
+          <td><%= @user.mobile_number %></td>
+        </tr>
+        <tr>
+          <th width="20%">State</th>
+          <td><%= @user.user_profile.state_id? ? @user.user_profile.state.name : 'N.A' %></td>
+        </tr>
+        <tr>
+          <th width="20%">District</th>
+          <td><%= @user.user_profile.district_id? ? @user.user_profile.district.name : 'N.A' %></td>
+        </tr>
+        <tr>
+          <th width="20%">Revenue Block</th>
+          <td><%= @user.user_profile.revenue_block_id? ? @user.user_profile.revenue_block.name : 'N.A' %></td>
+        </tr>
+      </table>
+    </div>
   </div>
-  <div class="divider"></div>
-  <div class="desc"><b>Revenue Block</b>
-    : <%= @user.user_profile.revenue_block_id? ? @user.user_profile.revenue_block.name : 'N.A' %> </div>
 </div>

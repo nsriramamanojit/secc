@@ -335,7 +335,7 @@ div#page_menu ul li:hover ul, div#page_menu ul li ul:hover {
     border: solid 1px #ced8e5;
     border-top: solid 5px #0052be;
     background-color: #fff;
-    overflow:hidden;
+    overflow:auto;
     padding-bottom: 20px;
 }
 #page_container div#page_content div.content {
