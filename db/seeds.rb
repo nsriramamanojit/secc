@@ -5,9 +5,6 @@ session = User.create do |u|
   u.address1= 'Super Admin'
   u.mobile_number=9885976490
   Assignment.create(:user_id => 1, :role_id => 1, :created_at => Time.now, :updated_at => Time.now)
-  c=UserProfile.new
-  c.user_id = 1
-  c.save(:validate => false)
 end
 session.save
 session = User.create do |u|
@@ -17,9 +14,6 @@ session = User.create do |u|
   u.address1= 'Admin'
   u.mobile_number=9885976490
   Assignment.create(:user_id => 2, :role_id => 2, :created_at => Time.now, :updated_at => Time.now)
-  c=UserProfile.new
-  c.user_id = 2
-  c.save(:validate => false)
 end
 session.save
 session = User.create do |u|
@@ -29,9 +23,6 @@ session = User.create do |u|
   u.address1= 'Manager'
   u.mobile_number=9885976490
   Assignment.create(:user_id => 3, :role_id => 3, :created_at => Time.now, :updated_at => Time.now)
-  c=UserProfile.new
-  c.user_id = 3
-  c.save(:validate => false)
 end
 session.save
 session = User.create do |u|
@@ -40,10 +31,7 @@ session = User.create do |u|
   u.password = 'admin123'
   u.address1= 'ECIL'
   u.mobile_number=9885976490
-  Assignment.create(:user_id => 4, :role_id => 3, :created_at => Time.now, :updated_at => Time.now)
-  c=UserProfile.new
-  c.user_id = 4
-  c.save(:validate => false)
+  Assignment.create(:user_id => 4, :role_id => 9, :created_at => Time.now, :updated_at => Time.now)
 end
 session.save
 
@@ -197,5 +185,7 @@ Role.create(:name => "district_coordinator", :short_name => "dc", :description =
 Role.create(:name => "block_admin", :short_name => "ba", :description => "Block Admin", :created_at => Time.now, :created_by => 1)
 Role.create(:name => "block_supervisor", :short_name => "bs", :description => "Block Supervisor", :created_at => Time.now, :created_by => 1)
 Role.create(:name => "block_incharge", :short_name => "bi", :description => "Block InCharge", :created_at => Time.now, :created_by => 1)
+Role.create(:name => "ecil", :short_name => "ecil", :description => "ECIL/NIC", :created_at => Time.now, :created_by => 1)
+
 ##############States###############
 State.create(:name => 'Bihar', :description => 'BIHAR State', :created_by => 1, :reference_number => 10, :reference_name => "BR", :created_at => Time.now, :created_by => 1)

@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.search(params[:search],params[:id]).paginate(:page => page, :per_page => per_page) if permitted_to? :index
-    @users = User.revenue_block_users.joins(:user_profile).where(:user_profile => {:revenue_block_id => current_user.user_profile.revenue_block_id}).paginate(:page => page, :per_page => per_page) if has_role?(:block_admin)
+    @users = User.revenue_block_users.joins(:user_profile).where(:user_profile => {:revenue_block_id => current_user.user_profile.revenue_block_id}).paginate(:page => page, :per_page => per_page) if has_role?(:block_admin) || has_role?(:block_supervisor)
     @users = User.revenue_block_users.joins(:user_profile).where(:user_profile => {:district_id => current_user.user_profile.district_id}).paginate(:page => page, :per_page => per_page) if has_role?(:district_coordinator)
 
     respond_to do |format|
@@ -124,7 +124,7 @@ class UsersController < ApplicationController
   ########################################################
   private
   def recent_items
-    @recent = User.revenue_block_users.joins(:user_profile).where(:user_profile => {:revenue_block_id => current_user.user_profile.revenue_block_id}).paginate(:page => page, :per_page => per_page).recent if has_role?(:block_admin)
+    @recent = User.revenue_block_users.joins(:user_profile).where(:user_profile => {:revenue_block_id => current_user.user_profile.revenue_block_id}).paginate(:page => page, :per_page => per_page).recent if has_role?(:block_admin) || has_role?(:block_supervisor)
     @recent = User.revenue_block_users.joins(:user_profile).where(:user_profile => {:district_id => current_user.user_profile.district_id}).paginate(:page => page, :per_page => per_page).recent if has_role?(:district_coordinator)
     @recent = User.recent if has_role?(:super_admin)
   end

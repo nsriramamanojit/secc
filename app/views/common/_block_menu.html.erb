@@ -2,7 +2,7 @@
     <li><%= tab_heading 'Dashboard' %>
     <ul>
       <li>
-        <%= link_to 'Users', users_path,:class=>"tipTip1",:title=>"Manage Panchayats" %>
+        <%= link_to 'Users', users_path,:class=>"tipTip1",:title=>"Manage Users" %>
       </li>
       <li>
         <%= link_to 'Panchayat', panchayats_path,:class=>"tipTip1",:title=>"Manage Panchayats" %>
@@ -12,10 +12,10 @@
       </li>
     </ul>
   </li>
-    <li><%= tab_heading 'Work' %>
+  <li><%= tab_heading 'Attendance' %>
     <ul>
       <li>
-        <%= link_to 'Status Report', list_all_enumeration_blocks_path ,:class=>"tipTip1",:title=>"Status Report of Enumeration Blocks" %>
+        <%= link_to 'Manage Attendance', attendances_path ,:class=>"tipTip1",:title=>"Attendance" %>
       </li>
     </ul>
   </li>

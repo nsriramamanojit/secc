@@ -74,4 +74,17 @@ module ApplicationHelper
     content << 'and more' if users.size > 16
     content.html_safe
   end
+
+  def get_rb_name(id)
+    content = " "
+    rb = RevenueBlock.where(:id=>id).first
+    content << rb.name + "(" + "%03d"%rb.reference_number.to_s + ")"
+    content.html_safe
+  end
+  def get_district_name(id)
+    content = " "
+    rb = RevenueBlock.where(:id=>id).first
+    content << rb.district.name + "(" + "%02d"%rb.district.reference_number.to_s + ")"
+    content.html_safe
+  end
 end

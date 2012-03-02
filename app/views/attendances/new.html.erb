@@ -1,0 +1,8 @@
+<% title "SECC | Attendance " %>
+<% content_for :sub_heading do %>
+    <%= sub_heading('SECC | Attendance','Attendance') %>
+<% end %>
+<%= render 'form',:heading => 'Save' %>
+<div class="link_buttons">
+  <%=link_to_all(attendances_path)%>
+</div>

@@ -1,7 +1,9 @@
 Secc::Application.routes.draw do
 
+  resources :attendances
+
   resources :enumeration_blocks do
-    get :list_all, :on=>:collection
+    get :list_all,:on=>:member
     get :update_status, :on=>:member
     put :status_update, :on=>:member
     get :status_report, :on=>:collection

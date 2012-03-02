@@ -77,7 +77,7 @@ class EnumerationBlocksController < ApplicationController
   end
 
   def list_all
-    @enumeration_blocks = EnumerationBlock.search(params[:id],params[:search])
+    @enumeration_blocks = EnumerationBlock.where(:revenue_block_id => params[:id])
 
     respond_to do |format|
       format.html
@@ -92,7 +92,7 @@ class EnumerationBlocksController < ApplicationController
     @enumeration_block = EnumerationBlock.find(params[:id])
     respond_to do |format|
       if @enumeration_block.update_attributes(params[:enumeration_block])
-        format.html { redirect_to(list_all_enumeration_blocks_url, :notice => 'Enumeration Block Status Successfully updated.') }
+        format.html { redirect_to(:back, :notice => 'Enumeration Block Status Successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "update_status" }

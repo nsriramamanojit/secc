@@ -1,3 +1,13 @@
+<table align="center" border=0>
+  <tr>
+    <td>
+      <%= image_tag "#{RAILS_ROOT}/public/images/logo_banner_bw.jpg" %>
+    </td>
+    <td>
+      <h3 align="center">Vedavaag Systems Limited.<br/>Hyderabad<br/></h3>
+    </td>
+  </tr>
+</table>
 <h3>Status Report - <%= Date.today.strftime("%d-%m-%Y") %></h3>
 <table class="tablesorter">
   <thead>
@@ -10,10 +20,10 @@
   </thead>
   <tbody>
   <tr>
-    <td><%= Panchayat.all.size %></td>
-    <td><%= EnumerationBlock.all.size %></td>
-    <td><%= EnumerationBlock.total_houses %></td>
-    <td><%= EnumerationBlock.total_citizens %></td>
+    <td><%= Panchayat.where(:revenue_block_id=>params[:id]).size %></td>
+    <td><%= EnumerationBlock.where(:revenue_block_id=>params[:id]).size %></td>
+    <td><%= EnumerationBlock.total_houses(params[:id]) %></td>
+    <td><%= EnumerationBlock.total_citizens(params[:id]) %></td>
   </tr>
   </tbody>
 </table>
@@ -31,68 +41,67 @@
   <tbody>
   <tr>
     <td class="txt_bold">Catalog</td>
-    <td id="nys_1"><%= EnumerationBlock.catalog_nys.size %></td>
-    <td id="going_1"><%= EnumerationBlock.catalog_going.size %></td>
-    <td id="pending_1"><%= EnumerationBlock.catalog_pending.size %></td>
-    <td id="complete_1"><%= EnumerationBlock.catalog_completed.size %></td>
-    <td id="no_data_1"><%= EnumerationBlock.catalog_no_data.size %></td>
+    <td id="nys_1"><%= EnumerationBlock.catalog_nys(params[:id]).size %></td>
+    <td id="going_1"><%= EnumerationBlock.catalog_going(params[:id]).size %></td>
+    <td id="pending_1"><%= EnumerationBlock.catalog_pending(params[:id]).size %></td>
+    <td id="complete_1"><%= EnumerationBlock.catalog_completed(params[:id]).size %></td>
+    <td id="no_data_1"><%= EnumerationBlock.catalog_no_data(params[:id]).size %></td>
   </tr>
   <tr>
     <td>Enumeration</td>
-    <td id="nys_2"><%= EnumerationBlock.enumeration_nys.size %></td>
-    <td id="going_2"><%= EnumerationBlock.enumeration_going.size %></td>
-    <td id="pending_2"><%= EnumerationBlock.enumeration_pending.size %></td>
-    <td id="complete_2"><%= EnumerationBlock.enumeration_completed.size %></td>
-    <td id="no_data_2"><%= EnumerationBlock.enumeration_no_data.size %></td>
+    <td id="nys_2"><%= EnumerationBlock.enumeration_nys(params[:id]).size %></td>
+    <td id="going_2"><%= EnumerationBlock.enumeration_going(params[:id]).size %></td>
+    <td id="pending_2"><%= EnumerationBlock.enumeration_pending(params[:id]).size %></td>
+    <td id="complete_2"><%= EnumerationBlock.enumeration_completed(params[:id]).size %></td>
+    <td id="no_data_2"><%= EnumerationBlock.enumeration_no_data(params[:id]).size %></td>
   </tr>
   <tr>
     <td>NIC Enumeration</td>
-    <td id="nys_3"><%= EnumerationBlock.enu_nic_upload_nys.size %></td>
-    <td id="going_3"><%= EnumerationBlock.enu_nic_upload_going.size %></td>
-    <td id="pending_3"><%= EnumerationBlock.enu_nic_upload_pending.size %></td>
-    <td id="complete_3"><%= EnumerationBlock.enu_nic_upload_completed.size %></td>
-    <td id="no_data_3"><%= EnumerationBlock.enu_nic_upload_no_data.size %></td>
+    <td id="nys_3"><%= EnumerationBlock.enu_nic_upload_nys(params[:id]).size %></td>
+    <td id="going_3"><%= EnumerationBlock.enu_nic_upload_going(params[:id]).size %></td>
+    <td id="pending_3"><%= EnumerationBlock.enu_nic_upload_pending(params[:id]).size %></td>
+    <td id="complete_3"><%= EnumerationBlock.enu_nic_upload_completed(params[:id]).size %></td>
+    <td id="no_data_3"><%= EnumerationBlock.enu_nic_upload_no_data(params[:id]).size %></td>
   </tr>
   <tr>
     <td>Supervising</td>
-    <td id="nys_4"><%= EnumerationBlock.supervising_nys.size %></td>
-    <td id="going_4"><%= EnumerationBlock.supervising_going.size %></td>
-    <td id="pending_4"><%= EnumerationBlock.supervising_pending.size %></td>
-    <td id="complete_4"><%= EnumerationBlock.supervising_completed.size %></td>
-    <td id="no_data_4"><%= EnumerationBlock.supervising_no_data.size %></td>
+    <td id="nys_4"><%= EnumerationBlock.supervising_nys(params[:id]).size %></td>
+    <td id="going_4"><%= EnumerationBlock.supervising_going(params[:id]).size %></td>
+    <td id="pending_4"><%= EnumerationBlock.supervising_pending(params[:id]).size %></td>
+    <td id="complete_4"><%= EnumerationBlock.supervising_completed(params[:id]).size %></td>
+    <td id="no_data_4"><%= EnumerationBlock.supervising_no_data(params[:id]).size %></td>
   </tr>
   <tr>
     <td>NIC Supervising</td>
-    <td id="nys_5"><%= EnumerationBlock.super_nic_upload_nys.size %></td>
-    <td id="going_5"><%= EnumerationBlock.super_nic_upload_going.size %></td>
-    <td id="pending_5"><%= EnumerationBlock.super_nic_upload_pending.size %></td>
-    <td id="complete_5"><%= EnumerationBlock.super_nic_upload_completed.size %></td>
-    <td id="no_data_5"><%= EnumerationBlock.super_nic_upload_no_data.size %></td>
+    <td id="nys_5"><%= EnumerationBlock.super_nic_upload_nys(params[:id]).size %></td>
+    <td id="going_5"><%= EnumerationBlock.super_nic_upload_going(params[:id]).size %></td>
+    <td id="pending_5"><%= EnumerationBlock.super_nic_upload_pending(params[:id]).size %></td>
+    <td id="complete_5"><%= EnumerationBlock.super_nic_upload_completed(params[:id]).size %></td>
+    <td id="no_data_5"><%= EnumerationBlock.super_nic_upload_no_data(params[:id]).size %></td>
   </tr>
   <tr>
     <td>Draft List</td>
-    <td id="nys_6"><%= EnumerationBlock.draft_list_nys.size %></td>
-    <td id="going_6"><%= EnumerationBlock.draft_list_going.size %></td>
-    <td id="pending_6"><%= EnumerationBlock.draft_list_pending.size %></td>
-    <td id="complete_6"><%= EnumerationBlock.draft_list_completed.size %></td>
-    <td id="no_data_6"><%= EnumerationBlock.draft_list_no_data.size %></td>
+    <td id="nys_6"><%= EnumerationBlock.draft_list_nys(params[:id]).size %></td>
+    <td id="going_6"><%= EnumerationBlock.draft_list_going(params[:id]).size %></td>
+    <td id="pending_6"><%= EnumerationBlock.draft_list_pending(params[:id]).size %></td>
+    <td id="complete_6"><%= EnumerationBlock.draft_list_completed(params[:id]).size %></td>
+    <td id="no_data_6"><%= EnumerationBlock.draft_list_no_data(params[:id]).size %></td>
   </tr>
   <tr>
     <td>Draft List Modification</td>
-    <td id="nys_7"><%= EnumerationBlock.draft_list_edit_nys.size %></td>
-    <td id="going_7"><%= EnumerationBlock.draft_list_edit_going.size %></td>
-    <td id="pending_7"><%= EnumerationBlock.draft_list_edit_pending.size %></td>
-    <td id="complete_7"><%= EnumerationBlock.draft_list_edit_completed.size %></td>
-    <td id="no_data_7"><%= EnumerationBlock.draft_list_edit_no_data.size %></td>
+    <td id="nys_7"><%= EnumerationBlock.draft_list_edit_nys(params[:id]).size %></td>
+    <td id="going_7"><%= EnumerationBlock.draft_list_edit_going(params[:id]).size %></td>
+    <td id="pending_7"><%= EnumerationBlock.draft_list_edit_pending(params[:id]).size %></td>
+    <td id="complete_7"><%= EnumerationBlock.draft_list_edit_completed(params[:id]).size %></td>
+    <td id="no_data_7"><%= EnumerationBlock.draft_list_edit_no_data(params[:id]).size %></td>
   </tr>
   <tr>
     <td>Final List</td>
-    <td id="nys_8"><%= EnumerationBlock.final_list_nys.size %></td>
-    <td id="going_8"><%= EnumerationBlock.final_list_going.size %></td>
-    <td id="pending_8"><%= EnumerationBlock.final_list_pending.size %></td>
-    <td id="complete_8"><%= EnumerationBlock.final_list_completed.size %></td>
-    <td id="no_data_8"><%= EnumerationBlock.final_list_no_data.size %></td>
+    <td id="nys_8"><%= EnumerationBlock.final_list_nys(params[:id]).size %></td>
+    <td id="going_8"><%= EnumerationBlock.final_list_going(params[:id]).size %></td>
+    <td id="pending_8"><%= EnumerationBlock.final_list_pending(params[:id]).size %></td>
+    <td id="complete_8"><%= EnumerationBlock.final_list_completed(params[:id]).size %></td>
+    <td id="no_data_8"><%= EnumerationBlock.final_list_no_data(params[:id]).size %></td>
   </tr>
-
   </tbody>
 </table>

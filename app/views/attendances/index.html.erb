@@ -1,0 +1,57 @@
+<% title "SECC | Attendance" %>
+<h3>SECC | Manage | Attendance</h3>
+
+
+<div class="help_text">
+  Area for managing Enumeration Blocks. <br/>
+  Along with creating, managing and removing Enumeration Blocks for Application.
+</div>
+<div class="link_buttons">
+  <%= link_to content_tag(:span, 'Create Attendance'), new_attendance_path, :class => 'btn-blue' %>
+</div>
+
+<% if @enumeration_blocks.blank? %>
+    <div class="error_msg">
+      OOPS!.. No Attendance Reports are Found for Revenue Block ...!
+    </div>
+<% else %>
+    <table class="tablesorter">
+      <thead>
+      <tr>
+        <th>SNo</th>
+        <th>Enumeration No</th>
+        <th>Sub EB No</th>
+        <th>Houses</th>
+        <th>Citizens</th>
+        <th>Panchayat</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% i=1 %>
+      <% @attendances.each do |attendance| %>
+          <tr>
+            <td><%= i %></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <% i = i + 1 %>
+      <% end %>
+      </tbody>
+    </table>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+

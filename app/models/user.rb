@@ -38,12 +38,14 @@ class User < ActiveRecord::Base
   end
 
   #Create Login and Password
+=begin
   before_create :create_user_name
   def create_user_name
       user_profile.revenue_block.increment!(:user_count_flag)
       user = user_profile.state.reference_number.to_s + "%02d" %user_profile.district.reference_number.to_s+ "%03d" %user_profile.revenue_block.reference_number.to_s+"%02d" % user_profile.revenue_block.user_count_flag
       self.login = self.password = user
   end
+=end
 
   #Recent and Search
   class << self

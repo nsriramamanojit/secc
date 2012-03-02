@@ -17,3 +17,4 @@ gem "simple_form"
 gem 'client_side_validations'
 gem "nifty-generators", :group => :development
 
+

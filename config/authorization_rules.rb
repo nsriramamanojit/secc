@@ -9,6 +9,11 @@ authorization do
     has_permission_on [:users,:roles,:states,:districts,:revenue_blocks], :to=>[:index,:show,:export]
     has_permission_on [:enumeration_blocks],:to=>[:index,:show,:list_all,:status_report,:status_report_export,:remarks]
   end
+  role :ecil do
+    has_permission_on [:users,:roles,:states,:districts,:revenue_blocks,:attendances], :to=>[:index,:show,:export]
+    has_permission_on [:enumeration_blocks],:to=>[:index,:show,:list_all,:status_report,:status_report_export,:remarks]
+
+  end
 
   role :state_coordinator do
     has_permission_on [:panchayats,:users], :to => [:index,:show]
@@ -21,7 +26,7 @@ authorization do
   end
 
   role :block_admin do
-    has_permission_on [:panchayats], :to => [:index, :show, :new, :create, :edit, :update,:destroy,:export]
+    has_permission_on [:panchayats,:attendances], :to => [:index, :show, :new, :create, :edit, :update,:destroy,:export]
     has_permission_on [:users], :to=>[:index,:show]
     has_permission_on [:enumeration_blocks], :to => [:index, :show, :new, :create, :edit, :update,:destroy,:list_all,:update_status,:status_update,:status_report,:approve,:status_report_export,:remarks]
   end
@@ -32,8 +37,10 @@ authorization do
   end
 
   role :block_supervisor do
-    has_permission_on [:panchayats], :to => [:index, :show]
+    has_permission_on [:panchayats,:attendances], :to => [:index, :show,:create,:new]
     has_permission_on [:enumeration_blocks], :to => [:index, :show, :list_all,:update_status,:status_update,:status_report,:status_report_export]
+    has_permission_on [:users], :to=>[:index,:show]
+
   end
 
 end

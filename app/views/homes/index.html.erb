@@ -1,5 +1,73 @@
-<% title "SECC | Dashboard" %>
-<%# content_for :sub_heading do %>
-    <%# sub_heading('SECC | Dashboard', 'Dashboard') %>
-<%# end %>
-<h3>Welcome to SECC</h3>
+<% title "SECC | Home" %>
+<h3>SECC | Revenue Blocks | Manage</h3>
+
+<div class="help_text">
+  Area for managing Revenue Block. <br/>
+</div>
+<div class="link_buttons">
+  <%= link_to content_tag(:span, 'View Consolidated Report'), "#", :class => 'btn-yellow' %>
+  <%= link_to content_tag(:span, 'Download Consolidated Report'), "#", :class => 'btn-yellow' %>
+  <%= link_to content_tag(:span, 'Home'), homes_url, :class => 'btn-yellow' %>
+</div>
+
+<% if @revenue_blocks.blank? %>
+    <div class="error_msg">
+      OOPS!.. No Revenue Blocks are Found in the System..!
+    </div>
+<% else %>
+    <table width="100%">
+      <tr>
+        <td align="right">
+          <b><i>per page</i></b>
+          <%= per_page %>| <%= page_entries_info @revenue_blocks %>
+        </td>
+      </tr>
+    </table>
+    <table class="tablesorter">
+      <thead>
+      <tr>
+        <th>SNo</th>
+        <th>State</th>
+        <th>District</th>
+        <th>RB Name</th>
+        <th>Ref. No</th>
+        <th>Ref. Name</th>
+        <th>Panchayats</th>
+        <th>E-Blocks</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% i=1 %>
+      <% @revenue_blocks.each do |rb| %>
+          <tr>
+            <td><%= i %></td>
+            <td><%= rb.state.name + " (" + rb.state.reference_number.to_s + ")" %></td>
+            <td><%= rb.district.name + " (" + "%02d"%rb.district.reference_number.to_s + ")" %></td>
+            <td><%= rb.name %></td>
+            <td><%= "%03d"%rb.reference_number.to_s %></td>
+            <td><%= rb.reference_name %></td>
+            <td><%= link_to rb.panchayats.size, "#", :class => 'tipTipRight', :title => associated_names(rb.panchayats) %></td>
+            <td><%= link_to rb.enumeration_blocks.size, "#", :class => 'tipTipRight', :title => enumeration_block_list(rb.enumeration_blocks) %></td>
+            <td>
+              <%= link_to "View RB Report",{:action=>:status_report, :controller=>:enumeration_blocks, :id=>rb},:class=>"usuallink bold_text",:rel=>"facebox" %> |
+              <%= link_to "Work Status",{:action=>:list_all, :controller=>:enumeration_blocks, :id=>rb},:class=>"usuallink bold_text" %> |
+              <%= link_to "Attendance","#",:class=>"usuallink bold_text" %>
+            </td>
+          </tr>
+          <% i = i + 1 %>
+      <% end %>
+      </tbody>
+    </table>
+    <div class="flickr_pagination">
+      <%= page_entries_info @revenue_blocks %> <%= will_paginate @revenue_blocks, :container => false %>
+    </div>
+<% end %>
+
+
+
+
+
+
+
+
