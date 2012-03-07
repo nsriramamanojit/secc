@@ -1,13 +1,13 @@
 <% title "SECC | Attendance" %>
-<h3>SECC | Manage | Attendance</h3>
+<h3>SECC | Manage | Attendance of Revenue Block -  <%= @attendances.first.revenue_block.name %></h3>
 
 
 <div class="help_text">
-  Area for managing Enumeration Blocks. <br/>
-  Along with creating, managing and removing Enumeration Blocks for Application.
+  Area for managing Attendance of Revenue Block. <br/>
 </div>
 <div class="link_buttons">
-  <%= link_to content_tag(:span, 'Create Attendance'), new_attendance_path, :class => 'btn-blue' %>
+  <%= link_to content_tag(:span, 'Create Attendance'), new_attendance_path, :class => 'btn-blue' if permitted_to? :create %>
+  <%= link_to content_tag(:span, 'Home'), homes_url, :class => 'btn-blue' %>
 </div>
 
 <% if @attendances.blank? %>
@@ -36,10 +36,12 @@
                 <%= link_to attendance.status? ? image_tag('tick.gif') : image_tag('cross.gif'), approve_attendance_path(attendance), :remote => true %>
               </div>
             </td>
-            <td><%= attendance.date %></td>
-            <td><%= User.where(:id=> attendance.created_by).first.name %></td>
-            <td><%= attendance.modified_by? ? User.where(:id=> attendance.modified_by).first.name : '---'%></td>
-            <td><%= link_to "View Report",attendance,:class => 'usuallink bold_text',:rel=>'facebox' %> | <%= link_to "Update","#",:class => 'usuallink bold_text' %></td>
+            <td><%= attendance.date.strftime("%d-%m-%Y") %></td>
+            <td><%= User.where(:id => attendance.created_by).first.name %></td>
+            <td><%= attendance.modified_by? ? User.where(:id => attendance.modified_by).first.name : '---' %></td>
+            <td><%= link_to "View Report", attendance, :class => 'usuallink bold_text', :rel => 'facebox' %> |
+              <%= link_to "Update", "#", :class => 'usuallink bold_text' %>
+            </td>
           </tr>
           <% i = i + 1 %>
       <% end %>

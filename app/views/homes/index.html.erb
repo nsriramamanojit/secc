@@ -52,7 +52,7 @@
             <td>
               <%= link_to "View RB Report",{:action=>:status_report, :controller=>:enumeration_blocks, :id=>rb},:class=>"usuallink bold_text",:rel=>"facebox" %> |
               <%= link_to "Work Status",{:action=>:list_all, :controller=>:enumeration_blocks, :id=>rb},:class=>"usuallink bold_text" %> |
-              <%= link_to "Attendance","#",:class=>"usuallink bold_text" %>
+              <%= link_to "Attendance",list_revenue_block_attendance_path(rb),:class=>"usuallink bold_text" %>
             </td>
           </tr>
           <% i = i + 1 %>

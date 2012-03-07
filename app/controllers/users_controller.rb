@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   filter_access_to :all
 
   def index
-    @users = User.search(params[:search],params[:id]).paginate(:page => page, :per_page => per_page) if permitted_to? :index
+    @users = User.search(params[:search], params[:id]).paginate(:page => page, :per_page => per_page) if permitted_to? :index
     @users = User.revenue_block_users.joins(:user_profile).where(:user_profile => {:revenue_block_id => current_user.user_profile.revenue_block_id}).paginate(:page => page, :per_page => per_page) if has_role?(:block_admin) || has_role?(:block_supervisor)
     @users = User.revenue_block_users.joins(:user_profile).where(:user_profile => {:district_id => current_user.user_profile.district_id}).paginate(:page => page, :per_page => per_page) if has_role?(:district_coordinator)
 
@@ -113,12 +113,41 @@ class UsersController < ApplicationController
     end
 
   end
+
   def export
     @users = User.all
     html = render_to_string :layout => false
     kit = PDFKit.new(html, :orientation => 'Landscape', :page_size => 'A4')
     send_data(kit.to_pdf, :filename => "Users_List"+".pdf", :type => 'application/pdf')
 
+  end
+
+  def profile
+    @user = User.find(params[:id])   #current_user
+
+    respond_to do |format|
+      format.html
+    end
+  end
+  def update_profile
+    @user = current_user
+
+  end
+  def profile_update
+    @user = current_user
+    respond_to do |format|
+      if @user.update_attributes(params[:user])
+        format.html { redirect_to(:back, :notice => 'Profile successfully updated.') }
+        format.xml { head :ok }
+      else
+        format.html { render :action => "profile_update" }
+        format.xml { render :xml => @user.errors, :status => :unprocessable_entity }
+      end
+    end
+
+  end
+  def change_password
+    @user = User.find(params[:id])
   end
 
   ########################################################

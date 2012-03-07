@@ -1,6 +1,10 @@
 Secc::Application.routes.draw do
 
-  resources :attendances
+  resources :attendances do
+    get :approve, :on=>:member
+    get :list_revenue_block,:on=>:member
+    get :export,:on=>:member
+  end
 
   resources :enumeration_blocks do
     get :list_all,:on=>:member
@@ -19,6 +23,10 @@ Secc::Application.routes.draw do
     put :csv_import,:on=>:collection
     get :upload,:on=>:collection
     get :export,:on=>:collection
+    get :profile,:on=>:member
+    get :change_password,:on=>:member
+    get :update_profile,:on=>:member
+    put :profile_update,:on=>:member
   end
 
   resources :roles

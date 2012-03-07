@@ -22,7 +22,7 @@ class CreateAttendances < ActiveRecord::Migration
       t.integer :cumulative_citizens  ,:default=>0
       t.string  :correction_cumulative_citizens,:default=>0
       t.integer :no_of_eb_completed_enumerator ,:default=>0
-      t.string  :correction_no_of_eb_completed_enumerator
+      t.string  :correction_no_of_eb_completed_enumerator,:default=>0
       t.integer :no_of_eb_completed_system,:default=>0
       t.string  :correction_no_of_eb_completed_system,:default=>0
       t.integer :no_of_eb_nic_uploaded,:default=>0

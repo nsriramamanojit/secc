@@ -6,6 +6,17 @@
   <%= simple_form_for(@attendance, :validate => true) do |f| %>
       <fieldset>
         <%= f.input :date, :as => :string, :input_html => {:id => 'date_picker',:value=>Time.now.strftime('%d-%m-%Y')},:label => 'Select Date' %>
+        <%= f.input :no_of_deo_attended,:label=>"Number of DEO Attended" %>
+        <%= f.input :no_of_deo_absent,:label=>"Number of DEO Absent" %>
+        <%= f.input :no_of_enu_attended,:label=>"Number of Enumerator Attended" %>
+        <%= f.input :no_of_enu_absent,:label=>"Number of Enumerator Absent" %>
+        <%= f.input :no_of_tpc,:label=>"Number of TPC's Went to Field" %>
+        <%= f.input :no_of_supervisory,:label=>"Supervisory Module" %>
+        <%= f.input :no_of_ahc_completed,:label=>"Number of AHC Completed" %>
+        <%= f.input :no_of_citizens_completed,:label=>"Number of Citizens Completed" %>
+        <%= f.input :no_of_eb_completed_enumerator,:label=>"EB's completed as per Enumerator" %>
+        <%= f.input :no_of_eb_completed_system,:label=>"EB's completed as per System" %>
+        <%= f.input :no_of_eb_nic_uploaded,:label=>"Number of EB's uploaded to NIC" %>
         <%= f.submit 'Save', :disable_with => 'Please wait...' %>
       </fieldset>
   <% end %>

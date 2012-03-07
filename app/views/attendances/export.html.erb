@@ -1,17 +1,10 @@
-<% title "SECC | Attendance" %>
-<div id="page_container">
-  <div id="page_content">
-    <div class="content">
-      <h3>Attendances | View Attendance</h3>
+      <h3>Attendances | Attendance Report</h3>
 
-      <div class="help_text">
-        Figures in Braces are represent Correction Data. <br/>
-      </div>
+      <p>
+        Figures in Braces are represent Correction Data.
+      </p>
 
-      <%= link_to content_tag(:span, 'Download Report'), export_attendance_path(@attendance.id), :class => 'btn-blue' %>
-      <br/>
-      <br/>
-      <table width="100%" border=0 cellspacing=1 cellpadding=3 class="listTable">
+      <table width="100%" class="tablesorter">
         <tr>
           <th width="50%">Date</th>
           <td><%= @attendance.date.strftime("%d-%m-%Y") %></td>
@@ -88,6 +81,3 @@
           <td><%= @attendance.no_of_ahc_completed %></td>
         </tr>
       </table>
-    </div>
-  </div>
-</div>

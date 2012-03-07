@@ -7,7 +7,7 @@ class AttendancesController < ApplicationController
   layout "application", :except => [:show, :edit]
 
   def index
-    @attendances = Attendance.all
+    @attendances = Attendance.where(:revenue_block_id=>current_user.user_profile.revenue_block_id) if has_role?(:block_admin) or has_role?(:block_supervisor)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -39,10 +39,12 @@ class AttendancesController < ApplicationController
 
   def create
     @attendance = Attendance.new(params[:attendance])
+    @attendance.revenue_block_id = current_user.user_profile.revenue_block_id
+    @attendance.created_by = current_user.id
 
     respond_to do |format|
       if @attendance.save
-        format.html { redirect_to(@attendance, :notice => 'Attendance was successfully created.') }
+        format.html { redirect_to(attendances_url, :notice => 'Attendance Saved Successfully.') }
         format.xml  { render :xml => @attendance, :status => :created, :location => @attendance }
       else
         format.html { render :action => "new" }
@@ -65,8 +67,7 @@ class AttendancesController < ApplicationController
     end
   end
 
-  # DELETE /attendances/1
-  # DELETE /attendances/1.xml
+
   def destroy
     @attendance = Attendance.find(params[:id])
     @attendance.destroy
@@ -76,6 +77,26 @@ class AttendancesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  def approve
+    @attendance = Attendance.find(params[:id])
+    @attendance.update_attribute('status', @attendance.status ? false : true)
+    @attendance.update_attribute('modified_by',current_user.id)
+    respond_to do |format|
+      format.js
+    end
+  end
+  def list_revenue_block
+    @attendances = Attendance.where(:revenue_block_id=>params[:id])
+  end
+  def export
+    @attendance = Attendance.find(params[:id])
+    html = render_to_string :layout => false
+    kit = PDFKit.new(html)
+    kit.stylesheets << "#{Rails.root}/public/stylesheets/pdf_print.css"
+    send_data(kit.to_pdf, :filename => "Attendance_Report"+".pdf", :type => 'application/pdf')
+
+  end
+
   ########################################################
   private
   def recent_items
