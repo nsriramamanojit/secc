@@ -421,3 +421,39 @@ h4, h5 a:hover, h4, h5 a:focus, h4, h5 a:active {
 }
 
 
+/**********************************
+
+Form - Container
+
+***********************************/
+div.form-container-1 { margin: 10px; padding: 5px; background-color: #FFF; }
+
+p.legend { margin-bottom: 1em; }
+p.legend em { color: #cc0000; font-style: normal; }
+
+div.errors { margin: 0 0 10px 0; padding: 5px 10px; border: #ffcc66 1px solid; background-color: #FFC; }
+div.errors p { margin: 0; }
+div.errors p em { color: #cc0000; font-style: normal; font-weight: bold; }
+
+div.form-container-1 form p { margin: 0; }
+div.form-container-1 form p.note { margin-left: 170px; font-size: 90%; color: #333333; }
+div.form-container-1 form fieldset { margin: 10px 0; padding: 10px; border: #dddddd 1px solid; }
+div.form-container-1 form legend { font-weight: bold; color: #666666; }
+div.form-container-1 form fieldset div { padding: 0.25em 0; }
+div.form-container-1 label,
+div.form-container-1 span.label { margin-right: 10px; padding-right: 15px; width: 300px; display: block; float: left; text-align: right; position: relative; }
+div.form-container-1 label.error,
+div.form-container-1 span.error { color: #cc0000; }
+div.form-container-1 label em,
+div.form-container-1 span.label em { position: absolute; right: 0; font-size: 120%; font-style: normal; color: #cc0000; }
+div.form-container-1 input.error { border-color: #cc0000; background-color: #ffeeff; }
+div.form-container-1 input:focus,
+div.form-container-1 input.error:focus,
+div.form-container-1 textarea:focus {	background-color: #ffffcc; border-color: #ffcc66; }
+div.form-container-1 div.controlset label,
+div.form-container-1 div.controlset input { display: inline; float: none; }
+div.form-container-1 div.controlset div { margin-left: 170px; }
+div.form-container-1 div.buttonrow { margin-left: 180px; }
+
+
+

@@ -84,6 +84,14 @@ class EnumerationBlocksController < ApplicationController
       format.xml  { render :xml => @enumeration_blocks }
     end
   end
+  def list_revenue_block
+    @enumeration_blocks = EnumerationBlock.where(:revenue_block_id => params[:id])
+
+    respond_to do |format|
+      format.html
+      format.xml  { render :xml => @enumeration_blocks }
+    end
+  end
   def update_status
     @enumeration_block = EnumerationBlock.find(params[:id])
 

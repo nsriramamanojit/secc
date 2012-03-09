@@ -1,0 +1,9 @@
+<% title "SECC | Report Upload " %>
+<% content_for :sub_heading do %>
+    <%= sub_heading('SECC | Report Upload','Upload Report') %>
+<% end %>
+<%= render 'form',:heading => 'Create New District' %>
+<div class="link_buttons">
+  <%=link_to_all(uploads_path)%>
+</div>
+

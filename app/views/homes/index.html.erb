@@ -51,8 +51,9 @@
             <td><%= link_to rb.enumeration_blocks.size, "#", :class => 'tipTipRight', :title => enumeration_block_list(rb.enumeration_blocks) %></td>
             <td>
               <%= link_to "View RB Report",{:action=>:status_report, :controller=>:enumeration_blocks, :id=>rb},:class=>"usuallink bold_text",:rel=>"facebox" %> |
-              <%= link_to "Work Status",{:action=>:list_all, :controller=>:enumeration_blocks, :id=>rb},:class=>"usuallink bold_text" %> |
-              <%= link_to "Attendance",list_revenue_block_attendance_path(rb),:class=>"usuallink bold_text" %>
+              <%= link_to "Work Status",list_revenue_block_enumeration_block_path(rb),:class=>"usuallink bold_text" %> |
+              <%= link_to "Attendance",list_revenue_block_attendance_path(rb),:class=>"usuallink bold_text" %> |
+              <%= link_to "Daily Uploads",list_revenue_block_upload_path(rb),:class=>"usuallink bold_text" %>
             </td>
           </tr>
           <% i = i + 1 %>

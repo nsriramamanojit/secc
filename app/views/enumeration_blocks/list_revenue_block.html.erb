@@ -14,6 +14,7 @@
     <%= link_to content_tag(:span, 'Download Status Report'), "#", :class => 'btn-yellow' %>
     <%= link_to content_tag(:span, 'Home'), homes_url, :class => 'btn-yellow' %>
   </div>
+  <%# collection_select(:enumeration_block, :panchayat_id, Panchayat.order(:name), :id, :name, {:prompt => "Select Panchayat"}, :class => "width_auto position_right") %>
 </div>
 <br/>
 <% if @enumeration_blocks.blank? %>

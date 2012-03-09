@@ -11,6 +11,8 @@
 <div class="link_buttons">
   <%= link_to content_tag(:span, 'New District'), new_district_path, :class => 'btn-blue' if permitted_to? :create %>
   <%= link_to content_tag(:span, 'Export'), export_districts_path, :class => 'btn-yellow' %>
+  <%= link_to content_tag(:span, 'Home'), homes_url, :class => 'btn-yellow' %>
+
 </div>
 <% if @districts.blank? %>
     <div class="error_msg">

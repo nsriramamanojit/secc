@@ -1,5 +1,11 @@
 Secc::Application.routes.draw do
 
+  resources :uploads do
+    get :download_dsr,:on=>:member
+    get :download_der,:on=>:member
+    get :list_revenue_block,:on=>:member
+  end
+
   resources :attendances do
     get :approve, :on=>:member
     get :list_revenue_block,:on=>:member
@@ -14,8 +20,9 @@ Secc::Application.routes.draw do
     get :status_report_export,:on=>:collection
     get :approve, :on=>:member
     get :remarks, :on=>:member
-
+    get :list_revenue_block,:on=>:member
   end
+
   resources :panchayats do
     get :export, :on=>:collection
   end

@@ -1,14 +1,12 @@
 <table align="center" border=0>
-  <tr>
+  <tr align="left">
     <td>
-      <%= image_tag "#{RAILS_ROOT}/public/images/logo_banner_bw.jpg" %>
-    </td>
-    <td>
-      <h3 align="center">Vedavaag Systems Limited.<br/>Hyderabad<br/></h3>
+      <%= image_tag "#{RAILS_ROOT}/public/images/vedavaag_logo.jpg" %>
     </td>
   </tr>
 </table>
-<h3>Status Report - <%= Date.today.strftime("%d-%m-%Y") %></h3>
+<br/>
+<h3>Consolidated Status Report - <%= get_district_name(params[:id]) %> | Revenue Block - <%= get_rb_name(params[:id]) %> <br/>Date:<%= Date.today.strftime("%d-%m-%Y") %></h3>
 <table class="tablesorter">
   <thead>
   <tr>

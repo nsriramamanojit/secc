@@ -1,0 +1,49 @@
+<% title "SECC | Report Upload" %>
+<h3>SECC | Report Uploads | Manage</h3>
+<div class="help_text">
+  Area for managing Daily Summary Report (DSR) and Data Entry Daily Reports (DEDR).
+</div>
+<div class="link_buttons">
+  <%= link_to content_tag(:span, 'Upload Report'), new_upload_path, :class => 'btn-blue' if permitted_to? :create %>
+</div>
+
+<% if @uploads.blank? %>
+    <div class="error_msg">
+      OOPS!.. No Uploaded Reports are Found in the System..!
+    </div>
+<% else %>
+    <table class="tablesorter">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Date</th>
+        <th>Day Summary Report</th>
+        <th>DSR Remarks</th>
+        <th>Data Entry Report</th>
+        <th>DEDR Remarks</th>
+        <th>Uploaded</th>
+        <th>Approved</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% i=1 %>
+      <% @uploads.each do |upload| %>
+          <tr>
+            <td><%= i %></td>
+            <td><%= upload.date.strftime('%d-%m-%Y') %></td>
+            <td><%= link_to "Download", download_dsr_upload_path(upload),:class => 'usuallink bold_text' %></td>
+            <td><%= upload.dsr_description? ? (link_to "View","#") : 'N.A' %></td>
+            <td><%= link_to "Download", download_der_upload_path(upload),:class => 'usuallink bold_text' %></td>
+            <td><%= upload.der_description? ? (link_to "View","#") : 'N.A' %></td>
+            <td><%= User.where(:id=>upload.uploaded_by).first.name%></td>
+            <td></td>
+          </tr>
+          <% i = i + 1 %>
+      <% end %>
+      </tbody>
+    </table>
+<% end %>
+
+
+
+

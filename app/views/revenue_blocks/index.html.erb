@@ -12,6 +12,7 @@
 <div class="link_buttons">
   <%= link_to content_tag(:span, 'New Revenue Block'), new_revenue_block_path, :class => 'btn-blue' if permitted_to? :create %>
   <%= link_to content_tag(:span, 'Export'), export_revenue_blocks_path, :class => 'btn-yellow' %>
+  <%= link_to content_tag(:span, 'Home'), homes_url, :class => 'btn-yellow' %>
 </div>
 
 <% if @revenue_blocks.blank? %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120229061652) do
+ActiveRecord::Schema.define(:version => 20120309051644) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -162,6 +162,27 @@ ActiveRecord::Schema.define(:version => 20120229061652) do
     t.boolean  "status",           :default => true
     t.integer  "created_by"
     t.integer  "modified_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "uploads", :force => true do |t|
+    t.integer  "revenue_block_id"
+    t.date     "date"
+    t.text     "dsr_description"
+    t.string   "dsr_file_name"
+    t.string   "dsr_content_type"
+    t.integer  "dsr_file_size"
+    t.datetime "dsr_updated_at"
+    t.text     "der_description"
+    t.string   "der_file_name"
+    t.string   "der_content_type"
+    t.integer  "der_file_size"
+    t.datetime "der_updated_at"
+    t.integer  "uploaded_by"
+    t.integer  "approved_by"
+    t.date     "approved_date"
+    t.boolean  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
