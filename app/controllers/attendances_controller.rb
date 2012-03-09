@@ -7,7 +7,7 @@ class AttendancesController < ApplicationController
   layout "application", :except => [:show, :edit]
 
   def index
-    @attendances = Attendance.where(:revenue_block_id=>current_user.user_profile.revenue_block_id) if has_role?(:block_admin) or has_role?(:block_supervisor)
+    @attendances = Attendance.where(:revenue_block_id=>current_user.user_profile.revenue_block_id) if has_any_role?(:block_admin,:block_supervisor)
 
     respond_to do |format|
       format.html # index.html.erb

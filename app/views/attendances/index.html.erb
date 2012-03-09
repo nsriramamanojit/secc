@@ -3,11 +3,12 @@
 
 
 <div class="help_text">
-  Area for managing Enumeration Blocks. <br/>
-  Along with creating, managing and removing Enumeration Blocks for Application.
+  Area for managing Daily Attendance Report. <br/>
+  Along with creating, managing Attendance Report for Application.
 </div>
 <div class="link_buttons">
   <%= link_to content_tag(:span, 'Create Attendance'), new_attendance_path, :class => 'btn-blue' %>
+  <%= link_to content_tag(:span, 'Home'), homes_url, :class => 'btn-blue' %>
 </div>
 
 <% if @attendances.blank? %>

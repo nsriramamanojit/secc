@@ -1,83 +1,83 @@
-      <h3>Attendances | Attendance Report</h3>
+<h3>Attendances | Attendance Report</h3>
 
-      <p>
-        Figures in Braces are represent Correction Data.
-      </p>
+<p>
+  Figures in Braces are represent Correction Data.
+</p>
 
-      <table width="100%" class="tablesorter">
-        <tr>
-          <th width="50%">Date</th>
-          <td><%= @attendance.date.strftime("%d-%m-%Y") %></td>
-          <th width="30%"></th>
-          <td></td>
-        </tr>
-        <tr>
-          <th width="50%">DEO Attended</th>
-          <td><%= @attendance.no_of_deo_attended %> (<%= @attendance.correction_deo_attended %>)</td>
-          <th width="30%"></th>
-          <td></td>
-        </tr>
-        <tr>
-          <th width="50%">DEO Absent</th>
-          <td><%= @attendance.no_of_deo_absent %> (<%= @attendance.correction_deo_absent %>)</td>
-          <th width="30%"></th>
-          <td></td>
-        </tr>
-        <tr>
-          <th width="50%">Enumerators Present</th>
-          <td><%= @attendance.no_of_enu_attended %> (<%= @attendance.correction_enu_attended %>)</td>
-          <th width="30%"></th>
-          <td></td>
-        </tr>
-        <tr>
-          <th width="50%">Enumerators Absent</th>
-          <td><%= @attendance.no_of_enu_absent %> (<%= @attendance.correction_enu_absent %>)</td>
-          <th width="30%"></th>
-          <td></td>
-        </tr>
-        <tr>
-          <th width="50%">TPC in Field Report</th>
-          <td><%= @attendance.no_of_tpc %> (<%= @attendance.correction_no_of_tpc %>)</td>
-          <th width="30%"></th>
-          <td></td>
-        </tr>
-        <tr>
-          <th width="50%">Supervisory Module</th>
-          <td><%= @attendance.no_of_supervisory %> (<%= @attendance.correction_no_of_supervisory %>)</td>
-          <th width="30%"></th>
-          <td></td>
-        </tr>
-        <tr>
-          <th width="50%">AHC Completed</th>
-          <td><%= @attendance.no_of_ahc_completed %> (<%= @attendance.correction_no_of_ahc_completed %>)</td>
-          <th width="30%">Remain</th>
-          <td><%= @attendance.revenue_block.enumeration_blocks.sum(:number_of_houses) - @attendance.no_of_ahc_completed %></td>
-        </tr>
-        <tr>
-          <th width="50%">Citizens Completed</th>
-          <td><%= @attendance.no_of_citizens_completed %> (<%= @attendance.correction_no_of_citizens_completed %>)</td>
-          <th width="30%">Remain</th>
-          <td><%= @attendance.revenue_block.enumeration_blocks.sum(:number_of_citizens) %></td>
-        </tr>
-        <tr>
-          <th width="50%">EB Completed (Enumerator)</th>
-          <td><%= @attendance.no_of_eb_completed_enumerator %>
-            (<%= @attendance.correction_no_of_eb_completed_enumerator %>)
-          </td>
-          <th width="30%">Remain</th>
-          <td><%= @attendance.revenue_block.enumeration_blocks.size - @attendance.no_of_eb_completed_enumerator %></td>
-        </tr>
-        <tr>
-          <th width="50%">EB Completed (System)</th>
-          <td><%= @attendance.no_of_eb_completed_system %> (<%= @attendance.correction_no_of_eb_completed_system %>)
-          </td>
-          <th width="30%">Remain</th>
-          <td><%= @attendance.revenue_block.enumeration_blocks.size - @attendance.no_of_eb_completed_system %></td>
-        </tr>
-        <tr>
-          <th width="50%">EB Uploaded (NIC)</th>
-          <td><%= @attendance.no_of_eb_nic_uploaded %> (<%= @attendance.correction_no_of_eb_nic_uploaded %>)</td>
-          <th width="30%">Remain</th>
-          <td><%= @attendance.no_of_ahc_completed %></td>
-        </tr>
-      </table>
+<table width="100%" class="tablesorter">
+  <tr>
+    <th width="50%">Date</th>
+    <td><%= @attendance.date.strftime("%d-%m-%Y") %></td>
+    <th width="30%"></th>
+    <td></td>
+  </tr>
+  <tr>
+    <th width="50%">DEO Attended</th>
+    <td><%= @attendance.no_of_deo_attended %> (<%= @attendance.correction_deo_attended %>)</td>
+    <th width="30%"></th>
+    <td></td>
+  </tr>
+  <tr>
+    <th width="50%">DEO Absent</th>
+    <td><%= @attendance.no_of_deo_absent %> (<%= @attendance.correction_deo_absent %>)</td>
+    <th width="30%"></th>
+    <td></td>
+  </tr>
+  <tr>
+    <th width="50%">Enumerators Present</th>
+    <td><%= @attendance.no_of_enu_attended %> (<%= @attendance.correction_enu_attended %>)</td>
+    <th width="30%"></th>
+    <td></td>
+  </tr>
+  <tr>
+    <th width="50%">Enumerators Absent</th>
+    <td><%= @attendance.no_of_enu_absent %> (<%= @attendance.correction_enu_absent %>)</td>
+    <th width="30%"></th>
+    <td></td>
+  </tr>
+  <tr>
+    <th width="50%">TPC in Field Report</th>
+    <td><%= @attendance.no_of_tpc %> (<%= @attendance.correction_no_of_tpc %>)</td>
+    <th width="30%"></th>
+    <td></td>
+  </tr>
+  <tr>
+    <th width="50%">Supervisory Module</th>
+    <td><%= @attendance.no_of_supervisory %> (<%= @attendance.correction_no_of_supervisory %>)</td>
+    <th width="30%"></th>
+    <td></td>
+  </tr>
+  <tr>
+    <th width="50%">AHC Completed</th>
+    <td><%= @attendance.no_of_ahc_completed %> (<%= @attendance.correction_no_of_ahc_completed %>)</td>
+    <th width="30%">Remain</th>
+    <td><%= @attendance.revenue_block.enumeration_blocks.sum(:number_of_houses) - @attendance.no_of_ahc_completed %></td>
+  </tr>
+  <tr>
+    <th width="50%">Citizens Completed</th>
+    <td><%= @attendance.no_of_citizens_completed %> (<%= @attendance.correction_no_of_citizens_completed %>)</td>
+    <th width="30%">Remain</th>
+    <td><%= @attendance.revenue_block.enumeration_blocks.sum(:number_of_citizens) %></td>
+  </tr>
+  <tr>
+    <th width="50%">EB Completed (Enumerator)</th>
+    <td><%= @attendance.no_of_eb_completed_enumerator %>
+      (<%= @attendance.correction_no_of_eb_completed_enumerator %>)
+    </td>
+    <th width="30%">Remain</th>
+    <td><%= @attendance.revenue_block.enumeration_blocks.size - @attendance.no_of_eb_completed_enumerator %></td>
+  </tr>
+  <tr>
+    <th width="50%">EB Completed (System)</th>
+    <td><%= @attendance.no_of_eb_completed_system %> (<%= @attendance.correction_no_of_eb_completed_system %>)
+    </td>
+    <th width="30%">Remain</th>
+    <td><%= @attendance.revenue_block.enumeration_blocks.size - @attendance.no_of_eb_completed_system %></td>
+  </tr>
+  <tr>
+    <th width="50%">EB Uploaded (NIC)</th>
+    <td><%= @attendance.no_of_eb_nic_uploaded %> (<%= @attendance.correction_no_of_eb_nic_uploaded %>)</td>
+    <th width="30%">Remain</th>
+    <td><%= @attendance.no_of_ahc_completed %></td>
+  </tr>
+</table>

@@ -5,6 +5,7 @@
 </div>
 <div class="link_buttons">
   <%= link_to content_tag(:span, 'Upload Report'), new_upload_path, :class => 'btn-blue' if permitted_to? :create %>
+  <%= link_to content_tag(:span, 'Home'), homes_url, :class => 'btn-blue' %>
 </div>
 
 <% if @uploads.blank? %>
@@ -12,10 +13,20 @@
       OOPS!.. No Uploaded Reports are Found in the System..!
     </div>
 <% else %>
+    <table width="100%">
+      <tr>
+        <td align="right">
+          <b><i>per page</i></b>
+          <%= per_page %>| <%= page_entries_info @uploads %>
+        </td>
+      </tr>
+    </table>
+
     <table class="tablesorter">
       <thead>
       <tr>
         <th>#</th>
+        <th>Status</th>
         <th>Date</th>
         <th>Day Summary Report</th>
         <th>DSR Remarks</th>
@@ -30,18 +41,28 @@
       <% @uploads.each do |upload| %>
           <tr>
             <td><%= i %></td>
+            <td>
+              <div id="status_<%= upload.id %>">
+                <%= link_to upload.status? ? image_tag('tick.gif') : image_tag('cross.gif'), approve_upload_path(upload), :remote => true %>
+              </div>
+
+            </td>
             <td><%= upload.date.strftime('%d-%m-%Y') %></td>
             <td><%= link_to "Download", download_dsr_upload_path(upload),:class => 'usuallink bold_text' %></td>
             <td><%= upload.dsr_description? ? (link_to "View","#") : 'N.A' %></td>
             <td><%= link_to "Download", download_der_upload_path(upload),:class => 'usuallink bold_text' %></td>
             <td><%= upload.der_description? ? (link_to "View","#") : 'N.A' %></td>
             <td><%= User.where(:id=>upload.uploaded_by).first.name%></td>
-            <td></td>
+            <td><%= upload.approved_by? ? User.where(:id=> upload.approved_by).first.name : '---' %></td>
           </tr>
           <% i = i + 1 %>
       <% end %>
       </tbody>
     </table>
+    <div class="flickr_pagination">
+      <%= page_entries_info @uploads %> <%= will_paginate @uploads, :container => false %>
+    </div>
+
 <% end %>
 
 

@@ -4,6 +4,9 @@ Secc::Application.routes.draw do
     get :download_dsr,:on=>:member
     get :download_der,:on=>:member
     get :list_revenue_block,:on=>:member
+    get :approve,:on=>:member
+    get :remarks_dsr,:on=>:member
+    get :remarks_der, :on=>:member
   end
 
   resources :attendances do
@@ -21,6 +24,7 @@ Secc::Application.routes.draw do
     get :approve, :on=>:member
     get :remarks, :on=>:member
     get :list_revenue_block,:on=>:member
+    get :download_eb_status_report, :on=>:member
   end
 
   resources :panchayats do

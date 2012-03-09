@@ -126,6 +126,14 @@ class EnumerationBlocksController < ApplicationController
     send_data(kit.to_pdf, :filename => "Status_Report"+".pdf", :type => 'application/pdf')
 
   end
+  def download_eb_status_report
+    @enumeration_blocks = EnumerationBlock.where(:revenue_block_id => params[:id])
+    html = render_to_string :layout => false
+    kit = PDFKit.new(html,:orientation => 'Landscape', :page_size => 'A4')
+    kit.stylesheets << "#{Rails.root}/public/stylesheets/pdf_print.css"
+    send_data(kit.to_pdf, :filename => "EB_Status_Report"+".pdf", :type => 'application/pdf')
+
+  end
   def remarks
     @enumeration_block = EnumerationBlock.find(params[:id])
   end

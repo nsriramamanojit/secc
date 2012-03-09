@@ -8,7 +8,6 @@ class DistrictsController < ApplicationController
 
   layout "application", :except => [:show, :edit]
 
-
   def index
     @districts = District.search(params[:search]).paginate(:page => page, :per_page => per_page)
     @district = District.new

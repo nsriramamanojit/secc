@@ -1,13 +1,13 @@
 <% title "SECC | Enumeration Blocks" %>
 <h3>SECC | Manage | Enumeration Blocks</h3>
 
-
 <div class="help_text">
   Area for managing Enumeration Blocks. <br/>
-  Along with creating, managing and removing Enumeration Blocks for Application.
+  Along with creating, managing Enumeration Blocks for Application.
 </div>
 <div class="link_buttons">
   <%= link_to content_tag(:span, 'New Enumeration Block'), new_enumeration_block_path, :class => 'btn-blue' %>
+  <%= link_to content_tag(:span, 'Home'), homes_url, :class => 'btn-blue' %>
 </div>
 
 <% if @enumeration_blocks.blank? %>
