@@ -1,5 +1,5 @@
 <% title "SECC | Attendance" %>
-<h3>SECC | Manage | Attendance of Revenue Block -  <%= @attendances.first.revenue_block.name %></h3>
+<h3>SECC | Manage | Attendance of Revenue Block -  <%= @attendances.blank? ? "" : @attendances.first.revenue_block.name %></h3>
 
 
 <div class="help_text">
