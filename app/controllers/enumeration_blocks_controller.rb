@@ -129,6 +129,14 @@ class EnumerationBlocksController < ApplicationController
   def download_eb_status_report
     @enumeration_blocks = EnumerationBlock.where(:revenue_block_id => params[:id])
     html = render_to_string :layout => false
+    PDFKit.configure do |config|
+      config.default_options = {
+          :footer_center => "Page [page] of [toPage]",
+          :footer_font_size=>9,
+          :footer_left => "Vedavaag Systems Limited"  ,
+          :footer_right => "Enumeration Status Report"
+      }
+    end
     kit = PDFKit.new(html,:orientation => 'Landscape', :page_size => 'A4')
     kit.stylesheets << "#{Rails.root}/public/stylesheets/pdf_print.css"
     send_data(kit.to_pdf, :filename => "EB_Status_Report"+".pdf", :type => 'application/pdf')
