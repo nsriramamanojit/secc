@@ -52,7 +52,9 @@ Secc::Application.routes.draw do
     get :export, :on=>:collection
   end
   resources :user_sessions
-  resources :homes
+  resources :homes do
+    get :manage_revenue_block, :on=>:member
+  end
 
   match 'login' => "user_sessions#new", :as => :login
   match 'logout' => "user_sessions#destroy", :as => :logout

@@ -1,67 +1,13 @@
-<% if has_any_role?(:ecil,:admin) %>
-    <% title "SECC | Home" %>
-    <h3>SECC | Districts | Manage</h3>
-
-    <div class="help_text">
-      Area for managing Districts. <br/>
-    </div>
-
-    <% if @districts.blank? %>
-        <div class="error_msg">
-          OOPS!.. No Revenue Blocks are Found in the System..!
-        </div>
-    <% else %>
-        <table width="100%">
-          <tr>
-            <td align="right">
-              <b><i>per page</i></b>
-              <%= per_page %>| <%= page_entries_info @districts %>
-            </td>
-          </tr>
-        </table>
-        <table class="tablesorter">
-          <thead>
-          <tr>
-            <th>SNo</th>
-            <th>State</th>
-            <th>Name</th>
-            <th>Ref. No</th>
-            <th>Revenue Blocks</th>
-            <th>Panchayats</th>
-            <th>EB's</th>
-            <th>Actions</th>
-          </tr>
-          </thead>
-          <tbody>
-          <% i=1 %>
-          <% @districts.each do |district| %>
-              <tr>
-                <td><%= i %></td>
-                <td><%= district.state.name + " (" + district.state.reference_number.to_s + ")" %></td>
-                <td><%= district.name  %></td>
-                <td><%= "%02d"%district.reference_number %></td>
-                <td><%= link_to district.revenue_blocks.size, "#", :class => 'tipTipRight', :title => associated_names(district.revenue_blocks) %></td>
-                <td><%= link_to district.panchayats.size, "#", :class => 'tipTipRight', :title => associated_names(district.panchayats) %></td>
-                <td><%= link_to district.enumeration_blocks.size, "#", :class => 'tipTipRight', :title => enumeration_block_list(district.enumeration_blocks) %></td>
-                <td>
-                  <%= link_to "Manage Revenue Blocks",manage_revenue_block_home_path(district),:class=>"usuallink bold_text"%>
-                </td>
-              </tr>
-              <% i = i + 1 %>
-          <% end %>
-          </tbody>
-        </table>
-        <div class="flickr_pagination">
-          <%= page_entries_info @districts %> <%= will_paginate @districts, :container => false %>
-        </div>
-    <% end %>
-
-<%else%>
 <% title "SECC | Home" %>
 <h3>SECC | Revenue Blocks | Manage</h3>
 
 <div class="help_text">
   Area for managing Revenue Block. <br/>
+</div>
+<div class="link_buttons">
+  <%= link_to content_tag(:span, 'View Consolidated Report'), "#", :class => 'btn-yellow' %>
+  <%= link_to content_tag(:span, 'Download Consolidated Report'), "#", :class => 'btn-yellow' %>
+  <%= link_to content_tag(:span, 'Home'), homes_url, :class => 'btn-yellow' %>
 </div>
 
 <% if @revenue_blocks.blank? %>
@@ -118,11 +64,3 @@
       <%= page_entries_info @revenue_blocks %> <%= will_paginate @revenue_blocks, :container => false %>
     </div>
 <% end %>
-
-<%end%>
-
-
-
-
-
-
