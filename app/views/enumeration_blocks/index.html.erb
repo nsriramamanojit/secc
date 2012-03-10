@@ -6,7 +6,7 @@
   Along with creating, managing Enumeration Blocks for Application.
 </div>
 <div class="link_buttons">
-  <%= link_to content_tag(:span, 'New Enumeration Block'), new_enumeration_block_path, :class => 'btn-blue' %>
+  <%= link_to content_tag(:span, 'New Enumeration Block'), new_enumeration_block_path, :class => 'btn-blue' if permitted_to? :create %>
   <%= link_to content_tag(:span, 'Home'), homes_url, :class => 'btn-blue' %>
 </div>
 

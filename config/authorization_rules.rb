@@ -33,12 +33,12 @@ authorization do
   role :block_incharge do
     has_permission_on [:panchayats], :to => [:index, :show]
     has_permission_on [:users], :to => [:profile]
-    has_permission_on [:enumeration_blocks], :to => [:index, :show, :list_all,:update_status,:status_update,:status_report,:status_report_export]
+    has_permission_on [:enumeration_blocks], :to => [:index, :show, :list_revenue_block,:update_status,:status_update,:status_report,:status_report_export]
   end
 
   role :block_supervisor do
     has_permission_on [:panchayats,:attendances], :to => [:index, :show,:create,:new,:edit,:update]
-    has_permission_on [:enumeration_blocks], :to => [:index, :show, :list_all,:update_status,:status_update,:status_report,:status_report_export]
+    has_permission_on [:enumeration_blocks], :to => [:index, :show, :list_revenue_block,:update_status,:status_update,:status_report,:status_report_export,:download_eb_status_report]
     has_permission_on [:users], :to=>[:index,:show,:profile]
 
   end

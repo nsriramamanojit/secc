@@ -1,13 +1,33 @@
 <% title "SECC | Enumeration Block" %>
-<% content_for :sub_heading do %>
-    <%= sub_heading('SECC | Enumeration Blocks ', "Enumeration Block Details") %>
-<% end %>
-<div class="formbox">
-  <div class="desc"><b>Enumeration Block number</b> : <%= @enumeration_block.reference_number %> </div>
-  <div class="divider"></div>
-  <div class="desc"><b>Sub EB Number</b> : <%= @enumeration_block.sub_enumeration_number %> </div>
-  <div class="divider"></div>
-  <div class="desc"><b>Number of House Holds</b> : <%= @enumeration_block.number_of_houses %> </div>
-  <div class="divider"></div>
-  <div class="desc"><b>Number of Citizens</b> : <%= @enumeration_block.number_of_citizens %> </div>
+<div id="page_container">
+  <div id="page_content">
+    <div class="content">
+      <h3>Enumeration Block | View Enumeration Block Details</h3>
+
+      <table width="100%" border=0 cellspacing=1 cellpadding=3 class="listTable">
+        <tr>
+          <th width="20%">Reference Code</th>
+          <td><%=@enumeration_block.reference_number %></td>
+        </tr>
+        <tr>
+          <th width="20%">Sub EB</th>
+          <td><%= @enumeration_block.sub_enumeration_number %></td>
+        </tr>
+        <tr>
+          <th width="20%">House Holds</th>
+          <td><%= @enumeration_block.number_of_houses %></td>
+        </tr>
+        <tr>
+          <th width="20%">Citizens</th>
+          <td><%= @enumeration_block.number_of_citizens %></td>
+        </tr>
+        <tr>
+          <th width="20%">Revenue Block</th>
+          <td><%= @enumeration_block.revenue_block.name %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>
+
+

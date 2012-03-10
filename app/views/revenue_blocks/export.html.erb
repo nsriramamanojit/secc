@@ -2,7 +2,8 @@
 <table class="tablesorter1" align="center">
   <thead>
   <tr>
-    <th>SNo</th>
+    <th>#</th>
+    <th>District</th>
     <th>Name</th>
     <th>Reference No</th>
     <th>Reference Name</th>
@@ -12,6 +13,7 @@
   <% @revenue_blocks.each do |rb| %>
       <tr>
         <td><%= i %></td>
+        <td><%= rb.district.name.titleize %></td>
         <td><%= rb.name.titleize %></td>
         <td><%= "%03d" %rb.reference_number %></td>
         <td><%= rb.reference_name %></td>

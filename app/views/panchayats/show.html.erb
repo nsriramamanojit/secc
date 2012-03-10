@@ -1,18 +1,37 @@
 <% title "SECC | Panchayats" %>
-<% content_for :sub_heading do %>
-    <%= sub_heading('SECC | Panchayat ', "Panchayat Details") %>
-<% end %>
-<div class="formbox">
-  <div class="desc"><b>Name</b> :  <%= @panchayat.name %></div>
-  <div class="divider"></div>
-  <div class="desc"><b>Reference Code</b> : <%= @panchayat.reference_number %> </div>
-  <div class="divider"></div>
-  <div class="desc"><b>Reference Name</b> : <%= @panchayat.reference_name %> </div>
-  <div class="divider"></div>
-  <div class="desc"><b>State Name</b> :  <%= @panchayat.state.name %></div>
-  <div class="divider"></div>
-  <div class="desc"><b>District Name</b> :  <%= @panchayat.district.name %></div>
-  <div class="divider"></div>
-  <div class="desc"><b>Revenue Block Name</b> :  <%= @panchayat.revenue_block.name %></div>
+<div id="page_container">
+  <div id="page_content">
+    <div class="content">
+      <h3>Panchayats | View Panchayat Details</h3>
+
+      <table width="100%" border=0 cellspacing=1 cellpadding=3 class="listTable">
+        <tr>
+          <th width="20%">Name</th>
+          <td><%= @panchayat.name %></td>
+        </tr>
+        <tr>
+          <th width="20%">Reference Code</th>
+          <td><%=@panchayat.reference_number %></td>
+        </tr>
+        <tr>
+          <th width="20%">Reference Name</th>
+          <td><%= @panchayat.reference_name %></td>
+        </tr>
+        <tr>
+          <th width="20%">State</th>
+          <td><%= @panchayat.state.name %></td>
+        </tr>
+        <tr>
+          <th width="20%">District Name</th>
+          <td><%= @panchayat.district.name %></td>
+        </tr>
+        <tr>
+          <th width="20%">Revenue Block</th>
+          <td><%= @panchayat.revenue_block.name %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>
+
 

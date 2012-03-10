@@ -40,10 +40,12 @@ class EnumerationBlocksController < ApplicationController
   def create
     @enumeration_block = EnumerationBlock.new(params[:enumeration_block])
     @enumeration_block.revenue_block_id = current_user.user_profile.revenue_block_id
+    @enumeration_block.district_id = current_user.user_profile.district_id
+    @enumeration_block.state_id = current_user.user_profile.state_id
 
     respond_to do |format|
       if @enumeration_block.save
-        format.html { redirect_to(@enumeration_block, :notice => 'Enumeration Block was successfully created.') }
+        format.html { redirect_to(enumeration_blocks_url, :notice => 'Enumeration Block Created Successfully.') }
         format.xml  { render :xml => @enumeration_block, :status => :created, :location => @enumeration_block }
       else
         format.html { render :action => "new" }
@@ -134,7 +136,6 @@ class EnumerationBlocksController < ApplicationController
           :footer_center => "Page [page] of [toPage]",
           :footer_font_size=>9,
           :footer_left => "Vedavaag Systems Limited"  ,
-          :footer_right => "Enumeration Status Report"
       }
     end
     kit = PDFKit.new(html,:orientation => 'Landscape', :page_size => 'A4')

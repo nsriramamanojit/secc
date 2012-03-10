@@ -52,6 +52,7 @@ Secc::Application.routes.draw do
     get :export, :on=>:collection
   end
   resources :user_sessions
+
   resources :homes do
     get :manage_revenue_block, :on=>:member
   end

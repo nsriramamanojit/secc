@@ -1,28 +1,16 @@
 <ul class="page_menu">
-    <li><%= tab_heading 'Dashboard' %>
+  <li><%= tab_heading 'Dashboard' %>
     <ul>
       <li>
-        <%= link_to 'States', states_path,:class=>"tipTip1",:title=>"Manage States" %>
-      </li>
-<!--
-      <li>
-        <%# link_to 'Divisions', divisions_path,:class=>"tipTip",:title=>"Manage Divisions" %>
-      </li>
--->
-      <li>
-        <%= link_to 'Districts', districts_path,:class=>"tipTip1",:title=>"Manage Districts" %>
+        <%= link_to 'States', states_path, :class => "tipTip1", :title => "Manage States" %>
       </li>
       <li>
-        <%= link_to 'Revenue Blocks', revenue_blocks_path,:class=>"tipTip1",:title=>"Manage Districts" %>
+        <%= link_to 'Districts', districts_path, :class => "tipTip1", :title => "Manage Districts" %>
+      </li>
+      <li>
+        <%= link_to 'Revenue Blocks', revenue_blocks_path, :class => "tipTip1", :title => "Manage Revenue Blocks" %>
       </li>
     </ul>
   </li>
-  <li><%= tab_heading 'Work' %>
-  <ul>
-    <li>
-      <%= link_to 'Status Report', list_all_enumeration_blocks_path ,:class=>"tipTip1",:title=>"Status Report of Enumeration Blocks" %>
-    </li>
-  </ul>
-</li>
 </ul>
 
