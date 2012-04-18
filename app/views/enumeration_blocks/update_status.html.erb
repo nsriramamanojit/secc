@@ -1,6 +1,6 @@
-<% title "SECC | Enumeration Block" %>
+<% title "VEDAVAAG | SECC | Enumeration Block" %>
 <% content_for :sub_heading do %>
-    <%= sub_heading('SECC | Enumeration Block ', "Update Enumeration Work Status") %>
+    <%= sub_heading('VEDAVAAG | SECC | Enumeration Block ', "Update Enumeration Work Status") %>
 <% end %>
 <div class="form-container">
   <p class="legend">
@@ -20,7 +20,7 @@
     </thead>
     <tbody>
     <tr>
-      <td><%= @enumeration_block.panchayat.name + " (" + @enumeration_block.panchayat.reference_number.to_s + ")" %></td>
+      <td><%= @enumeration_block.panchayat_id? ? @enumeration_block.panchayat.name : "" %></td>
       <td><%= @enumeration_block.reference_number %></td>
       <td><%= @enumeration_block.sub_enumeration_number %></td>
       <td><%= @enumeration_block.number_of_houses %></td>

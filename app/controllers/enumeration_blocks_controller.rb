@@ -5,6 +5,7 @@ class EnumerationBlocksController < ApplicationController
   before_filter :recent_items, :require_user
   filter_access_to :all
   layout "application", :except => [:show, :edit,:update_status,:status_report,:remarks]
+
   def index
     @enumeration_blocks = EnumerationBlock.where(:revenue_block_id => current_user.user_profile.revenue_block_id).paginate(:page =>page, :per_page=>per_page)
     @enumeration_block = EnumerationBlock.new
@@ -111,7 +112,7 @@ class EnumerationBlocksController < ApplicationController
     end
   end
   def status_report
-  ## Check Model for Code
+    ## Check Model for Code
   end
 
   def approve

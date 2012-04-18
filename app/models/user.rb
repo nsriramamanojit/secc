@@ -59,8 +59,6 @@ class User < ActiveRecord::Base
         scoped
       end
     end
-
-
   end
 
 

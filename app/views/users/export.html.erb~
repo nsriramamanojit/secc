@@ -1,0 +1,64 @@
+<h5 align="center"> List of Users</h5>
+<table class="tablesorter1" align="center">
+  <thead>
+  <tr>
+    <th>SNo</th>
+    <th>Login</th>
+    <th>Name</th>
+    <th>State</th>
+    <th>District</th>
+    <th>Revenue Block</th>
+    <th>Mobile</th>
+
+  </tr>
+  </thead>
+  <% i=1 %>
+  <% @users.each do |user| %>
+      <tr>
+        <td><%= i %></td>
+        <td><%= user.login %></td>
+        <td><%= user.name.titleize %></td>
+        <% if user.user_profile.blank? %>
+            <td></td>
+            <td></td>
+            <td></td>
+        <% else %>
+            <td><%= user.user_profile.state.name %>  (<%=user.user_profile.state.reference_number.to_s %>)</td>
+            <% if user.user_profile.district_id? %>
+                <td><%= user.user_profile.district.name %>  (<%="%02d"%user.user_profile.district.reference_number.to_s %>)</td>
+             <%else%>
+                <td></td>
+              <%end%>
+               <% if user.user_profile.revenue_block_id? %>
+                <td><%= user.user_profile.revenue_block.name %> (<%= "%03d"%user.user_profile.revenue_block.reference_number.to_s%>)</td>
+               <% else %>
+            <td></td>
+                <%end%>
+        <% end %>
+        <td><%# user.mobile_number %></td>
+
+      </tr>
+      <% i = i + 1 %>
+  <% end %>
+
+</table>
+
+<style type="text/css">
+    table.tablesorter1 {
+        border-collapse: collapse;
+        border: 1px solid #000000;
+        font-family: Tahoma, verdana, helvetica, sans-serif;
+        font-size: 14px;
+    }
+
+    table.tablesorter1 td, table.tablesorter1 th {
+        border-collapse: collapse;
+        border: 1px solid #000000;
+        text-align: center;
+    }
+
+    h5 {
+        font-family: Tahoma, verdana, helvetica, sans-serif;
+    }
+
+</style>

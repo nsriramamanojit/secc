@@ -2,7 +2,12 @@ authorization do
 
   role :super_admin do
     has_permission_on [:users], :to=>[:index,:show,:new,:create,:upload,:csv_import,:export]
-    has_permission_on [:roles,:states,:districts,:revenue_blocks], :to => [:index, :show, :new, :create, :edit, :update,:destroy,:export]
+    has_permission_on [:roles,:states,:districts,:revenue_blocks], :to => [:index, :show, :new, :create, :edit, :update,:destroy,:export,:approve]
+  end
+  role :admin do
+    has_permission_on [:panchayats,:attendances,:uploads], :to => [:index, :show, :new, :create, :edit, :update,:destroy,:export,:approve,:list_revenue_block,:download_dsr,:download_der,:remarks_der,:remarks_dsr]
+    has_permission_on [:users], :to=>[:index,:show,:profile,:change_password,:update_profile,:profile_update]
+    has_permission_on [:enumeration_blocks], :to => [:index, :show, :new, :create, :edit, :update,:destroy,:list_all,:update_status,:status_update,:status_report,:approve,:status_report_export,:remarks,:list_revenue_block,:download_eb_status_report]
   end
 
   role :manager do

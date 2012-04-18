@@ -1,5 +1,5 @@
-<% title "SECC | Revenue Blocks" %>
-<h3>Revenue | Manage | Revenue Blocks</h3>
+<% title "VEDAVAAG | SECC | Revenue Blocks" %>
+<h3>VEDAVAAG | SECC | Revenue |  Revenue Blocks</h3>
 
 <% content_for :left_panel do %>
     <td valign="top" width="250"> <%= render 'common/search' %>
@@ -31,7 +31,8 @@
     <table class="tablesorter">
       <thead>
       <tr>
-        <th>SNo</th>
+        <th>#</th>
+        <th>Status</th>
         <th>Name</th>
         <th>State</th>
         <th>District</th>
@@ -47,6 +48,8 @@
       <% @revenue_blocks.each do |rb| %>
           <tr>
             <td><%= i %></td>
+            <td><%= link_to_active(rb, approve_revenue_block_path(rb)) %></td>
+
             <td><%= highlight(rb.name, params[:search]) %></td>
             <td><%= rb.state.name + " (" + rb.state.reference_number.to_s + ")" %></td>
             <td><%= rb.district.name + " (" + "%02d"%rb.district.reference_number.to_s + ")" %></td>

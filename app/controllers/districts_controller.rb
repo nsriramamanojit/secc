@@ -83,7 +83,13 @@ class DistrictsController < ApplicationController
     send_data(kit.to_pdf, :filename => "Districts_List"+".pdf", :type => 'application/pdf')
 
   end
-
+  def approve
+    @district = District.find(params[:id])
+    @district.update_attribute('status', @district.status ? false : true)
+    respond_to do |format|
+      format.js
+    end
+  end
 ########################################################
 private
 

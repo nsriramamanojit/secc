@@ -1,0 +1,2 @@
+$("#status_<%=@revenue_block.id%>").html("<%=escape_javascript(link_to @revenue_block.status? ? image_tag('tick.gif') : image_tag('cross.gif'),approve_revenue_block_path,:remote=>true)%>");
+

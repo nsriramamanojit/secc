@@ -82,6 +82,14 @@ class RevenueBlocksController < ApplicationController
     send_data(kit.to_pdf, :filename => "RevenueBlock_List"+".pdf", :type => 'application/pdf')
 
   end
+  def approve
+    @revenue_block = RevenueBlock.find(params[:id])
+    @revenue_block.update_attribute('status', @revenue_block.status ? false : true)
+    respond_to do |format|
+      format.js
+    end
+  end
+
   ########################################################
 private
   def recent_items

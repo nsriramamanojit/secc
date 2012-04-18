@@ -87,4 +87,11 @@ module ApplicationHelper
     content << rb.district.name + "(" + "%02d"%rb.district.reference_number.to_s + ")"
     content.html_safe
   end
+  def link_to_active(model, path)
+    content = ''
+    content << "<div id='status_#{model.id}'>"
+    content << link_to(model.status ? image_tag('tick.gif') : image_tag('cros.gif'), path, :remote=>true)
+    content << "</div>"
+    content.html_safe
+  end
 end

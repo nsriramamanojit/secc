@@ -1,5 +1,7 @@
 Secc::Application.routes.draw do
 
+  resources :villages
+
   resources :uploads do
     get :download_dsr,:on=>:member
     get :download_der,:on=>:member
@@ -41,12 +43,16 @@ Secc::Application.routes.draw do
   end
 
   resources :roles
+
   resources :revenue_blocks do
     get :export, :on=>:collection
+    get :approve,:on=>:member
   end
   resources :divisions
+
   resources :districts do
     get :export, :on=>:collection
+    get :approve,:on=>:member
   end
   resources :states do
     get :export, :on=>:collection

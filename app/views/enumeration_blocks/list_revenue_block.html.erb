@@ -1,5 +1,5 @@
-<% title "SECC | Enumeration Blocks" %>
-<h3>SECC | Status Report | Enumeration Blocks</h3>
+<% title "VEDAVAAG | SECC | Enumeration Blocks" %>
+<h3>VEDAVAAG | SECC | Status Report | Enumeration Blocks</h3>
 
 <div class="help_text">
   * Area for managing Enumeration Blocks Status. <br/>
@@ -24,7 +24,7 @@
     <table class="tablesorter">
       <thead>
       <tr>
-        <th>SNo</th>
+        <th>#</th>
         <th>Status</th>
         <th>Panchayat</th>
         <th>EB#</th>
@@ -55,7 +55,7 @@
                 <%= link_to eb.report_status? ? image_tag('tick.gif') : image_tag('cross.gif'), approve_enumeration_block_path(eb), :remote => true %>
               </div>
             </td>
-            <td><%= eb.panchayat.name + " (" + eb.panchayat.reference_number.to_s + ")" %></td>
+            <td><%= eb.panchayat_id? ? eb.panchayat.name : "" %></td>
             <td><%= eb.reference_number %></td>
             <td><%= eb.sub_enumeration_number %></td>
             <td><%= eb.number_of_houses %></td>

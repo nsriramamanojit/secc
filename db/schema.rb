@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120309051644) do
+ActiveRecord::Schema.define(:version => 20120417055816) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(:version => 20120309051644) do
     t.integer  "cumulative_citizens",                      :default => 0
     t.string   "correction_cumulative_citizens",           :default => "0"
     t.integer  "no_of_eb_completed_enumerator",            :default => 0
-    t.string   "correction_no_of_eb_completed_enumerator"
+    t.string   "correction_no_of_eb_completed_enumerator", :default => "0"
     t.integer  "no_of_eb_completed_system",                :default => 0
     t.string   "correction_no_of_eb_completed_system",     :default => "0"
     t.integer  "no_of_eb_nic_uploaded",                    :default => 0
@@ -85,8 +85,8 @@ ActiveRecord::Schema.define(:version => 20120309051644) do
   end
 
   create_table "enumeration_blocks", :force => true do |t|
-    t.integer  "reference_number"
-    t.integer  "sub_enumeration_number"
+    t.string   "reference_number"
+    t.string   "sub_enumeration_number"
     t.integer  "number_of_houses"
     t.integer  "number_of_citizens"
     t.integer  "state_id"
@@ -182,7 +182,7 @@ ActiveRecord::Schema.define(:version => 20120309051644) do
     t.integer  "uploaded_by"
     t.integer  "approved_by"
     t.date     "approved_date"
-    t.boolean  "status"
+    t.boolean  "status",           :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -233,6 +233,22 @@ ActiveRecord::Schema.define(:version => 20120309051644) do
     t.string   "last_login_ip"
     t.string   "current_login_ip"
     t.boolean  "status",            :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "villages", :force => true do |t|
+    t.string   "name"
+    t.string   "reference_number"
+    t.string   "description"
+    t.integer  "state_id"
+    t.integer  "division_id"
+    t.integer  "district_id"
+    t.integer  "revenue_block_id"
+    t.integer  "panchayat_id"
+    t.boolean  "status",           :default => true
+    t.integer  "created_by"
+    t.integer  "modified_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

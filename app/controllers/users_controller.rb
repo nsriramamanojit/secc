@@ -119,7 +119,6 @@ class UsersController < ApplicationController
     html = render_to_string :layout => false
     kit = PDFKit.new(html, :orientation => 'Landscape', :page_size => 'A4')
     send_data(kit.to_pdf, :filename => "Users_List"+".pdf", :type => 'application/pdf')
-
   end
 
   def profile

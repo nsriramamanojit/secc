@@ -5,8 +5,8 @@ class CreateEnumerationBlocks < ActiveRecord::Migration
       #t.string  :reference_name
       #t.string  :description
 
-      t.integer :reference_number
-      t.integer :sub_enumeration_number
+      t.string :reference_number
+      t.string :sub_enumeration_number
 
       t.integer :number_of_houses
       t.integer :number_of_citizens

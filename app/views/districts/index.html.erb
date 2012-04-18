@@ -1,4 +1,4 @@
-<% title "SECC | Districts" %>
+<% title "VEDAVAAG | SECC | Districts" %>
 <h3><%= t :secc %> | <%= t :districts %> |  <%= t :manage %></h3>
 <% content_for :left_panel do %>
     <td valign="top" width="250"> <%= render 'common/search' %>
@@ -29,7 +29,8 @@
     <table class="tablesorter">
       <thead>
       <tr>
-        <th>SNo</th>
+        <th>#</th>
+        <th>Status</th>
         <th>Name</th>
         <th>State</th>
         <th>Reference Number</th>
@@ -45,6 +46,8 @@
       <% @districts.each do |district| %>
           <tr>
             <td><%= i %></td>
+            <td><%= link_to_active(district, approve_district_path(district)) %></td>
+
             <td><%= highlight(district.name, params[:search]) %></td>
             <td><%= highlight(district.state.name,params[:search]) %></td>
             <td><%= "%02d"%district.reference_number.to_s %></td>
