@@ -1,4 +1,4 @@
-<% if has_any_role?(:ecil, :admin) %>
+<% if has_any_role?(:ecil, :admin,:manager) %>
     <% title "VEDAVAAG | SECC | Home" %>
     <h3>SECC | Districts | Manage</h3>
     <div class="help_text">
@@ -9,7 +9,7 @@
 
     <% if @districts.blank? %>
         <div class="error_msg">
-          OOPS!.. No Revenue Blocks are Found in the System..!
+          OOPS!.. No Districts are Found in the System..!
         </div>
     <% else %>
         <table width="100%">
@@ -56,7 +56,6 @@
           <%= page_entries_info @districts %> <%= will_paginate @districts, :container => false %>
         </div>
     <% end %>
-
 <% else %>
     <% title "VEDAVAAG |SECC | Home" %>
     <h3>SECC | Revenue Blocks | Manage</h3>

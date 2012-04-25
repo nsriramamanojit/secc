@@ -11,13 +11,16 @@ authorization do
   end
 
   role :manager do
-    has_permission_on [:users,:roles,:states,:districts,:revenue_blocks], :to=>[:index,:show,:export,:profile]
-    has_permission_on [:enumeration_blocks],:to=>[:index,:show,:list_all,:status_report,:status_report_export,:remarks]
+    has_permission_on [:users,:roles,:states,:districts,:revenue_blocks,:attendances,:uploads], :to=>[:index,:show,:export,:list_revenue_block,:profile,:remarks_dsr,:remarks_der]
+    has_permission_on [:enumeration_blocks],:to=>[:index,:show,:list_all,:status_report,:status_report_export,:remarks,:list_revenue_block]
   end
+
+=begin
   role :ecil do
     has_permission_on [:users,:roles,:states,:districts,:revenue_blocks,:attendances,:uploads], :to=>[:index,:show,:export,:list_revenue_block,:profile,:remarks_dsr,:remarks_der]
     has_permission_on [:enumeration_blocks],:to=>[:index,:show,:list_all,:status_report,:status_report_export,:remarks,:list_revenue_block]
   end
+=end
 
   role :state_coordinator do
     has_permission_on [:panchayats,:users], :to => [:index,:show,:profile]
