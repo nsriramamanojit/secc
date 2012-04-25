@@ -101,6 +101,7 @@ class EnumerationBlocksController < ApplicationController
   end
   def status_update
     @enumeration_block = EnumerationBlock.find(params[:id])
+
     respond_to do |format|
       if @enumeration_block.update_attributes(params[:enumeration_block])
         format.html { redirect_to(:back, :notice => 'Enumeration Block Status Successfully updated.') }

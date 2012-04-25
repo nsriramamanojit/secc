@@ -11,7 +11,7 @@ class EnumerationBlock < ActiveRecord::Base
 
   #validations
   #validates :name, :presence => true,  :length => { :maximum => 100
-  validates :panchayat_id, :presence => true
+  #validates :panchayat_id, :presence => true
   validates :reference_number, :presence => true, :length => {:maximum => 5} #:uniqueness => true,}
 
 =begin
