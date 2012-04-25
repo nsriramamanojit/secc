@@ -26,7 +26,7 @@
       <tr>
         <th>#</th>
         <th>Status</th>
-        <th>Panchayat</th>
+        <!--<th>Panchayat</th>-->
         <th>EB#</th>
         <th>Sub EB</th>
         <th>Houses</th>
@@ -55,7 +55,7 @@
                 <%= link_to eb.report_status? ? image_tag('tick.gif') : image_tag('cross.gif'), approve_enumeration_block_path(eb), :remote => true %>
               </div>
             </td>
-            <td><%= eb.panchayat_id? ? eb.panchayat.name : "" %></td>
+            <!--<td><%# eb.panchayat_id? ? eb.panchayat.name : "" %></td>-->
             <td><%= eb.reference_number %></td>
             <td><%= eb.sub_enumeration_number %></td>
             <td><%= eb.number_of_houses %></td>

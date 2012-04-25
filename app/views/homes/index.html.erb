@@ -1,9 +1,10 @@
-<% if has_any_role?(:ecil,:admin) %>
+<% if has_any_role?(:ecil, :admin) %>
     <% title "VEDAVAAG | SECC | Home" %>
     <h3>SECC | Districts | Manage</h3>
-
     <div class="help_text">
       Area for managing Districts. <br/>
+      <strong>Total Revenue Blocks are shown in the List are for Current Phase</strong> <br/>
+      <strong>Total Enumeration Block's Includes Sub EB's + Nagar Panchayat EB's + Census Town EB's</strong>
     </div>
 
     <% if @districts.blank? %>
@@ -27,7 +28,7 @@
             <th>Name</th>
             <th>Ref. No</th>
             <th>Revenue Blocks</th>
-            <th>Panchayats</th>
+            <!--<th>Panchayats</th>-->
             <th>EB's</th>
             <th>Actions</th>
           </tr>
@@ -38,13 +39,13 @@
               <tr>
                 <td><%= i %></td>
                 <td><%= district.state.name + " (" + district.state.reference_number.to_s + ")" %></td>
-                <td><%= district.name  %></td>
+                <td><%= district.name %></td>
                 <td><%= "%02d"%district.reference_number %></td>
-                <td><%= link_to district.revenue_blocks.size, "#", :class => 'tipTipRight', :title => associated_names(district.revenue_blocks) %></td>
-                <td><%= link_to district.panchayats.size, "#", :class => 'tipTipRight', :title => associated_names(district.panchayats) %></td>
+                <td><%= link_to district.revenue_blocks.active.size, "#", :class => 'tipTipRight', :title => associated_names(district.revenue_blocks.active) %></td>
+                <!--<td><%# link_to district.panchayats.size, "#", :class => 'tipTipRight', :title => associated_names(district.panchayats) %></td>-->
                 <td><%= link_to district.enumeration_blocks.size, "#", :class => 'tipTipRight', :title => enumeration_block_list(district.enumeration_blocks) %></td>
                 <td>
-                  <%= link_to "Manage Revenue Blocks",manage_revenue_block_home_path(district),:class=>"usuallink bold_text"%>
+                  <%= link_to "Manage Revenue Blocks", manage_revenue_block_home_path(district), :class => "usuallink bold_text" %>
                 </td>
               </tr>
               <% i = i + 1 %>
@@ -56,70 +57,72 @@
         </div>
     <% end %>
 
-<%else%>
-<% title "VEDAVAAG |SECC | Home" %>
-<h3>SECC | Revenue Blocks | Manage</h3>
-
-<div class="help_text">
-  Area for managing Revenue Block. <br/>
-</div>
-
-<% if @revenue_blocks.blank? %>
-    <div class="error_msg">
-      OOPS!.. No Revenue Blocks are Found in the System..!
-    </div>
 <% else %>
-    <table width="100%">
-      <tr>
-        <td align="right">
-          <b><i>per page</i></b>
-          <%= per_page %>| <%= page_entries_info @revenue_blocks %>
-        </td>
-      </tr>
-    </table>
-    <table class="tablesorter">
-      <thead>
-      <tr>
-        <th>SNo</th>
-        <th>State</th>
-        <th>District</th>
-        <th>RB Name</th>
-        <th>Ref. No</th>
-        <th>Ref. Name</th>
-        <th>Panchayats</th>
-        <th>E-Blocks</th>
-        <th>Actions</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% i=1 %>
-      <% @revenue_blocks.each do |rb| %>
+    <% title "VEDAVAAG |SECC | Home" %>
+    <h3>SECC | Revenue Blocks | Manage</h3>
+    <div class="help_text">
+      Area for managing Revenue Block. <br/>
+      <strong>Total Enumeration Block's Includes Sub EB's + Nagar Panchayat EB's + Census Town EB's</strong>
+    </div>
+
+    <% if @revenue_blocks.blank? %>
+        <div class="error_msg">
+          OOPS!.. No Revenue Blocks are Found in the System..!
+        </div>
+    <% else %>
+        <table width="100%">
           <tr>
-            <td><%= i %></td>
-            <td><%= rb.state.name + " (" + rb.state.reference_number.to_s + ")" %></td>
-            <td><%= rb.district.name + " (" + "%02d"%rb.district.reference_number.to_s + ")" %></td>
-            <td><%= rb.name %></td>
-            <td><%= "%03d"%rb.reference_number.to_s %></td>
-            <td><%= rb.reference_name %></td>
-            <td><%= link_to rb.panchayats.size, "#", :class => 'tipTipRight', :title => associated_names(rb.panchayats) %></td>
-            <td><%= link_to rb.enumeration_blocks.size, "#", :class => 'tipTipRight', :title => enumeration_block_list(rb.enumeration_blocks) %></td>
-            <td>
-              <%= link_to "View RB Report",{:action=>:status_report, :controller=>:enumeration_blocks, :id=>rb},:class=>"usuallink bold_text",:rel=>"facebox" %> |
-              <%= link_to "Work Status",list_revenue_block_enumeration_block_path(rb),:class=>"usuallink bold_text" %> |
-              <%= link_to "Attendance",list_revenue_block_attendance_path(rb),:class=>"usuallink bold_text" %> |
-              <%= link_to "Daily Uploads",list_revenue_block_upload_path(rb),:class=>"usuallink bold_text" %>
+            <td align="right">
+              <b><i>per page</i></b>
+              <%= per_page %>| <%= page_entries_info @revenue_blocks %>
             </td>
           </tr>
-          <% i = i + 1 %>
-      <% end %>
-      </tbody>
-    </table>
-    <div class="flickr_pagination">
-      <%= page_entries_info @revenue_blocks %> <%= will_paginate @revenue_blocks, :container => false %>
-    </div>
-<% end %>
+        </table>
+        <table class="tablesorter">
+          <thead>
+          <tr>
+            <th>SNo</th>
+            <th>State</th>
+            <th>District</th>
+            <th>RB Name</th>
+            <th>Ref. No</th>
+            <!--<th>Ref. Name</th>-->
+            <!--<th>Panchayats</th>-->
+            <th>E-Blocks</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% i=1 %>
+          <% @revenue_blocks.each do |rb| %>
+              <tr>
+                <td><%= i %></td>
+                <td><%= rb.state.name + " (" + rb.state.reference_number.to_s + ")" %></td>
+                <td><%= rb.district.name + " (" + "%02d"%rb.district.reference_number.to_s + ")" %></td>
+                <td><%= rb.name %></td>
+                <td><%= "%03d"%rb.reference_number.to_s %></td>
+                <!--<td><%# rb.reference_name %></td>-->
+                <!--<td><%# link_to rb.panchayats.size, "#", :class => 'tipTipRight', :title => associated_names(rb.panchayats) %></td>-->
+                <td><%= link_to rb.enumeration_blocks.size, "#", :class => 'tipTipRight', :title => enumeration_block_list(rb.enumeration_blocks) %></td>
+                <td>
+                  <%= link_to "View RB Report", {:action => :status_report, :controller => :enumeration_blocks, :id => rb}, :class => "usuallink bold_text", :rel => "facebox" %>
+                  |
+                  <%= link_to "Work Status", list_revenue_block_enumeration_block_path(rb), :class => "usuallink bold_text" %>
+                  |
+                  <%= link_to "Attendance", list_revenue_block_attendance_path(rb), :class => "usuallink bold_text" %> |
+                  <%= link_to "Daily Uploads", list_revenue_block_upload_path(rb), :class => "usuallink bold_text" %>
+                </td>
+              </tr>
+              <% i = i + 1 %>
+          <% end %>
+          </tbody>
+        </table>
+        <div class="flickr_pagination">
+          <%= page_entries_info @revenue_blocks %> <%= will_paginate @revenue_blocks, :container => false %>
+        </div>
+    <% end %>
 
-<%end%>
+<% end %>
 
 
 

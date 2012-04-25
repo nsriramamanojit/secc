@@ -3,6 +3,9 @@
 
 <div class="help_text">
   Area for managing Revenue Block. <br/>
+  <strong>Total Revenue Blocks are shown in the List are for Current Phase</strong> <br/>
+  <strong>Total Enumeration Block's Includes Sub EB's + Nagar Panchayat EB's + Census Town EB's</strong>
+
 </div>
 <div class="link_buttons">
   <%= link_to content_tag(:span, 'View Consolidated Report'), "#", :class => 'btn-yellow' %>
@@ -31,8 +34,8 @@
         <th>District</th>
         <th>RB Name</th>
         <th>Ref. No</th>
-        <th>Ref. Name</th>
-        <th>Panchayats</th>
+        <!--<th>Ref. Name</th>-->
+        <!--<th>Panchayats</th>-->
         <th>E-Blocks</th>
         <th>Actions</th>
       </tr>
@@ -46,8 +49,8 @@
             <td><%= rb.district.name + " (" + "%02d"%rb.district.reference_number.to_s + ")" %></td>
             <td><%= rb.name %></td>
             <td><%= "%03d"%rb.reference_number.to_s %></td>
-            <td><%= rb.reference_name %></td>
-            <td><%= link_to rb.panchayats.size, "#", :class => 'tipTipRight', :title => associated_names(rb.panchayats) %></td>
+            <!--<td><%= rb.reference_name %></td>-->
+            <!--<td><%# link_to rb.panchayats.size, "#", :class => 'tipTipRight', :title => associated_names(rb.panchayats) %></td>-->
             <td><%= link_to rb.enumeration_blocks.size, "#", :class => 'tipTipRight', :title => enumeration_block_list(rb.enumeration_blocks) %></td>
             <td>
               <%= link_to "View RB Report",{:action=>:status_report, :controller=>:enumeration_blocks, :id=>rb},:class=>"usuallink bold_text",:rel=>"facebox" %> |

@@ -36,6 +36,9 @@ class RevenueBlock < ActiveRecord::Base
         scoped
       end
     end
+    def active
+      where(:status => true).order('name')
+    end
 
   end
 

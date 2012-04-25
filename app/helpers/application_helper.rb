@@ -37,11 +37,7 @@ module ApplicationHelper
   def created_by(created_by)
     User.where(:id => created_by).first.name
   end
-  def link_to_active(model, path)
-    content = ''
-    content << link_to(model.report_status? ? image_tag('tick.gif') : image_tag('cros.gif'), path)
-    content.html_safe
-  end
+
   def associated_names(records)
     return 'No Records found' if records.blank?
     content = ''
@@ -90,7 +86,7 @@ module ApplicationHelper
   def link_to_active(model, path)
     content = ''
     content << "<div id='status_#{model.id}'>"
-    content << link_to(model.status ? image_tag('tick.gif') : image_tag('cros.gif'), path, :remote=>true)
+    content << link_to(model.status ? image_tag('tick.gif') : image_tag('cross.gif'), path, :remote=>true)
     content << "</div>"
     content.html_safe
   end

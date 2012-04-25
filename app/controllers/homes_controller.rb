@@ -8,7 +8,7 @@ class HomesController < ApplicationController
   end
 
   def manage_revenue_block
-    @revenue_blocks = RevenueBlock.where(:district_id => params[:id],:status=>true).paginate(:page =>page, :per_page=>per_page)
+    @revenue_blocks = RevenueBlock.active.where(:district_id => params[:id]).paginate(:page =>page, :per_page=>per_page)
   end
 
 end
