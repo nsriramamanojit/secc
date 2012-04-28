@@ -44,7 +44,7 @@ class AttendancesController < ApplicationController
 
     respond_to do |format|
       if @attendance.save
-        format.html { redirect_to(attendances_url, :notice => 'Attendance Saved Successfully.') }
+        format.html { redirect_to(attendances_url, :notice => 'AHL Report Created Successfully.') }
         format.xml  { render :xml => @attendance, :status => :created, :location => @attendance }
       else
         format.html { render :action => "new" }
@@ -58,7 +58,7 @@ class AttendancesController < ApplicationController
 
     respond_to do |format|
       if @attendance.update_attributes(params[:attendance])
-        format.html { redirect_to(@attendance, :notice => 'Attendance was successfully updated.') }
+        format.html { redirect_to(@attendance, :notice => 'AHL Report was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

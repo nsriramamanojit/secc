@@ -1,12 +1,12 @@
-<% title "VEDAVAAG | SECC | Attendance" %>
-<h3>VEDAVAAG | SECC | Manage | Attendance of Revenue Block -  <%= @attendances.blank? ? "" : @attendances.first.revenue_block.name %></h3>
+<% title "VEDAVAAG | SECC | AHL " %>
+<h3>VEDAVAAG | SECC | Manage | AHL Report -  <%= @attendances.blank? ? "" : @attendances.first.revenue_block.name %></h3>
 
 
 <div class="help_text">
-  Area for managing Attendance of Revenue Block. <br/>
+  Area for managing AHL Report of Revenue Block. <br/>
 </div>
 <div class="link_buttons">
-  <%= link_to content_tag(:span, 'Create Attendance'), new_attendance_path, :class => 'btn-blue' if permitted_to? :create %>
+  <%= link_to content_tag(:span, 'Create AHL Report'), new_attendance_path, :class => 'btn-blue' if permitted_to? :create %>
   <%= link_to content_tag(:span, 'Home'), homes_url, :class => 'btn-blue' %>
 </div>
 

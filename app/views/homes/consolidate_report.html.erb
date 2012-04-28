@@ -1,0 +1,31 @@
+<% title "VEDAVAAG | SECC | Consolidated Report" %>
+
+<h3>VEDAVAAG | SECC | Consolidated Report</h3>
+
+<% if @enumeration_blocks.blank? %>
+    <div class="error_msg">
+      OOPS!.. No Reports are Found in the System..!
+    </div>
+<% else %>
+    <table class="tablesorter">
+      <thead>
+      <tr>
+        <th>Date</th>
+        <th>Count</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% i=1 %>
+      <% @enumeration_blocks.each do |date,records| %>
+          <tr>
+            <td><%= date %></td>
+            <td><%= records.size %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% end %>
+
+
+
+

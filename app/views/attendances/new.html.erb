@@ -1,8 +1,8 @@
-<% title "VEDAVAAG | SECC | Attendance " %>
+<% title "VEDAVAAG | SECC | AHL " %>
 <% content_for :sub_heading do %>
-    <%= sub_heading('VEDAVAAG | SECC | Attendance','Attendance') %>
+    <%= sub_heading('VEDAVAAG | SECC | AHL','Create AHL Report') %>
 <% end %>
 <%= render 'form',:heading => 'Save' %>
 <div class="link_buttons">
-  <%=link_to_all(attendances_path)%>
+  <%=link_to_all(:back)%>
 </div>

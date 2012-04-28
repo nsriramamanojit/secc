@@ -11,4 +11,11 @@ class HomesController < ApplicationController
     @revenue_blocks = RevenueBlock.active.where(:district_id => params[:id]).paginate(:page =>page, :per_page=>per_page)
   end
 
+  def consolidate_report
+    #@enumeration_blocks = EnumerationBlock.all(:group => "DATE(updated_at)") if has_any_role?(:admin,:manager)
+
+    @ebs = EnumerationBlock.where("updated_at IS NOT NULL")
+    @enumeration_blocks = @ebs.group_by{ |a| a.updated_at.to_date}.sort
+  end
+
 end

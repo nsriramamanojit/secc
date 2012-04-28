@@ -54,7 +54,7 @@
     <td id="no_data_2"><%= EnumerationBlock.enumeration_no_data(params[:id]).size %></td>
   </tr>
   <tr>
-    <td>NIC Enumeration</td>
+    <td>NIC Upload before Supervising</td>
     <td id="nys_3"><%= EnumerationBlock.enu_nic_upload_nys(params[:id]).size %></td>
     <td id="going_3"><%= EnumerationBlock.enu_nic_upload_going(params[:id]).size %></td>
     <td id="pending_3"><%= EnumerationBlock.enu_nic_upload_pending(params[:id]).size %></td>
@@ -70,7 +70,7 @@
     <td id="no_data_4"><%= EnumerationBlock.supervising_no_data(params[:id]).size %></td>
   </tr>
   <tr>
-    <td>NIC Supervising</td>
+    <td>NIC Upload after Supervising</td>
     <td id="nys_5"><%= EnumerationBlock.super_nic_upload_nys(params[:id]).size %></td>
     <td id="going_5"><%= EnumerationBlock.super_nic_upload_going(params[:id]).size %></td>
     <td id="pending_5"><%= EnumerationBlock.super_nic_upload_pending(params[:id]).size %></td>

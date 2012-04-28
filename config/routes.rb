@@ -61,6 +61,7 @@ Secc::Application.routes.draw do
 
   resources :homes do
     get :manage_revenue_block, :on=>:member
+    get :consolidate_report, :on=>:collection
   end
 
   match 'login' => "user_sessions#new", :as => :login
